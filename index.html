@@ -1,13 +1,127 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vite + React</title>
+</head>
+
+<body class="bg-white dark:bg-gray-700 text-black dark:text-gray-100">
+  <div id="root">
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      .loading-container {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .loading {
+        position: relative;
+        width: 128px;
+        height: 128px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        border: 4px solid #6f6af8;
+        box-shadow: 0 6px 12px 4px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+      }
+
+      .loading-wave {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        animation: progress 180s ease-in-out;
+      }
+
+      .loading-wave::before,
+      .loading-wave::after {
+        content: '';
+        position: absolute;
+        width: 200%;
+        height: 200%;
+        border-radius: 36%;
+        background-color: #6f6af8;
+        box-shadow: 0 0 8px 4px rgba(0, 0, 0, 0.2);
+      }
+
+      .loading-wave::before {
+        opacity: 0.2;
+        animation: wave 8s linear infinite;
+      }
+
+      .loading-wave::after {
+        opacity: 0.4;
+        animation: wave 8s linear 1s infinite;
+      }
+
+      .logo {
+        position: absolute;
+        width: 60%;
+        height: 60%;
+        z-index: 10;
+      }
+
+      .loading-title {
+        margin-top: 2em;
+        font-size: 20px;
+        font-weight: bold;
+        font-family: system-ui, -apple-system, emoji;
+      }
+
+      @keyframes wave {
+        from {
+          transform: rotateZ(0);
+        }
+
+        to {
+          transform: rotateZ(360deg);
+        }
+      }
+
+      @keyframes progress {
+        0% {
+          transform: translateY(168%);
+        }
+
+        0.1% {
+          transform: translateY(150%);
+        }
+
+        5% {
+          transform: translateY(100%);
+        }
+
+        100% {
+          transform: translateY(50%);
+        }
+      }
+    </style>
+    <div class="loading-container">
+      <div class="loading">
+        <div class="loading-wave"></div>
+        <img class="logo" src="/logo.png" alt="logo" />
+      </div>
+      <div class="loading-title">
+        Wowon Admin Pro
+      </div>
+    </div>
+  </div>
+  <script type="module" src="/src/app.jsx"></script>
+  <script src="//at.alicdn.com/t/c/font_3730241_gnvogektju7.js"></script>
+</body>
+
 </html>

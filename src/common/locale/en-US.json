@@ -1,0 +1,13 @@
+{
+  "lang": "en-US",
+  "language": {
+    "title": "Wowon Admin Pro",
+    "shortTitle": "Wowon",
+    "routes": {
+      "home": "Home",
+      "organzation": "Organzation",
+      "message": "Message",
+      "analysis": "Analysis"
+    }
+  }
+}

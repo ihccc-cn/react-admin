@@ -1,0 +1,127 @@
+aside {
+  background-color: #959595;
+  color: #fff;
+}
+
+header {
+  background-color: #fff;
+}
+
+.wow-layout {
+  position: relative;
+  display: flex;
+  width: 100%;
+}
+
+.wow-layout.wow-space {
+  padding-left: 20px;
+}
+
+.wow-layout.wow-space .wow-aside-main {
+  height: calc(100vh - 40px);
+  top: 20px;
+  bottom: 20px;
+  border-radius: 8px;
+}
+
+.wow-header {
+  position: sticky;
+  top: 0;
+  left: 72px;
+  padding: 16px;
+  overflow: hidden;
+  z-index: 20;
+}
+
+.wow-header.wow-pin {
+  left: 280px;
+}
+
+.wow-aside {
+  width: 64px;
+  height: 100%;
+}
+
+.wow-aside-placeholder {
+  background-color: transparent;
+}
+
+.wow-aside-placeholder.wow-fade {
+  width: 0;
+}
+
+.wow-aside-placeholder.wow-pin {
+  width: 256px;
+}
+
+.wow-aside-main {
+  box-shadow: 0 4px 8px 2px rgba(0, 0, 0, 0.1);
+  z-index: 40;
+}
+
+.wow-aside.wow-fixed {
+  top: 0;
+  bottom: 0;
+}
+
+.wow-aside.wow-fade {
+  transform: translateX(-100%);
+}
+
+.wow-aside.wow-open {
+  width: 256px;
+}
+
+.wow-aside.wow-half {
+  width: 50%;
+}
+
+.wow-aside.wow-full {
+  width: 100%;
+}
+
+.wow-content {
+  flex: 1;
+}
+
+.wow-fixed {
+  position: fixed;
+}
+
+.wow-logo {
+  width: 100%;
+  line-height: 40px;
+  margin-top: 24px;
+  max-width: 256px;
+}
+
+.wow-menu-container {
+  margin-top: 48px;
+}
+
+.wow-aside-bottom {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.wow-transition {
+  transition: all 0.4s ease-in-out;
+}
+
+/* sm */
+@media (min-width: 640px) {
+}
+
+/* md */
+@media (min-width: 768px) {
+}
+
+/* lg */
+@media (min-width: 1024px) {
+}
+
+/* xl */
+@media (min-width: 1280px) {
+}

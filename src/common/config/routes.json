@@ -1,0 +1,36 @@
+[
+  {
+    "path": "/",
+    "component": "layout",
+    "children": [
+      {
+        "name": "工作台",
+        "icon": "icon-home",
+        "path": "/home",
+        "component": "home"
+      },
+      {
+        "name": "组织架构",
+        "icon": "icon-team",
+        "path": "/organzation",
+        "component": "organzation"
+      },
+      {
+        "name": "用户消息",
+        "icon": "icon-message",
+        "path": "/message",
+        "component": "message"
+      },
+      {
+        "name": "数据分析",
+        "icon": "icon-fenxi",
+        "path": "/analysis",
+        "component": "analysis",
+        "access": "admin"
+      },
+      {
+        "component": "404"
+      }
+    ]
+  }
+]
