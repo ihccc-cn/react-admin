@@ -6,7 +6,8 @@ import enUS from "../locale/en-US.json";
 
 export default {
   version: "0.0.1",
-  name: "前端程序-1",
+  name: "Wowon Admin Pro",
+  logo: "http://localhost:7000/logo.png",
   env: "dev",
   // 多语言配置
   locale: {
@@ -21,7 +22,9 @@ export default {
       dev: {
         defaultServer: "/base-server",
       },
-      pre: {},
+      pre: {
+        defaultServer: "http://localhost:5000/base-server",
+      },
     },
   },
   // 权限配置
@@ -39,7 +42,7 @@ export default {
       // title: "Wowon Admin Pro",
       // shortTitle: "Wowon",
       logo: "/logo.png",
-      float: true,
+      float: false,
     },
   },
 };

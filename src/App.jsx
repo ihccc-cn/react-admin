@@ -22,9 +22,11 @@ dayjs.locale("zh-cn");
 app.on("mount", async function () {
   console.log("APP: ", this);
 
-  window._app = app;
+  window.wowon = () => {
+    window._app = this;
+  };
 
-  app.plugins.apply("react-router", {}, dom => (
+  this.plugins.apply("react-router", {}, dom => (
     <ConfigProvider
       theme={{
         token: {

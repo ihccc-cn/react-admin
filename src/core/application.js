@@ -22,6 +22,7 @@ class Application extends EventEmitter {
 
     this.version = config.version || "0.0.0";
     this.name = config.name || "系统暂未命名";
+    this.logo = config.logo;
     this.config = config;
     this.active = false;
     this.unLoadPlugins = [];
@@ -45,6 +46,7 @@ class Application extends EventEmitter {
     while (this.unLoadPlugins.length > 0) {
       this.use.apply(this, this.unLoadPlugins.pop());
     }
+    this.printVersion();
     this.emit("mount");
   }
   unmount() {
@@ -54,6 +56,13 @@ class Application extends EventEmitter {
     this.plugins.clear();
   }
   // --------------------- app lifeCycle -----------------
+  printVersion() {
+    console.log(
+      "%c✨ 欢迎使用 " + this.name + " %c" + this.version,
+      ["color: #6f6af8"].join(";"),
+      ["padding: 2px 6px", "background: #6f6af8", "border-radius: 2px", "color: #e5e5e5"].join(";")
+    );
+  }
 }
 
 export default Application;
