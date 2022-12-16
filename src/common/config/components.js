@@ -4,27 +4,32 @@ export default {
   /**
    * 基础布局
    */
-  layout: React.lazy(async () => await import("@/layout/main-layout")),
+  layout: React.lazy(() => import("@/layout/main-layout")),
 
   /**
    * 首页
    */
-  home: React.lazy(async () => await import("@/pages/home")),
+  home: React.lazy(() => import("@/pages/home")),
+
+  /**
+   * 表格列表
+   */
+  tableList: React.lazy(() => import("@/pages/table-list")),
 
   /**
    * 组织架构
    */
-  organzation: React.lazy(async () => await import("@/pages/organzation")),
+  organzation: React.lazy(() => import("@/pages/organzation")),
 
   /**
    * 消息中心
    */
-  message: React.lazy(async () => await import("@/pages/message")),
+  message: React.lazy(() => import("@/pages/message")),
 
   /**
    * 统计分析
    */
-  analysis: React.lazy(async () => await import("@/pages/analysis")),
+  analysis: React.lazy(() => import("@/pages/analysis")),
 
   /**
    * page 404

@@ -14,7 +14,7 @@ function Page() {
   }, []);
 
   return (
-    <div className="app">
+    <div>
       <pre>
         <code>{JSON.stringify(data, null, 2)}</code>
       </pre>

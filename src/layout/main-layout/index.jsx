@@ -11,7 +11,7 @@ const SearchInput = ({ fold }) => (
   <div className="mb-8 px-3 max-w-md">
     {fold ? (
       <div
-        className={classnames(
+        className={clsx(
           "p-3 bg-white bg-opacity-70 rounded-lg dark:bg-gray-600 text-black dark:text-white text-md shadow-md cursor-pointer hover:scale-110",
           transition
         )}

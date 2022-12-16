@@ -10,22 +10,30 @@ class Locale extends EventEmitter {
     this.app = app;
     this.language = new Map();
     this.lang = locale.default || null;
-
-    locale.language.forEach(lang => {
-      this.set(lang);
-    });
+    this.set(locale.language);
   }
   set(locale) {
-    this.language.set(locale.lang, locale.language);
+    if (Array.isArray(locale)) {
+      locale.forEach(item => this.set(item));
+    } else {
+      this.language.set(locale.lang, locale.language);
+    }
   }
   select(lang) {
     this.lang = lang;
     this.emit(Locale.events.CHANGE, this.lang, this);
-    this.app.update();
   }
-  format(key) {
+  format(key, defaultValue) {
+    defaultValue = defaultValue || "UNKOWN";
+    if (!key) return defaultValue;
     const locale = this.language.get(this.lang);
-    return locale[key];
+    let readLocale = locale[key];
+    if (readLocale === void 0) {
+      const keys = key.split(".");
+      readLocale = locale;
+      while (keys.length > 0) readLocale = readLocale[keys.shift()];
+    }
+    return readLocale || defaultValue;
   }
 }
 

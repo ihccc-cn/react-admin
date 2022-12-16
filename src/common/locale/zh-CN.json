@@ -4,11 +4,17 @@
     "title": "汪汪中后台管理平台",
     "shortTitle": "汪汪",
     "routes": {
+      "sign-in": "登录",
+      "sign-up": "注册",
       "home": "工作台",
+      "table-list": "表格列表",
       "organzation": "组织架构",
       "message": "消息中心",
       "analysis": "数据分析"
     },
+    "forenoon": "上午",
+    "afternoon": "下午",
+    "welcome": "{time}好，汪汪用户-{name}！",
     "404": "您访问的页面不存在！"
   }
 }

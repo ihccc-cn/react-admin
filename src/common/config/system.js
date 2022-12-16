@@ -1,36 +1,28 @@
+import loading from "@/loading";
 import components from "./components";
 import routes from "./routes.json";
-import loading from "@/loading";
 import zhCN from "../locale/zh-CN.json";
 import enUS from "../locale/en-US.json";
 
 export default {
   version: "0.0.1",
   name: "Wowon Admin Pro",
-  logo: "http://localhost:7000/logo.png",
   env: "dev",
-  // 多语言配置
+  // 国际化配置
   locale: {
     language: [zhCN, enUS],
     default: "zh-CN",
     antd: true,
     dayjs: true,
   },
-  // 服务地址配置
-  request: {
-    server: {
-      dev: {
-        defaultServer: "/base-server",
-      },
-      pre: {
-        defaultServer: "http://localhost:5000/base-server",
-      },
-    },
-  },
   // 权限配置
   access: {
-    admin: ({}) => false,
-    common: ({}) => true,
+    authority: [
+      { key: "allow", seed: "userInfo", type: "in", value: "id" },
+      { key: "admin", seed: "roles", type: "in-item", seedKey: "key", value: "admin" },
+      { key: "guest", seed: "roles", type: "in-item", seedKey: "key", value: "guest" },
+    ],
+    judgment: {},
   },
   // 路由配置
   router: {
@@ -42,7 +34,21 @@ export default {
       // title: "Wowon Admin Pro",
       // shortTitle: "Wowon",
       logo: "/logo.png",
-      float: false,
+      float: true,
+    },
+  },
+  // 服务地址配置
+  request: {
+    server: {
+      debug: {
+        base: "http://localhost:7000",
+      },
+      dev: {
+        base: "/base-server",
+      },
+      pre: {
+        base: "http://localhost:5000/base-server",
+      },
     },
   },
 };

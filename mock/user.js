@@ -29,7 +29,7 @@ const user = new UnrealService(initData, {
 
 export default [
   {
-    url: "/api-mock/user/get-token",
+    url: "/user/get-token",
     method: "POST",
     timeout: 200,
     response: {
@@ -41,7 +41,7 @@ export default [
     },
   },
   {
-    url: "/api-mock/user/get-user",
+    url: "/user/get-user",
     method: "GET",
     timeout: 200,
     response: {
@@ -55,7 +55,7 @@ export default [
     },
   },
   {
-    url: "/api-mock/user/query",
+    url: "/user/query",
     method: "GET",
     rawResponse: async (req, res) => {
       try {
@@ -67,7 +67,7 @@ export default [
     },
   },
   {
-    url: "/api-mock/user/create",
+    url: "/user/create",
     method: "POST",
     rawResponse: async (req, res) => {
       try {
@@ -79,7 +79,7 @@ export default [
     },
   },
   {
-    url: "/api-mock/user/update",
+    url: "/user/update",
     method: "POST",
     rawResponse: async (req, res) => {
       try {
@@ -100,7 +100,7 @@ export default [
     },
   },
   {
-    url: "/api-mock/user/remove",
+    url: "/user/remove",
     method: "POST",
     rawResponse: async (req, res) => {
       try {

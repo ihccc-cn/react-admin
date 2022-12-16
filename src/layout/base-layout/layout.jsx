@@ -1,5 +1,5 @@
 import React from "react";
-import classnames from "classnames";
+import clsx from "clsx";
 import LayoutContext from "./context";
 
 // 只提供基础布局，无主题，无响应式
@@ -9,7 +9,7 @@ export const Header = ({ className, children }) => {
 
   return (
     <header
-      className={classnames(
+      className={clsx(
         "wow-header",
         { "wow-pin": pin },
         {
@@ -24,7 +24,7 @@ export const Header = ({ className, children }) => {
 };
 
 export const Content = ({ className, children }) => {
-  return <section className={classnames("wow-content", className)}>{children}</section>;
+  return <section className={clsx("wow-content", className)}>{children}</section>;
 };
 
 export const Aside = ({ className, logo, children }) => {
@@ -33,13 +33,13 @@ export const Aside = ({ className, logo, children }) => {
   return (
     <React.Fragment>
       <aside
-        className={classnames("wow-aside wow-aside-placeholder", {
+        className={clsx("wow-aside wow-aside-placeholder", {
           "wow-fade": fold === 0,
           "wow-pin": pin && fold > 1,
         })}
       ></aside>
       <aside
-        className={classnames(
+        className={clsx(
           "wow-aside",
           "wow-aside-main",
           "wow-fixed",
@@ -54,7 +54,7 @@ export const Aside = ({ className, logo, children }) => {
         )}
       >
         {/* logo */}
-        <div className={classnames("wow-logo")}>{logo}</div>
+        <div className={clsx("wow-logo")}>{logo}</div>
         {children}
       </aside>
     </React.Fragment>
@@ -77,7 +77,7 @@ export function Layout({ className, float, pin, fold, children }) {
 
   return (
     <LayoutContext.Provider value={{ pin, fold, scrolled }}>
-      <div className={classnames("wow-layout", { "wow-space": float }, className)}>{children}</div>
+      <div className={clsx("wow-layout", { "wow-space": float }, className)}>{children}</div>
     </LayoutContext.Provider>
   );
 }

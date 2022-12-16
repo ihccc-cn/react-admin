@@ -1,6 +1,7 @@
 .menu {
   position: relative;
   padding-inline-start: 0;
+  margin-bottom: 0;
 }
 
 .menu.fold .menu-item-link {
@@ -9,7 +10,11 @@
 .menu-item {
   position: relative;
   width: 100%;
-  margin-bottom: 24px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  line-height: 40px;
+  line-height: 24px;
   overflow: hidden;
 }
 
@@ -34,14 +39,12 @@
 }
 
 .menu-item-icon {
-  width: 24px;
-  height: 24px;
   font-size: 24px;
 }
 
 .menu-item-text {
   position: absolute;
-  left: 48px;
+  left: 52px;
   right: 1em;
   min-width: 6em;
   font-size: 16px;

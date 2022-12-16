@@ -4,7 +4,10 @@
     "title": "Wowon Admin Pro",
     "shortTitle": "Wowon",
     "routes": {
+      "sign-in": "sign in",
+      "sign-up": "sign up",
       "home": "Home",
+      "table-list": "table list",
       "organzation": "Organzation",
       "message": "Message",
       "analysis": "Analysis"

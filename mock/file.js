@@ -1,6 +1,6 @@
 export default [
   {
-    url: "/api-mock/files/upload",
+    url: "/files/upload",
     method: "POST",
     timeout: 200,
     response: {

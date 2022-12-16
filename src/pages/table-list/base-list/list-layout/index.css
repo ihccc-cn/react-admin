@@ -1,0 +1,38 @@
+.list-layout {
+  --border-color: #f1f1f1;
+  --background-color: #f9f9f9;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --gap: 16px;
+}
+
+.list-layout {
+  position: relative;
+  width: 100%;
+  border-radius: 4px;
+}
+
+.list-layout-head {
+  padding: var(--gap);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.list-layout-neck {
+  padding: var(--gap);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.list-layout-body {
+  padding: var(--gap);
+}
+
+.list-layout.background {
+  background: var(--background-color);
+}
+
+.list-layout.border {
+  border: 1px solid var(--border-color);
+}
+
+.list-layout.shadow {
+  box-shadow: 0 4px 8px 0px var(--shadow-color);
+}

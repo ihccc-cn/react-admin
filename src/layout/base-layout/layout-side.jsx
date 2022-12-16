@@ -1,5 +1,5 @@
 import React from "react";
-import classnames from "classnames";
+import clsx from "clsx";
 import Icon from "@/common/components/icon";
 import { Layout, Aside, Content } from "./layout";
 import Menus from "./menus";
@@ -7,25 +7,25 @@ import Menus from "./menus";
 export const transition = "transition-all duration-400 ease-in-out";
 
 const Pushpin = ({ className, fold, pin, onClick }) => (
-  <div className={classnames("wow-pin-button", { "wow-hide": fold < 2 }, className)} onClick={onClick}>
+  <div className={clsx("wow-pin-button", { "wow-hide": fold < 2 }, className)} onClick={onClick}>
     <Icon type={pin ? "icon-pushpin-fill" : "icon-pushpin"} />
   </div>
 );
 
 const FoldButton = ({ fold, onClick }) => (
-  <div className={classnames("wow-fold-button", { "wow-rotate": fold })} onClick={onClick}>
+  <div className={clsx("wow-fold-button", { "wow-rotate": fold })} onClick={onClick}>
     <Icon type="icon-right" />
   </div>
 );
 
 const Logo = ({ logo, title, shortTitle, fold }) => (
-  <a className={classnames("flex flex-col justify-center items-center")}>
+  <a className={clsx("flex flex-col justify-center items-center")}>
     {logo && (
-      <div className={classnames("aside-logo w-12 h-12 mb-2", transition, { "w-8 h-8": fold < 2 })}>
+      <div className={clsx("aside-logo w-12 h-12 mb-2", transition, { "w-8 h-8": fold < 2 })}>
         <img width="100%" src={logo} alt="logo" />
       </div>
     )}
-    <div className={classnames("aside-title leading-4 text-white text-lg lg:text-lg font-bold truncate", transition, { "lg:text-xl": !fold })}>
+    <div className={clsx("aside-title leading-4 text-white text-lg lg:text-lg font-bold truncate", transition, { "lg:text-xl": !fold })}>
       {fold < 2 ? shortTitle : title}
     </div>
   </a>
@@ -66,7 +66,7 @@ export function SideLayout({ logo, title, shortTitle, float, routes, renderLogo,
   return (
     <Layout float={float} pin={pin} fold={fold}>
       <Aside
-        className={classnames(ready ? "bg-primary dark:bg-gray-800" : "aside-loading")}
+        className={clsx(ready ? "bg-primary dark:bg-gray-800" : "aside-loading")}
         logo={(renderLogo && renderLogo()) || <Logo logo={logo} title={title} shortTitle={shortTitle} fold={fold} />}
       >
         {/* 固钉按钮 */}

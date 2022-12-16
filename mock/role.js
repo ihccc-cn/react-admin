@@ -25,7 +25,7 @@ const role = new UnrealService(initData, {
 
 export default [
   {
-    url: "/api-mock/role/query",
+    url: "/role/query",
     method: "GET",
     rawResponse: async (req, res) => {
       try {
@@ -37,7 +37,7 @@ export default [
     },
   },
   {
-    url: "/api-mock/role/create",
+    url: "/role/create",
     method: "POST",
     rawResponse: async (req, res) => {
       try {
@@ -49,7 +49,7 @@ export default [
     },
   },
   {
-    url: "/api-mock/role/update",
+    url: "/role/update",
     method: "POST",
     rawResponse: async (req, res) => {
       try {
@@ -61,7 +61,7 @@ export default [
     },
   },
   {
-    url: "/api-mock/role/remove",
+    url: "/role/remove",
     method: "POST",
     rawResponse: async (req, res) => {
       try {
@@ -73,7 +73,7 @@ export default [
     },
   },
   {
-    url: "/api-mock/role/enable",
+    url: "/role/enable",
     method: "POST",
     rawResponse: async (req, res) => {
       try {
@@ -86,7 +86,7 @@ export default [
     },
   },
   {
-    url: "/api-mock/role/list",
+    url: "/role/list",
     method: "GET",
     rawResponse: async (req, res) => {
       try {

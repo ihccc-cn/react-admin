@@ -1,28 +1,41 @@
 [
   {
+    "name": "sign-in",
+    "path": "/sign-in",
+    "component": "sign-in"
+  },
+  {
     "path": "/",
     "component": "layout",
     "children": [
       {
-        "name": "工作台",
+        "name": "home",
         "icon": "icon-home",
         "path": "/home",
         "component": "home"
       },
       {
-        "name": "组织架构",
+        "name": "table-list",
+        "icon": "icon-team",
+        "path": "/table-list",
+        "component": "tableList"
+      },
+      {
+        "name": "organzation",
         "icon": "icon-team",
         "path": "/organzation",
-        "component": "organzation"
+        "component": "organzation",
+        "access": ["guest", "admin"]
       },
       {
-        "name": "用户消息",
+        "name": "message",
         "icon": "icon-message",
         "path": "/message",
-        "component": "message"
+        "component": "message",
+        "access": "guest"
       },
       {
-        "name": "数据分析",
+        "name": "analysis",
         "icon": "icon-fenxi",
         "path": "/analysis",
         "component": "analysis",

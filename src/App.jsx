@@ -19,13 +19,13 @@ dayjs.locale("zh-cn");
 // 处理主题的方案 [tailwind]
 // 基础业务逻辑
 
+/**
+ * ## 布局组件
+ * [ ] 用户头像组件
+ * [ ] 顶部布局组件
+ * [ ] 二级布局组件
+ */
 app.on("mount", async function () {
-  console.log("APP: ", this);
-
-  window.wowon = () => {
-    window._app = this;
-  };
-
   this.plugins.apply("react-router", {}, dom => (
     <ConfigProvider
       theme={{

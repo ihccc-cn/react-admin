@@ -7,30 +7,28 @@ function renderSuspense(loading, children) {
   return <React.Suspense fallback={React.createElement(loading)}>{children}</React.Suspense>;
 }
 
-function renderRoutes(routes, components, context, loading, parentPath = "/") {
+function renderRoutes(routes, context, loading, parentPath = "/") {
   return routes.map(route => {
-    let currentPath = parentPath === "/" ? route.path : parentPath + route.path;
-    currentPath = currentPath || "*";
-    let element = components[route.component];
-    if (!element) return null;
+    const currentPath = (parentPath === "/" ? route.path : parentPath + route.path) || "*";
+    if (!route.component) return null;
     return !route.children ? (
-      <Route path={currentPath} element={renderSuspense(loading, React.createElement(element))} key={currentPath} />
+      <Route path={currentPath} element={renderSuspense(loading, React.createElement(route.component))} key={currentPath} />
     ) : (
       <Route
         path={currentPath}
         element={renderSuspense(
           loading,
-          React.createElement(element, Object.assign({}, context, { routes: route.children.filter(item => !!item.path) }), <Outlet />)
+          React.createElement(route.component, Object.assign({}, context, { routes: route.children.filter(item => !!item.path) }), <Outlet />)
         )}
         key={currentPath}
       >
-        {renderRoutes(route.children, components, context, loading, currentPath)}
+        {renderRoutes(route.children, context, loading, currentPath)}
       </Route>
     );
   });
 }
 
-function RoutesRender({ app, type, wrapper, routes, components, loading, context }) {
+function RoutesRender({ app, type, routes, loading, context }) {
   const update = React.useState({})[1];
 
   let Router = type === "hash" ? HashRouter : BrowserRouter;
@@ -39,15 +37,13 @@ function RoutesRender({ app, type, wrapper, routes, components, loading, context
     app.update = () => update({});
   }, []);
 
-  const children = (
+  return (
     <RouterContext.Provider value={context}>
       <Router>
-        <Routes>{renderRoutes(routes, components, context, loading)}</Routes>
+        <Routes>{renderRoutes(routes, context, loading)}</Routes>
       </Router>
     </RouterContext.Provider>
   );
-
-  return !wrapper ? children : wrapper(children);
 }
 
 function plugin(app) {
@@ -56,20 +52,38 @@ function plugin(app) {
   function run(params, wrapper) {
     const { type, routes, components, loading, context } = app.config.router;
 
-    const { parseAccessRoutes } = app.plugins.get("access") || {};
+    function parseAccessRoutes(routes) {
+      if (!routes) return [];
+      return routes
+        .map(route => {
+          const routeParams = {};
+          if (route.name) routeParams.name = app.locale.format("routes." + route.name);
+          if (route.component) routeParams.component = components[route.component];
+          if (Array.isArray(route.children)) routeParams.children = parseAccessRoutes(route.children);
+          return Object.assign({}, route, routeParams);
+        })
+        .filter(route => {
+          if (typeof route.access === "string") {
+            return app.access.get(route.access);
+          }
+          if (Array.isArray(route.access)) {
+            return route.access.some(key => app.access.get(key));
+          }
+          return true;
+        });
+    }
 
-    app.plugins.apply(
-      "react-render",
+    const routesRender = (
       <RoutesRender
         app={app}
-        wrapper={wrapper}
         type={type}
         routes={parseAccessRoutes ? parseAccessRoutes(routes) : routes}
-        components={components}
         loading={loading}
         context={Object.assign({}, context, params)}
       />
     );
+
+    app.plugins.apply("react-render", !wrapper ? routesRender : wrapper(routesRender));
   }
 
   return { name, context: RouterContext, run };

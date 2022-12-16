@@ -1,6 +1,13 @@
 import EventEmitter from "eventemitter3";
 import Plugins from "./plugins";
 
+import access from "./plugins/access";
+import locale from "./plugins/locale";
+import reactRender from "./plugins/react-render";
+import reactRoute from "./plugins/react-router";
+import reactSlot from "./plugins/react-slot";
+import request from "./plugins/request";
+
 /**
  * 1、可以动态加载插件、只有在启用的地方才会引用相应的模块
  * 2、不可以动态卸载插件
@@ -22,12 +29,18 @@ class Application extends EventEmitter {
 
     this.version = config.version || "0.0.0";
     this.name = config.name || "系统暂未命名";
-    this.logo = config.logo;
     this.config = config;
     this.active = false;
     this.unLoadPlugins = [];
 
     this.plugins = new Plugins(this);
+
+    this.use(access);
+    this.use(locale);
+    this.use(reactRender);
+    this.use(reactRoute);
+    this.use(reactSlot);
+    this.use(request);
   }
   // --------------------- app plugins -----------------
   use(plugin, config) {
@@ -60,8 +73,13 @@ class Application extends EventEmitter {
     console.log(
       "%c✨ 欢迎使用 " + this.name + " %c" + this.version,
       ["color: #6f6af8"].join(";"),
-      ["padding: 2px 6px", "background: #6f6af8", "border-radius: 2px", "color: #e5e5e5"].join(";")
+      ["padding: 0 6px", "background: #6f6af8", "border-radius: 2px", "color: #e5e5e5"].join(";")
     );
+
+    // console.log("APP: ", this);
+    window.wowon = () => {
+      return (window._app = this);
+    };
   }
 }
 
