@@ -1,0 +1,6 @@
+.tool-bar {
+  position: relative;
+  padding: var(--gap);
+  display: flex;
+  justify-content: flex-end;
+}

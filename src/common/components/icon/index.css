@@ -1,0 +1,15 @@
+.icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  transform: scale(1.5);
+  overflow: hidden;
+}
+
+.icon + * {
+  margin-left: 8px;
+}
+
+body > svg > symbol > path {
+  fill: currentColor;
+}

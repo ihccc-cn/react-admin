@@ -2,7 +2,6 @@
   position: absolute;
   top: 20px;
   right: 20px;
-  font-size: 20px;
   cursor: pointer;
   transition: 0.4s ease-in-out;
 }
@@ -16,29 +15,71 @@
 }
 
 .wow-fold-button {
+  padding: 4px;
+  background-color: #fff;
+  color: #c9c9c9;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  transition: 0.4s ease-in-out;
+}
+
+.wow-fold-button-signle {
   position: absolute;
   top: 96px;
   right: 0;
   display: flex;
   padding: 4px;
   border-radius: 24px;
-  background-color: #fff;
-  color: #c9c9c9;
   font-size: 24px;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
   transform: translateX(50%);
-  cursor: pointer;
-  transition: 0.4s ease-in-out;
 }
 
-.wow-fold-button .icon {
+.wow-fold-button-signle .icon {
   transition: 0.4s ease-in-out 0.3s;
 }
 
-.wow-fold-button.wow-rotate .icon {
+.wow-fold-button-signle.wow-rotate .icon {
   transform: rotateZ(180deg);
 }
 
-.wow-fold-button:hover {
+.wow-fold-button-signle:hover {
   transform: translateX(50%) scale(1.25);
+}
+
+.wow-fold-button-two {
+  position: absolute;
+  top: 96px;
+  right: 0;
+  display: flex;
+  transform: translateX(50%);
+}
+
+.wow-fold-button-left {
+  width: 16px;
+  height: 32px;
+  border-radius: 32px 0 0 32px;
+  transform-origin: right;
+}
+
+.wow-fold-button-right {
+  width: 16px;
+  height: 32px;
+  border-radius: 0 32px 32px 0;
+  transform-origin: left;
+}
+
+.wow-fold-button-left > svg {
+  position: absolute;
+  top: 8px;
+  left: 0;
+}
+
+.wow-fold-button-right > svg {
+  position: absolute;
+  top: 8px;
+  right: 0;
+}
+
+.wow-fold-button-two .wow-fold-button:hover {
+  transform: scale(1.25);
 }

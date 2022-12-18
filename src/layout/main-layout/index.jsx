@@ -5,8 +5,6 @@ import app from "@/core";
 import { HeadLayout, SideLayout } from "../base-layout";
 import "../base-layout/style";
 
-const { locale } = app;
-
 const SearchInput = ({ fold }) => (
   <div className="mb-8 px-3 max-w-md">
     {fold ? (
@@ -36,8 +34,8 @@ const Setting = () => {
   }, [dark]);
 
   return (
-    <div className="w-6 h-6 mx-auto my-12 text-2xl cursor-pointer" onClick={() => setDark(!dark)}>
-      <Icon type="icon-setting" />
+    <div className="w-6 h-6 mx-auto my-12 cursor-pointer" onClick={() => setDark(!dark)}>
+      <Icon type="icon-color" />
     </div>
   );
 };
@@ -45,8 +43,8 @@ const Setting = () => {
 function MainLayout({ children, ...restProps }) {
   return (
     <SideLayout
-      title={locale.format("title")}
-      shortTitle={locale.format("shortTitle")}
+      title={app.locale.format("title")}
+      shortTitle={app.locale.format("shortTitle")}
       renderMenu={(_, menuDom) => (
         <React.Fragment>
           <SearchInput />

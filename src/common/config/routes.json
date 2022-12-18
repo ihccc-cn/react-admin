@@ -16,27 +16,27 @@
       },
       {
         "name": "table-list",
-        "icon": "icon-team",
+        "icon": "icon-inspection",
         "path": "/table-list",
         "component": "tableList"
       },
       {
         "name": "organzation",
-        "icon": "icon-team",
+        "icon": "icon-salescenter",
         "path": "/organzation",
         "component": "organzation",
         "access": ["guest", "admin"]
       },
       {
         "name": "message",
-        "icon": "icon-message",
+        "icon": "icon-atm",
         "path": "/message",
         "component": "message",
         "access": "guest"
       },
       {
         "name": "analysis",
-        "icon": "icon-fenxi",
+        "icon": "icon-tradingvolume",
         "path": "/analysis",
         "component": "analysis",
         "access": "admin"

@@ -8,13 +8,24 @@ export const transition = "transition-all duration-400 ease-in-out";
 
 const Pushpin = ({ className, fold, pin, onClick }) => (
   <div className={clsx("wow-pin-button", { "wow-hide": fold < 2 }, className)} onClick={onClick}>
-    <Icon type={pin ? "icon-pushpin-fill" : "icon-pushpin"} />
+    <Icon type={pin ? "icon-pin-fill" : "icon-pin"} />
   </div>
 );
 
-const FoldButton = ({ fold, onClick }) => (
-  <div className={clsx("wow-fold-button", { "wow-rotate": fold })} onClick={onClick}>
-    <Icon type="icon-right" />
+// const FoldButton = ({ fold, onClick }) => (
+//   <div className={clsx("wow-fold-button", "wow-fold-button-signle", { "wow-rotate": fold })} onClick={onClick}>
+//     <Icon type="icon-arrow-right" />
+//   </div>
+// );
+
+const FoldButton2 = ({ onClick }) => (
+  <div className={clsx("wow-fold-button-two")}>
+    <div className={clsx("wow-fold-button", "wow-fold-button-left")} onClick={() => onClick && onClick(-1)}>
+      <Icon type="icon-arrow-left" />
+    </div>
+    <div className={clsx("wow-fold-button", "wow-fold-button-right")} onClick={() => onClick && onClick(1)}>
+      <Icon type="icon-arrow-right" />
+    </div>
   </div>
 );
 
@@ -53,11 +64,13 @@ export function SideLayout({ logo, title, shortTitle, float, routes, renderLogo,
     };
   }, []);
 
-  const changeFold = () => {
+  const changeFold = (step = 0) => {
     setFold(current => {
       let _dir = dir;
       if (current === 2 || current === 0) setDir((_dir = dir * -1));
-      return current + (_dir === 1 ? 1 : -1);
+      if (step === 0) return current + _dir;
+      const next = current + step;
+      return next === -1 || next > 2 ? current : next;
     });
   };
 
@@ -72,7 +85,8 @@ export function SideLayout({ logo, title, shortTitle, float, routes, renderLogo,
         {/* 固钉按钮 */}
         <Pushpin fold={fold} pin={pin} onClick={() => setPin(!pin)} />
         {/* 伸缩按钮 */}
-        <FoldButton fold={fold === 2 || (fold === 1 && dir === -1)} onClick={changeFold} />
+        {/* <FoldButton fold={fold === 2 || (fold === 1 && dir === -1)} onClick={changeFold} /> */}
+        <FoldButton2 onClick={changeFold} />
         <div className="wow-menu-container">
           {/* 菜单列表 */}
           {(renderMenu && renderMenu(routes, menuDom)) || menuDom}
