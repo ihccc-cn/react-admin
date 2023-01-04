@@ -34,7 +34,7 @@ export default {
       // title: "Wowon Admin Pro",
       // shortTitle: "Wowon",
       logo: "/logo.png",
-      float: true,
+      // float: true,
     },
   },
   // 服务地址配置

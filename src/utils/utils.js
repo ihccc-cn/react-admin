@@ -3,7 +3,7 @@
 /**
  * 退出登录，并且将当前的 url 保存
  */
-const loginOut = async () => {
+export const loginOut = async () => {
   // const { query = {}, pathname } = history.location;
   // const { redirect } = query; // Note: There may be security issues, please note
   // if (window.location.pathname !== "/user/login" && !redirect) {
@@ -15,4 +15,7 @@ const loginOut = async () => {
   // }
 };
 
-export default loginOut;
+export const uuid = ((start = 0) => {
+  let id = start;
+  return (prefix = "key") => `${prefix}_${id++}`;
+})();

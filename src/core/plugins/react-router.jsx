@@ -8,6 +8,7 @@ function renderSuspense(loading, children) {
 }
 
 function renderRoutes(routes, context, loading, parentPath = "/") {
+  // console.log(routes);
   return routes.map(route => {
     const currentPath = (parentPath === "/" ? route.path : parentPath + route.path) || "*";
     if (!route.component) return null;
@@ -28,14 +29,8 @@ function renderRoutes(routes, context, loading, parentPath = "/") {
   });
 }
 
-function RoutesRender({ app, type, routes, loading, context }) {
-  const update = React.useState({})[1];
-
-  let Router = type === "hash" ? HashRouter : BrowserRouter;
-
-  React.useEffect(() => {
-    app.update = () => update({});
-  }, []);
+function RoutesRender({ type, routes, loading, context }) {
+  const Router = React.useMemo(() => (type === "hash" ? HashRouter : BrowserRouter), [type]);
 
   return (
     <RouterContext.Provider value={context}>
@@ -57,7 +52,7 @@ function plugin(app) {
       return routes
         .map(route => {
           const routeParams = {};
-          if (route.name) routeParams.name = app.locale.format("routes." + route.name);
+          if (route.name) routeParams.name = app.locale.format("routes." + route.name, route.name);
           if (route.component) routeParams.component = components[route.component];
           if (Array.isArray(route.children)) routeParams.children = parseAccessRoutes(route.children);
           return Object.assign({}, route, routeParams);
@@ -75,7 +70,6 @@ function plugin(app) {
 
     const routesRender = (
       <RoutesRender
-        app={app}
         type={type}
         routes={parseAccessRoutes ? parseAccessRoutes(routes) : routes}
         loading={loading}

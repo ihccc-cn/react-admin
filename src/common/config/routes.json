@@ -21,6 +21,12 @@
         "component": "tableList"
       },
       {
+        "name": "form",
+        "icon": "icon-form",
+        "path": "/form-basic",
+        "component": "formBasic"
+      },
+      {
         "name": "organzation",
         "icon": "icon-salescenter",
         "path": "/organzation",

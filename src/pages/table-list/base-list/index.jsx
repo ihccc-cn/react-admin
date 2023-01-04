@@ -9,10 +9,10 @@ import ToolBar from "./tool-bar";
 // 表单布局组件 FormRender ：用于渲染序列化的表单的组件，序列化表单为以后开发表单编辑器做铺垫
 // 列表组件 List ：默认使用表格组件
 
-function BaseList({ children, ...restProps }) {
+function BaseList({ api, children, ...restProps }) {
   return (
     <ListLayout head={<SearchBar />} neck={<ToolBar />}>
-      {React.isValidElement(children) && React.cloneElement(children, restProps)}
+      {React.isValidElement(children) && React.cloneElement(children, Object.assign({ loading: api.loading, dataSource: api.data.list }, restProps))}
     </ListLayout>
   );
 }

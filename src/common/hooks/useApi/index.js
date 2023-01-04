@@ -1,6 +1,22 @@
 import React from "react";
+import { useUpdate } from "ahooks";
 
-const ApiConfig = new Map();
+const ApiConfig = new Map([
+  // ["onData", (data) => {}],
+  [
+    "dessert",
+    {
+      query: {
+        auto: true,
+        initialData: {},
+        page: { pageNumber: 1, pageSize: 10 },
+        verify: res => res.code === "0",
+        message: (pass, response) => !pass && (response.message || "失败！"),
+        format: response => response.data || {},
+      },
+    },
+  ],
+]);
 
 const defaultConfig = {
   auto: false,
@@ -11,8 +27,9 @@ const defaultConfig = {
 
 function useApi(api, config) {
   const apiConfig = React.useMemo(() => {
-    if (typeof config === "string") {
-      return Object.assign(defaultConfig, ApiConfig.get("dessert")[config]);
+    if (typeof config === "string" || typeof config === "undefined") {
+      const dessert = config || api.name;
+      return Object.assign(defaultConfig, ApiConfig.get("dessert")[dessert]);
     }
     if (typeof config === "object") {
       return Object.assign(defaultConfig, config);
@@ -20,23 +37,26 @@ function useApi(api, config) {
     return defaultConfig;
   }, [config]);
 
-  // console.log("apiConfig: ", apiConfig);
+  console.log("apiConfig: ", apiConfig);
 
-  const update = React.useState({})[1];
-  const stateDependencies = React.useRef({}).current;
+  const update = useUpdate();
+  const stateDependencies = React.useRef({
+    data: false,
+    loading: false,
+  }).current;
   const stateRef = React.useRef({
     params: apiConfig.params,
     data: apiConfig.initialData,
     loading: false,
   }).current;
 
-  console.log("stateDependencies: ", stateDependencies);
+  // console.log("stateDependencies: ", stateDependencies.loading, stateDependencies.data);
   // console.log("stateRef: ", stateRef);
 
-  const mutate = React.useCallback(data => {
-    stateRef.data = data;
-    update({});
-  }, []);
+  // const mutate = React.useCallback(data => {
+  //   stateRef.data = data;
+  //   update();
+  // }, []);
 
   const request = React.useCallback(async () => {
     if (stateRef.loading) return;
@@ -44,7 +64,7 @@ function useApi(api, config) {
     try {
       const { verify, format, message } = apiConfig;
       stateRef.loading = true;
-      if (stateDependencies.loading) update({});
+      if (stateDependencies.loading) update();
       const payload = Object.assign({}, stateRef.params);
       const response = await api(payload);
       stateRef.loading = false;
@@ -57,7 +77,7 @@ function useApi(api, config) {
       if (tipInfo) {
         onMessage && onMessage(pass ? 0 : 1, tipInfo);
       }
-      update({});
+      update();
     } catch (error) {
       onMessage && onMessage(2, error);
     }
@@ -67,18 +87,18 @@ function useApi(api, config) {
     return await request();
   }, [request]);
 
-  const refresh = React.useCallback(async () => {
-    return await request();
-  }, [request]);
+  // const refresh = React.useCallback(async () => {
+  //   return await request();
+  // }, [request]);
 
   React.useEffect(() => {
     if (apiConfig.auto) run();
   }, []);
 
   return {
-    mutate,
+    // mutate,
     run,
-    refresh,
+    // refresh,
     get data() {
       stateDependencies.data = true;
       return stateRef.data;
@@ -92,8 +112,8 @@ function useApi(api, config) {
 
 function setApiConfig(config) {
   Object.entries(config).forEach(([key, value]) => {
-    console.log(key);
-    ApiConfig.set(key, value);
+    const conf = ApiConfig.get(key);
+    ApiConfig.set(key, typeof conf === "object" ? Object.assign(conf, value) : value);
   });
   console.log(ApiConfig);
 }

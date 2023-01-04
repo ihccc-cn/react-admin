@@ -1,12 +1,21 @@
 import "./index.css";
 import app from "./core";
-import { ConfigProvider } from "antd";
+import { ConfigProvider, message } from "antd";
+import useApi from "@/common/hooks/useApi";
 import "./plugins";
 import dayjs from "dayjs";
 import "dayjs/locale/zh-cn";
 import "antd/dist/reset.css";
 
 dayjs.locale("zh-cn");
+
+// 统一配置请求后的处理选项
+useApi.config({
+  onMessage: (level, info) => {
+    const types = ["success", "warning", "error"];
+    message[types[level]](info);
+  },
+});
 
 // mock + 代理请求 [vite-plugin-mock](https://github.com/vbenjs/vite-plugin-mock/blob/main/README.zh_CN.md)
 // 处理请求的方案 request

@@ -28,6 +28,7 @@ export default [
     url: "/role/query",
     method: "GET",
     rawResponse: async (req, res) => {
+      res.setHeader("Content-Type", "application/json;charset=UTF-8");
       try {
         res.end(JSON.stringify(await role.query(req.query)));
       } catch (error) {
@@ -40,6 +41,7 @@ export default [
     url: "/role/create",
     method: "POST",
     rawResponse: async (req, res) => {
+      res.setHeader("Content-Type", "application/json;charset=UTF-8");
       try {
         res.end(JSON.stringify(await role.create(req.body)));
       } catch (error) {
@@ -52,6 +54,7 @@ export default [
     url: "/role/update",
     method: "POST",
     rawResponse: async (req, res) => {
+      res.setHeader("Content-Type", "application/json;charset=UTF-8");
       try {
         res.end(JSON.stringify(await role.update(req.body)));
       } catch (error) {
@@ -64,6 +67,7 @@ export default [
     url: "/role/remove",
     method: "POST",
     rawResponse: async (req, res) => {
+      res.setHeader("Content-Type", "application/json;charset=UTF-8");
       try {
         res.end(JSON.stringify(await role.remove(req.body)));
       } catch (error) {
@@ -76,6 +80,7 @@ export default [
     url: "/role/enable",
     method: "POST",
     rawResponse: async (req, res) => {
+      res.setHeader("Content-Type", "application/json;charset=UTF-8");
       try {
         const { id, enable } = req.body;
         res.end(JSON.stringify(await role.update({ id, enable })));
@@ -89,6 +94,7 @@ export default [
     url: "/role/list",
     method: "GET",
     rawResponse: async (req, res) => {
+      res.setHeader("Content-Type", "application/json;charset=UTF-8");
       try {
         res.end(JSON.stringify(await role.list(req.query)));
       } catch (error) {

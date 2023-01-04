@@ -1,0 +1,12 @@
+.flex-form-layout {
+  position: relative;
+}
+
+.flex-form-layout-item {
+  padding: 0 10px;
+}
+
+.flex-form-layout-item-inline {
+  display: inline-block;
+  padding: 0 10px;
+}

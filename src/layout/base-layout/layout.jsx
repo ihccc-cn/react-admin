@@ -47,7 +47,7 @@ export const Aside = ({ className, logo, children }) => {
           {
             "wow-fade": fold === 0,
             "wow-open": fold === 2,
-            // "wow-half": fold === 3,
+            "wow-half": fold === 3,
             // "wow-full": fold === 4,
           },
           className

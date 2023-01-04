@@ -34,7 +34,7 @@ export function UserInfoBlock({}) {
     <Dropdown placement="bottomRight" menu={{ items }}>
       <div className={clsx("user-info-block")}>
         <div className={clsx("user-info-avatar")}>
-          <Avatar src="/logo.png" />
+          <Avatar src="/pdx.jpg" />
         </div>
         <div className={clsx("user-info-name")}>派大星</div>
       </div>

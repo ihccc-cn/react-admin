@@ -67,10 +67,10 @@ export function SideLayout({ logo, title, shortTitle, float, routes, renderLogo,
   const changeFold = (step = 0) => {
     setFold(current => {
       let _dir = dir;
-      if (current === 2 || current === 0) setDir((_dir = dir * -1));
+      if (current === 3 || current === 0) setDir((_dir = dir * -1));
       if (step === 0) return current + _dir;
       const next = current + step;
-      return next === -1 || next > 2 ? current : next;
+      return next === -1 || next > 3 ? current : next;
     });
   };
 

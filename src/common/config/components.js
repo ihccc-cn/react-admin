@@ -17,6 +17,11 @@ export default {
   tableList: React.lazy(() => import("@/pages/table-list")),
 
   /**
+   * 表单页面
+   */
+  formBasic: React.lazy(() => import("@/pages/form/basic")),
+
+  /**
    * 组织架构
    */
   organzation: React.lazy(() => import("@/pages/organzation")),
