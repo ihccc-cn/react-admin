@@ -7,6 +7,7 @@ function ContentTab({ children }) {
   const nodes = React.Children.toArray(children);
   return (
     <Tabs
+      defaultActiveKey="editor"
       items={[
         { label: "基础布局", key: "form-render", children: nodes[0] },
         { label: "栅格布局", key: "form-render2", children: nodes[1] },

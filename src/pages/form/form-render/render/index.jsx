@@ -1,42 +1,6 @@
 import React from "react";
-import clsx from "clsx";
 import { Form, Input } from "antd";
-import "./index.css";
-
-function GridFormLayout({ items }) {
-  return;
-}
-
-function FlexFormLayout(props) {
-  const { items, layout } = props;
-
-  console.log(props);
-  const getLayout = item => {
-    const { inline, style } = layout.items?.[item.name || item.dataIndex] || {};
-    return {
-      inline: typeof inline === "undefined" ? layout.inline : inline,
-      style: typeof style === "undefined" ? layout.style : style,
-    };
-  };
-
-  return (
-    <div className="flex-form-layout">
-      {items.map(item => {
-        const { inline, style } = getLayout(item);
-        return React.cloneElement(
-          item.node,
-          Object.assign(
-            {
-              className: clsx(!inline ? "flex-form-layout-item" : "flex-form-layout-item-inline"),
-              key: item.key,
-            },
-            style ? { style: style } : {}
-          )
-        );
-      })}
-    </div>
-  );
-}
+import FlexFormLayout from "./flex-form-layout";
 
 function FormRender({ schema, layoutStyle, ...restProps }) {
   const items = schema.columns.map(col => ({
@@ -55,6 +19,6 @@ function FormRender({ schema, layoutStyle, ...restProps }) {
   );
 }
 
-export { FlexFormLayout, GridFormLayout };
+export { FlexFormLayout };
 
 export default FormRender;
