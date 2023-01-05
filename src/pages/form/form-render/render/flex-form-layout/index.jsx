@@ -4,17 +4,17 @@ import "./index.css";
 
 function FlexFormLayout(props) {
   const { tag, items, layout, ...restProps } = props;
-
   const getLayout = item => {
-    const { inline, style } = layout.items?.[item.name || item.dataIndex] || {};
+    const { lock, inline, style } = layout.items?.[item.name || item.dataIndex] || {};
     return {
+      lock: typeof lock === "undefined" ? layout.lock : lock,
       inline: typeof inline === "undefined" ? layout.inline : inline,
       style: typeof style === "undefined" ? layout.style : style,
     };
   };
 
   const itemList = items.map(item => {
-    const { inline, style } = getLayout(item);
+    const { lock, inline, style } = getLayout(item);
     return React.cloneElement(
       item.node,
       Object.assign(
@@ -22,6 +22,7 @@ function FlexFormLayout(props) {
           className: clsx(!inline ? "flex-form-layout-item" : "flex-form-layout-item-inline"),
           key: item.key,
         },
+        !tag ? {} : { lock, inline },
         style ? { style: style } : {}
       )
     );

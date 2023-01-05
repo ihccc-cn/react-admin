@@ -1,0 +1,72 @@
+[
+  {
+    "key": "Cascader",
+    "title": "Cascader",
+    "icon": "icon-cascader"
+  },
+  {
+    "key": "Checkbox",
+    "title": "Checkbox",
+    "icon": "icon-checkbox"
+  },
+  {
+    "key": "DatePicker",
+    "title": "DatePicker",
+    "icon": "icon-date"
+  },
+  {
+    "key": "Input",
+    "title": "Input",
+    "icon": "icon-input"
+  },
+  {
+    "key": "InputNumber",
+    "title": "InputNumber",
+    "icon": "icon-number"
+  },
+  {
+    "key": "Radio",
+    "title": "Radio",
+    "icon": "icon-radio"
+  },
+  {
+    "key": "Rate",
+    "title": "Rate",
+    "icon": "icon-rate"
+  },
+  {
+    "key": "Select",
+    "title": "Select",
+    "icon": "icon-select"
+  },
+  {
+    "key": "Slider",
+    "title": "Slider",
+    "icon": "icon-slider"
+  },
+  {
+    "key": "Switch",
+    "title": "Switch",
+    "icon": "icon-switch"
+  },
+  {
+    "key": "Textarea",
+    "title": "Textarea",
+    "icon": "icon-textarea"
+  },
+  {
+    "key": "TimePicker",
+    "title": "TimePicker",
+    "icon": "icon-time"
+  },
+  {
+    "key": "TreeSelect",
+    "title": "TreeSelect",
+    "icon": "icon-cascader"
+  },
+  {
+    "key": "Upload",
+    "title": "Upload",
+    "icon": "icon-upload"
+  }
+]

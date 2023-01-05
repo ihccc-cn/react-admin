@@ -1,7 +1,7 @@
 import React from "react";
 import { ReactSortable } from "react-sortablejs";
 import { uuid } from "@/utils/utils";
-import InputCell from "../components/input-cell";
+import InputCell from "../../components/input-cell";
 
 function InputList({ group, items }) {
   const [source, setSource] = React.useState(items || []);
@@ -16,7 +16,7 @@ function InputList({ group, items }) {
       sort={false}
     >
       {source.map(item => (
-        <InputCell title={item.title} key={item.key} />
+        <InputCell title={item.title} icon={item.icon} key={item.key} />
       ))}
     </ReactSortable>
   );

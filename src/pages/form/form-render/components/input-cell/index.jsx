@@ -1,11 +1,13 @@
 import React from "react";
 import clsx from "clsx";
+import Icon from "@/common/components/icon";
 import "./index.css";
 
-function InputCell({ className, title, ...restProps }) {
+function InputCell({ className, icon, title, ...restProps }) {
   return (
     <div className={clsx("input-cell", className)} {...restProps}>
-      {title}
+      {icon && <Icon type={icon} />}
+      <span className="input-cell-title">{title}</span>
     </div>
   );
 }

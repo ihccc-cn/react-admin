@@ -77,7 +77,7 @@ function plugin(app) {
       />
     );
 
-    app.plugins.apply("react-render", !wrapper ? routesRender : wrapper(routesRender));
+    app.plugins.apply("react-render", !wrapper ? routesRender : wrapper(routesRender), "root", false);
   }
 
   return { name, context: RouterContext, run };

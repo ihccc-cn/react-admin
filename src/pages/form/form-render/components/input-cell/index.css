@@ -3,4 +3,24 @@
   border: 1px solid #6f6af8;
   border-radius: 4px;
   padding: 8px 12px;
+  margin: 8px 0;
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+.input-cell:hover {
+  opacity: 1;
+}
+
+.input-cell:hover .icon {
+  color: #6f6af8;
+}
+
+.input-cell:hover .input-cell-title {
+  color: #393939;
+  font-weight: bold;
+}
+
+.input-cell-title {
+  color: #898989;
 }

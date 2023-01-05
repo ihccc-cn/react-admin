@@ -11,6 +11,7 @@
 }
 
 .form-editor-layout-body {
+  min-width: 580px;
   flex: 1;
   height: auto;
   padding: 20px;
