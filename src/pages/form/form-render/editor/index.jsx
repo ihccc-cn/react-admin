@@ -12,6 +12,8 @@ function Editor({ value }) {
   const [columns, setColumns] = React.useState(value.columns || []);
   const [layout, setLayout] = React.useState(value.layout || {});
 
+  console.log(columns);
+
   return (
     <Layout left={<InputList group={GROUP_NAME} items={inputNodes} />} right={<Setting />} style={{ height: "calc(100vh - 140px)" }}>
       <Form name="basic" layout="vertical" style={{ width: "100%" }}>

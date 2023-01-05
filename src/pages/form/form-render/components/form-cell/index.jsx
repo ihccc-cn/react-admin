@@ -59,7 +59,6 @@ function FormCell({ name, lock, inline, chosen, className, children, onLock, onM
       <span className="form-cell-mask">
         <Icon type="icon-password-fill" onClick={onLock} />
       </span>
-      <span className="form-cell-name">{name}</span>
       <span className="form-cell-button form-cell-handle" title="拖拽交换位置">
         <Icon type="icon-move" />
       </span>
@@ -72,6 +71,7 @@ function FormCell({ name, lock, inline, chosen, className, children, onLock, onM
         <span className="form-cell-resize-value">{changeSize < 0 ? `${Math.floor(changeSize)}%` : `+${changeSize}%`}</span>
       </span>
       <div className="form-cell-actions">
+        {name && <span className="form-cell-name">{name}</span>}
         <span className="form-cell-button" title="锁定" onClick={onLock}>
           <Icon type="icon-unlock" />
         </span>

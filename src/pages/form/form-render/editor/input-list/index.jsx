@@ -12,7 +12,7 @@ function InputList({ group, items }) {
       list={source}
       setList={setSource}
       group={{ name: group, pull: "clone", put: false }}
-      clone={item => ({ ...item, key: uuid() })}
+      clone={item => ({ ...item, key: uuid(), name: uuid(item.title) })}
       sort={false}
     >
       {source.map(item => (

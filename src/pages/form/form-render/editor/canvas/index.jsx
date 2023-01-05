@@ -5,6 +5,7 @@ import cloneDeep from "lodash/cloneDeep";
 import get from "lodash/get";
 import set from "lodash/set";
 import FormCell from "../../components/form-cell";
+import components from "../../components";
 import { FlexFormLayout } from "../../render";
 
 const swap = (array, x, y) => {
@@ -63,26 +64,29 @@ function Canvas({ group, columns, setColumns, layout, setLayout }) {
 
   console.log(layout);
 
-  const items = columns.map((col, index) => ({
-    ...col,
-    node: (
-      <FormCell
-        name={col.name || col.dataIndex}
-        chosen={col.chosen}
-        onLock={() => toggleLayoutItemLock(col.key)}
-        onMoveup={() => handleMoveup(index)}
-        onMovedown={() => handleMovedown(index)}
-        onInline={() => toggleLayoutItemInline(col.key)}
-        onResize={size => setLayoutItemWidth(col.key, size)}
-        onRemove={() => handleRemove(col.key)}
-        key={col.key}
-      >
-        <Form.Item label={col.title} tooltip={col.tip} name={col.name || col.dataIndex}>
-          <Input />
-        </Form.Item>
-      </FormCell>
-    ),
-  }));
+  const items = columns.map((col, index) => {
+    const name = col.name || col.dataIndex;
+    return {
+      ...col,
+      node: (
+        <FormCell
+          name={name}
+          chosen={col.chosen}
+          onLock={() => toggleLayoutItemLock(name)}
+          onMoveup={() => handleMoveup(index)}
+          onMovedown={() => handleMovedown(index)}
+          onInline={() => toggleLayoutItemInline(name)}
+          onResize={size => setLayoutItemWidth(name, size)}
+          onRemove={() => handleRemove(name)}
+          key={col.key}
+        >
+          <Form.Item label={col.title} tooltip={col.tip} name={name}>
+            {React.createElement(components[col.input || "Input"])}
+          </Form.Item>
+        </FormCell>
+      ),
+    };
+  });
 
   return (
     <FlexFormLayout

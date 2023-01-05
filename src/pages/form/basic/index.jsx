@@ -25,6 +25,7 @@ const schema = {
       title: "头像",
       dataIndex: "avatar",
       inputNode: "upload.crop",
+      input: "Upload",
     },
     {
       key: "name",
@@ -45,6 +46,7 @@ const schema = {
       tip: "密码长度最少6位！",
       dataIndex: "password",
       inputNode: "password",
+      input: "Password",
       inputNodeProps: { placeholder: "请输入" },
       // itemProps: { rules: [rule.required("密码")] },
     },
@@ -54,6 +56,7 @@ const schema = {
       dataIndex: "roles",
       name: "role_key",
       inputNode: "select.cache",
+      input: "Select",
       inputNodeProps: { options: "roles" },
     },
     {
@@ -61,6 +64,7 @@ const schema = {
       title: "状态",
       dataIndex: "status",
       inputNode: "radio",
+      input: "Radio",
       inputNodeProps: { options: "user.status", optionType: "button" },
     },
     {
@@ -80,11 +84,13 @@ const schema = {
       title: "生日",
       dataIndex: "brithday",
       inputNode: "date",
+      input: "DatePicker",
     },
     {
       key: "address",
       title: "地址",
       dataIndex: "address",
+      input: "TextArea",
       inputNodeProps: { placeholder: "请输入" },
     },
     {
@@ -92,6 +98,7 @@ const schema = {
       title: "描述",
       dataIndex: "description",
       inputNode: "textarea",
+      input: "TextArea",
       inputNodeProps: { rows: 3, placeholder: "请输入" },
     },
   ],

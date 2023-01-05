@@ -25,6 +25,11 @@
     "icon": "icon-number"
   },
   {
+    "key": "Password",
+    "title": "Password",
+    "icon": "icon-input"
+  },
+  {
     "key": "Radio",
     "title": "Radio",
     "icon": "icon-radio"
@@ -50,8 +55,8 @@
     "icon": "icon-switch"
   },
   {
-    "key": "Textarea",
-    "title": "Textarea",
+    "key": "TextArea",
+    "title": "TextArea",
     "icon": "icon-textarea"
   },
   {
