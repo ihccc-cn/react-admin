@@ -11,7 +11,7 @@ function FormNode({ label, children }) {
   );
 }
 
-function SetForm() {
+function FormPanel() {
   return (
     <div>
       <FormNode label="名称">
@@ -33,7 +33,7 @@ function SetForm() {
   );
 }
 
-function SetComponent() {
+function ComponentPanel() {
   return (
     <div>
       <FormNode label="标题">
@@ -55,17 +55,20 @@ function SetComponent() {
   );
 }
 
-function Setting({}) {
+function TabSetting({ form, component }) {
   return (
     <div style={{ marginTop: -20 }}>
       <Tabs
         items={[
-          { label: "表单参数", key: "form", children: <SetForm /> },
-          { label: "组件参数", key: "component", children: <SetComponent /> },
+          ...(!form ? [] : [{ label: "表单参数", key: "form", children: form }]),
+          ...(!component ? [] : [{ label: "组件参数", key: "component", children: component }]),
         ]}
       />
     </div>
   );
 }
 
-export default Setting;
+TabSetting.FormPanel = FormPanel;
+TabSetting.ComponentPanel = ComponentPanel;
+
+export default TabSetting;

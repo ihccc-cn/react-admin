@@ -1,15 +1,24 @@
 .input-cell {
   position: relative;
-  border: 1px solid #6f6af8;
+  border: 1px solid #e5e5e5;
+  background: #fff;
   border-radius: 4px;
   padding: 8px 12px;
   margin: 8px 0;
-  opacity: 0.6;
   cursor: pointer;
+  transition: 0.2s;
+}
+
+.input-cell:nth-of-type(1) {
+  margin: 0 0 8px;
+}
+
+.input-cell:nth-last-of-type(1) {
+  margin: 8px 0 0;
 }
 
 .input-cell:hover {
-  opacity: 1;
+  border-color: #6f6af8;
 }
 
 .input-cell:hover .icon {
@@ -18,9 +27,10 @@
 
 .input-cell:hover .input-cell-title {
   color: #393939;
-  font-weight: bold;
 }
 
 .input-cell-title {
-  color: #898989;
+  font-weight: bold;
+  color: #a9a9a9;
+  transition: 0.2s;
 }

@@ -11,6 +11,7 @@
 }
 
 .form-editor-layout-body {
+  position: relative;
   min-width: 580px;
   flex: 1;
   height: auto;

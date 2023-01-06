@@ -26,6 +26,7 @@ const schema = {
       dataIndex: "avatar",
       inputNode: "upload.crop",
       input: "Upload",
+      // itemProps: { valuePropName: "fileList" },
     },
     {
       key: "name",

@@ -1,77 +1,106 @@
 [
   {
-    "key": "Cascader",
-    "title": "Cascader",
-    "icon": "icon-cascader"
+    "key": "antd-components",
+    "group": "Ant Design",
+    "children": [
+      {
+        "key": "Input",
+        "title": "Input",
+        "descriptipn": "文本输入",
+        "icon": "icon-input"
+      },
+      {
+        "key": "InputNumber",
+        "title": "InputNumber",
+        "descriptipn": "数字输入",
+        "icon": "icon-number"
+      },
+      {
+        "key": "Password",
+        "title": "Password",
+        "descriptipn": "密码输入",
+        "icon": "icon-input"
+      },
+      {
+        "key": "Rate",
+        "title": "Rate",
+        "descriptipn": "评分",
+        "icon": "icon-rate"
+      },
+      {
+        "key": "Slider",
+        "title": "Slider",
+        "descriptipn": "数字滑块",
+        "icon": "icon-slider"
+      },
+      {
+        "key": "Switch",
+        "title": "Switch",
+        "descriptipn": "开关",
+        "icon": "icon-switch",
+        "itemProps": {
+          "valuePropName": "checked"
+        }
+      },
+      {
+        "key": "TextArea",
+        "title": "TextArea",
+        "descriptipn": "文本域",
+        "icon": "icon-textarea"
+      }
+    ]
   },
   {
-    "key": "Checkbox",
-    "title": "Checkbox",
-    "icon": "icon-checkbox"
+    "key": "base-components",
+    "group": "Base-Components",
+    "children": [
+      {
+        "key": "Checkbox",
+        "title": "Checkbox",
+        "descriptipn": "多选按钮",
+        "icon": "icon-checkbox"
+      },
+      {
+        "key": "Radio",
+        "title": "Radio",
+        "descriptipn": "单选按钮",
+        "icon": "icon-radio"
+      },
+      {
+        "key": "Select",
+        "title": "Select",
+        "descriptipn": "下拉选择",
+        "icon": "icon-select"
+      },
+      {
+        "key": "Upload",
+        "title": "Upload",
+        "descriptipn": "文件上传",
+        "icon": "icon-upload"
+      },
+      {
+        "key": "Upload.Crop",
+        "title": "Upload.Crop",
+        "descriptipn": "图片编辑上传",
+        "icon": "icon-upload"
+      }
+    ]
   },
   {
-    "key": "DatePicker",
-    "title": "DatePicker",
-    "icon": "icon-date"
+    "key": "other",
+    "group": "其他",
+    "children": [
+      {
+        "key": "Br",
+        "title": "Br",
+        "descriptipn": "换行元素",
+        "icon": "icon-zhankai"
+      }
+    ]
   },
   {
-    "key": "Input",
-    "title": "Input",
-    "icon": "icon-input"
-  },
-  {
-    "key": "InputNumber",
-    "title": "InputNumber",
-    "icon": "icon-number"
-  },
-  {
-    "key": "Password",
-    "title": "Password",
-    "icon": "icon-input"
-  },
-  {
-    "key": "Radio",
-    "title": "Radio",
-    "icon": "icon-radio"
-  },
-  {
-    "key": "Rate",
-    "title": "Rate",
-    "icon": "icon-rate"
-  },
-  {
-    "key": "Select",
-    "title": "Select",
-    "icon": "icon-select"
-  },
-  {
-    "key": "Slider",
-    "title": "Slider",
-    "icon": "icon-slider"
-  },
-  {
-    "key": "Switch",
-    "title": "Switch",
-    "icon": "icon-switch"
-  },
-  {
-    "key": "TextArea",
-    "title": "TextArea",
-    "icon": "icon-textarea"
-  },
-  {
-    "key": "TimePicker",
-    "title": "TimePicker",
-    "icon": "icon-time"
-  },
-  {
-    "key": "TreeSelect",
-    "title": "TreeSelect",
-    "icon": "icon-cascader"
-  },
-  {
-    "key": "Upload",
-    "title": "Upload",
-    "icon": "icon-upload"
+    "key": "customize",
+    "group": "自定义",
+    "children": []
   }
 ]

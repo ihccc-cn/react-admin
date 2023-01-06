@@ -1,24 +1,16 @@
 import React from "react";
-import { Form, Input } from "antd";
+import { Form } from "antd";
 import { ReactSortable } from "react-sortablejs";
 import cloneDeep from "lodash/cloneDeep";
 import get from "lodash/get";
 import set from "lodash/set";
-import FormCell from "../../components/form-cell";
-import components from "../../components";
-import { FlexFormLayout } from "../../render";
+import components from "../../../components";
+import { FlexFormLayout } from "../../../render";
+import { swap } from "../../../utils";
+import CellEditor from "../cell-editor";
+import CanvasEmpty from "../canvas-empty";
 
-const swap = (array, x, y) => {
-  if (x < 0 || x >= array.length || y < 0 || y >= array.length) return array;
-  const arrayCopy = [...array];
-  const node1 = arrayCopy[x];
-  const node2 = arrayCopy[y];
-  arrayCopy[x] = node2;
-  arrayCopy[y] = node1;
-  return arrayCopy;
-};
-
-function Canvas({ group, columns, setColumns, layout, setLayout }) {
+function Canvas({ groupName, columns, setColumns, layout, setLayout }) {
   const setItemLayout = React.useCallback((key, change) => {
     setLayout(state => {
       const newState = cloneDeep(state);
@@ -62,14 +54,12 @@ function Canvas({ group, columns, setColumns, layout, setLayout }) {
     });
   }, []);
 
-  console.log(layout);
-
   const items = columns.map((col, index) => {
     const name = col.name || col.dataIndex;
     return {
       ...col,
       node: (
-        <FormCell
+        <CellEditor
           name={name}
           chosen={col.chosen}
           onLock={() => toggleLayoutItemLock(name)}
@@ -77,13 +67,13 @@ function Canvas({ group, columns, setColumns, layout, setLayout }) {
           onMovedown={() => handleMovedown(index)}
           onInline={() => toggleLayoutItemInline(name)}
           onResize={size => setLayoutItemWidth(name, size)}
-          onRemove={() => handleRemove(name)}
+          onRemove={() => handleRemove(col.key)}
           key={col.key}
         >
-          <Form.Item label={col.title} tooltip={col.tip} name={name}>
-            {React.createElement(components[col.input || "Input"])}
+          <Form.Item label={col.title} tooltip={col.tip} name={name} {...col.itemProps}>
+            {React.createElement(components[col.input] || components["Input"])}
           </Form.Item>
-        </FormCell>
+        </CellEditor>
       ),
     };
   });
@@ -92,13 +82,14 @@ function Canvas({ group, columns, setColumns, layout, setLayout }) {
     <FlexFormLayout
       items={items}
       layout={layout}
+      empty={<CanvasEmpty />}
       tag={ReactSortable}
-      handle={FormCell.HANDLE_CLASSNAME}
-      filter={FormCell.FILTER_CLASSNAME}
+      handle={CellEditor.HANDLE_CLASSNAME}
+      filter={CellEditor.FILTER_CLASSNAME}
       animation={150}
       list={columns}
       setList={setColumns}
-      group={{ name: group, pull: "clone" }}
+      group={{ name: groupName, pull: "clone" }}
     />
   );
 }

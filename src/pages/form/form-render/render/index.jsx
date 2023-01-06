@@ -10,8 +10,8 @@ function FormRender({ schema, layoutStyle, ...restProps }) {
       ...col,
       name,
       node: (
-        <Form.Item label={col.title} tooltip={col.tip} name={name}>
-          {React.createElement(components[col.input || "Input"])}
+        <Form.Item label={col.title} tooltip={col.tip} name={name} {...col.itemProps}>
+          {React.createElement(components[col.input] || components["Input"])}
         </Form.Item>
       ),
     };

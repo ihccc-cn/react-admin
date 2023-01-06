@@ -3,7 +3,7 @@ import clsx from "clsx";
 import "./index.css";
 
 function FlexFormLayout(props) {
-  const { tag, items, layout, ...restProps } = props;
+  const { tag, items, layout, empty, ...restProps } = props;
   const getLayout = item => {
     const { lock, inline, style } = layout.items?.[item.name || item.dataIndex] || {};
     return {
@@ -32,7 +32,7 @@ function FlexFormLayout(props) {
 
   if (!tag) return <div {...containerProps}>{itemList}</div>;
 
-  return React.createElement(tag, Object.assign(containerProps, restProps), itemList);
+  return React.createElement(tag, Object.assign(containerProps, restProps), itemList.length === 0 ? empty : itemList);
 }
 
 export default FlexFormLayout;

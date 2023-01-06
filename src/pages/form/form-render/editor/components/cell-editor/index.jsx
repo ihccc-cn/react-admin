@@ -1,9 +1,26 @@
 import React from "react";
 import clsx from "clsx";
 import Icon from "@/common/components/icon";
+import { addPercent } from "../../../utils";
 import "./index.css";
 
-function FormCell({ name, lock, inline, chosen, className, children, onLock, onMoveup, onMovedown, onInline, onResize, onRemove, ...restProps }) {
+function CellEditor({
+  name,
+  lock,
+  inline,
+  chosen,
+  className,
+  children,
+  onLock,
+  onMoveup,
+  onMovedown,
+  onInline,
+  onResize,
+  onCopy,
+  onRemove,
+  style,
+  ...restProps
+}) {
   const cellRef = React.useRef(null);
   const startRef = React.useRef(0);
 
@@ -12,10 +29,10 @@ function FormCell({ name, lock, inline, chosen, className, children, onLock, onM
   const [offset, setOffset] = React.useState(0);
   const [changeSize, setChangeSize] = React.useState(0);
 
-  const countFullSize = () => {
+  const countFullSize = React.useCallback(() => {
     const parentElement = cellRef.current.parentElement;
     if (parentElement) setFullSize(parentElement.offsetWidth);
-  };
+  }, []);
 
   const onMouseDown = React.useCallback(e => {
     startRef.current = e.clientX;
@@ -55,20 +72,13 @@ function FormCell({ name, lock, inline, chosen, className, children, onLock, onM
   }, [fullSize, onMouseMove, onMouseUp]);
 
   return (
-    <div ref={cellRef} className={clsx("form-cell", lock && "form-cell-filter", chosen && "form-cell-chosen", className)} {...restProps}>
+    <div ref={cellRef} className={clsx("form-cell", lock && "form-cell-filter", chosen && "form-cell-chosen", className)} style={style} {...restProps}>
+      {children}
       <span className="form-cell-mask">
         <Icon type="icon-password-fill" onClick={onLock} />
       </span>
       <span className="form-cell-button form-cell-handle" title="拖拽交换位置">
         <Icon type="icon-move" />
-      </span>
-      <span
-        className={clsx("form-cell-resize", hold && "form-cell-resize-hold")}
-        title="拖拽修改尺寸"
-        style={{ transform: `translateX(${offset}px)` }}
-        onMouseDown={onMouseDown}
-      >
-        <span className="form-cell-resize-value">{changeSize < 0 ? `${Math.floor(changeSize)}%` : `+${changeSize}%`}</span>
       </span>
       <div className="form-cell-actions">
         {name && <span className="form-cell-name">{name}</span>}
@@ -88,6 +98,9 @@ function FormCell({ name, lock, inline, chosen, className, children, onLock, onM
             <Icon type="icon-column" style={{ transform: "scale(1.5) rotateZ(90deg)" }} />
           )}
         </span>
+        <span className="form-cell-button" title="复制" onClick={onCopy}>
+          <Icon type="icon-copy" />
+        </span>
         <span className="form-cell-button" title="替换">
           <Icon type="icon-component" />
         </span>
@@ -95,12 +108,19 @@ function FormCell({ name, lock, inline, chosen, className, children, onLock, onM
           <Icon type="icon-ashbin" />
         </span>
       </div>
-      {children}
+      <span
+        className={clsx("form-cell-resize", hold && "form-cell-resize-hold")}
+        title="拖拽修改尺寸"
+        style={{ transform: `translateX(${offset}px)` }}
+        onMouseDown={onMouseDown}
+      >
+        <span className="form-cell-resize-value">{addPercent(style?.width || 100, changeSize)}</span>
+      </span>
     </div>
   );
 }
 
-FormCell.HANDLE_CLASSNAME = ".form-cell-handle";
-FormCell.FILTER_CLASSNAME = ".form-cell-filter";
+CellEditor.HANDLE_CLASSNAME = ".form-cell-handle";
+CellEditor.FILTER_CLASSNAME = ".form-cell-filter";
 
-export default FormCell;
+export default CellEditor;
