@@ -95,6 +95,24 @@
         "title": "Br",
         "descriptipn": "换行元素",
         "icon": "icon-zhankai"
+      },
+      {
+        "key": "Text",
+        "title": "Text",
+        "descriptipn": "文本元素",
+        "icon": "icon-text"
+      },
+      {
+        "key": "Mark",
+        "title": "Mark",
+        "descriptipn": "标注信息",
+        "icon": "icon-RFQ-logo"
+      },
+      {
+        "key": "Image",
+        "title": "Image",
+        "descriptipn": "图片元素",
+        "icon": "icon-pic"
       }
     ]
   },

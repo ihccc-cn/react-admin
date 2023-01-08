@@ -25,7 +25,7 @@ function ComponentPanel({ groupName, items }) {
             setList={list => setList(index, list)}
             group={{ name: groupName, pull: "clone", put: false }}
             clone={item => {
-              const newItem = { ...item, key: uuid(), name: uuid(item.title), input: item.key };
+              const newItem = { ...item, key: uuid() };
               console.log("clone", newItem);
               return newItem;
             }}

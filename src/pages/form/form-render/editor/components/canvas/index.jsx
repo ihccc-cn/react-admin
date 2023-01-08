@@ -1,6 +1,7 @@
 import React from "react";
 import { Form } from "antd";
 import { ReactSortable } from "react-sortablejs";
+import differenceBy from "lodash/differenceBy";
 import cloneDeep from "lodash/cloneDeep";
 import get from "lodash/get";
 import set from "lodash/set";
@@ -88,7 +89,18 @@ function Canvas({ groupName, columns, setColumns, layout, setLayout }) {
       filter={CellEditor.FILTER_CLASSNAME}
       animation={150}
       list={columns}
-      setList={setColumns}
+      setList={newColumns => {
+        setColumns(current => {
+          const newItem = differenceBy(current, newColumns, "");
+          const index = newColumns.indexOf(newItem);
+          // name: uuid(item.title), input: item.key
+          console.log(index, newItem);
+          return [...newColumns];
+          // return [...newColumns].splice(index, 1, {
+          //   ...newItem,
+          // });
+        });
+      }}
       group={{ name: groupName, pull: "clone" }}
     />
   );
