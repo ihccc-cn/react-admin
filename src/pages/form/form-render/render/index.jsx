@@ -1,16 +1,17 @@
 import React from "react";
 import { Form } from "antd";
+import useSchema from "../hooks/useSchema";
 import components from "../components";
 import FlexFormLayout from "./flex-form-layout";
 
 function FormRender({ schema, layoutStyle, ...restProps }) {
-  const items = schema.columns.map(col => {
-    const name = col.name || col.dataIndex;
+  const { value } = useSchema(schema);
+
+  const items = value.columns.map(col => {
     return {
       ...col,
-      name,
       node: (
-        <Form.Item label={col.title} tooltip={col.tip} name={name} {...col.itemProps}>
+        <Form.Item label={col.title} tooltip={col.tip} name={col.name} {...col.itemProps}>
           {React.createElement(components[col.input] || components["Input"])}
         </Form.Item>
       ),
@@ -19,7 +20,7 @@ function FormRender({ schema, layoutStyle, ...restProps }) {
 
   return (
     <Form {...restProps}>
-      <FlexFormLayout items={items} layout={schema.layout} />
+      <FlexFormLayout items={items} layout={value.layout} />
     </Form>
   );
 }

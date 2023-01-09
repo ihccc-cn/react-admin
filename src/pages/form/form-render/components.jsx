@@ -25,6 +25,7 @@ const components = {
   // TimePicker,
   // TreeSelect,
   // Upload: UplpadButton,
+  Br: "br",
 };
 
 export default components;

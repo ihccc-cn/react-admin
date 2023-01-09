@@ -1,13 +1,14 @@
 .form-cell {
   position: relative;
   background-color: #f5f5f5;
+  line-height: initial;
   padding-bottom: 1px;
   box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.3);
   user-select: none;
 }
 
 .form-cell-filter .form-cell-mask {
-  background-color: rgba(255, 0, 0, 0.05);
+  background-color: rgba(255, 0, 0, 0.03);
 }
 
 .form-cell-filter .form-cell-mask .icon {
@@ -64,8 +65,9 @@
   padding: 0 6px;
   background: #6f6af8;
   border-right: 1px solid #fff;
-  color: #fff;
   border-radius: 2px 0 0 2px;
+  font-size: 12px;
+  color: #fff;
 }
 
 .form-cell-resize {

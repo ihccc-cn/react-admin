@@ -11,10 +11,17 @@
 }
 
 .form-editor-layout-body {
-  position: relative;
   min-width: 580px;
   flex: 1;
-  height: auto;
+}
+
+.form-editor-layout-body-top {
+  height: 48px;
+}
+
+.form-editor-layout-body-main {
+  position: relative;
+  height: calc(100% - 48px);
   padding: 20px;
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.1) inset;
   overflow: auto;

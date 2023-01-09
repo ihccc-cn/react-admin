@@ -14,8 +14,3 @@ export const loginOut = async () => {
   //   });
   // }
 };
-
-export const uuid = ((start = 0) => {
-  let id = start;
-  return (prefix = "key") => `${prefix}_${id++}`;
-})();

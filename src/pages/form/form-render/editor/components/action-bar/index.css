@@ -1,0 +1,10 @@
+.form-editor-action-bar {
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.form-editor-action-bar > * {
+  margin-left: 12px;
+}

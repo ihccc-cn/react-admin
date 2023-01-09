@@ -1,3 +1,35 @@
+import cloneDeep from "lodash/cloneDeep";
+
+export const isObject = value => Object.prototype.toString.call(value) === "[object Object]";
+
+export const uuid = ((start = 0) => {
+  let id = start;
+  return (prefix = "key") => `${prefix}_${id++}`;
+})();
+
+export const EditorUtil = {
+  /**
+   * 校验数据格式
+   * @param {*} value
+   * @returns
+   */
+  checkValue: value => {
+    value = value || {};
+    if (Array.isArray(value.columns) && isObject(value.layout)) return true;
+    return false;
+  },
+  /**
+   * 初始化数据格式
+   * @param {*} value
+   * @returns
+   */
+  initValue: value => {
+    const cloneValue = cloneDeep(value);
+    cloneValue.columns = cloneValue.columns.map(item => ({ ...item, id: uuid(), name: item.name || item.dataIndex }));
+    return cloneValue;
+  },
+};
+
 /**
  * 百分比转数字
  * @param {*} string

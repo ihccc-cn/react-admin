@@ -1,123 +1,225 @@
 [
   {
-    "key": "antd-components",
+    "id": "antd-components",
     "group": "Ant Design",
     "children": [
       {
-        "key": "Input",
-        "title": "Input",
-        "descriptipn": "文本输入",
-        "icon": "icon-input"
+        "id": "Input",
+        "type": "Input",
+        "formItem": true,
+        "title": "文本输入",
+        "icon": "icon-input",
+        "props": [
+          {
+            "title": "后置标签",
+            "name": "addonAfter",
+            "tip": "带标签的 input，设置后置标签",
+            "type": "String"
+          },
+          {
+            "title": "前置标签",
+            "name": "addonBefore",
+            "tip": "带标签的 input，设置前置标签",
+            "type": "String"
+          },
+          {
+            "title": "允许清空",
+            "name": "allowClear",
+            "tip": "可以点击清除图标删除内容",
+            "type": "Boolean",
+            "defaultValue": true
+          },
+          {
+            "title": "是否有边框",
+            "name": "bordered",
+            "type": "Boolean",
+            "defaultValue": true
+          },
+          {
+            "title": "默认内容",
+            "name": "defaultValue",
+            "type": "String"
+          },
+          {
+            "title": "是否禁用",
+            "name": "disabled",
+            "type": "Boolean"
+          },
+          {
+            "title": "最大长度",
+            "name": "maxLength",
+            "type": "Number"
+          },
+          {
+            "title": "是否展示字数",
+            "name": "showCount",
+            "type": "Boolean"
+          },
+          {
+            "title": "前缀图标",
+            "name": "prefix",
+            "type": "String"
+          },
+          {
+            "title": "前缀图标",
+            "name": "prefix",
+            "type": "String"
+          },
+          {
+            "title": "占位文本",
+            "name": "placeholder",
+            "type": "String",
+            "defaultValue": "请输入"
+          },
+          {
+            "title": "尺寸",
+            "name": "size",
+            "type": "Enum",
+            "options": "field.size"
+          },
+          {
+            "title": "后缀图标",
+            "name": "prefix",
+            "type": "String"
+          },
+          {
+            "title": "样式",
+            "name": "style",
+            "type": "StyleEditor"
+          }
+        ]
       },
       {
-        "key": "InputNumber",
-        "title": "InputNumber",
-        "descriptipn": "数字输入",
+        "id": "InputNumber",
+        "type": "InputNumber",
+        "formItem": true,
+        "title": "数字输入",
         "icon": "icon-number"
       },
       {
-        "key": "Password",
-        "title": "Password",
-        "descriptipn": "密码输入",
+        "id": "Password",
+        "type": "Password",
+        "formItem": true,
+        "title": "密码输入",
         "icon": "icon-input"
       },
       {
-        "key": "Rate",
-        "title": "Rate",
-        "descriptipn": "评分",
+        "id": "Rate",
+        "type": "Rate",
+        "formItem": true,
+        "title": "评分",
         "icon": "icon-rate"
       },
       {
-        "key": "Slider",
-        "title": "Slider",
-        "descriptipn": "数字滑块",
+        "id": "Slider",
+        "type": "Slider",
+        "formItem": true,
+        "title": "数字滑块",
         "icon": "icon-slider"
       },
       {
-        "key": "Switch",
-        "title": "Switch",
-        "descriptipn": "开关",
+        "id": "Switch",
+        "type": "Switch",
+        "formItem": true,
+        "title": "开关",
         "icon": "icon-switch",
         "itemProps": {
           "valuePropName": "checked"
         }
       },
       {
-        "key": "TextArea",
-        "title": "TextArea",
-        "descriptipn": "文本域",
+        "id": "TextArea",
+        "type": "TextArea",
+        "formItem": true,
+        "title": "文本域",
         "icon": "icon-textarea"
       }
     ]
   },
   {
-    "key": "base-components",
+    "id": "base-components",
     "group": "Base-Components",
     "children": [
       {
-        "key": "Checkbox",
-        "title": "Checkbox",
-        "descriptipn": "多选按钮",
+        "id": "Checkbox",
+        "type": "Checkbox",
+        "formItem": true,
+        "title": "多选按钮",
         "icon": "icon-checkbox"
       },
       {
-        "key": "Radio",
-        "title": "Radio",
-        "descriptipn": "单选按钮",
+        "id": "Radio",
+        "type": "Radio",
+        "formItem": true,
+        "title": "单选按钮",
         "icon": "icon-radio"
       },
       {
-        "key": "Select",
-        "title": "Select",
-        "descriptipn": "下拉选择",
+        "id": "Select",
+        "type": "Select",
+        "formItem": true,
+        "title": "下拉选择",
         "icon": "icon-select"
       },
       {
-        "key": "Upload",
-        "title": "Upload",
-        "descriptipn": "文件上传",
+        "id": "Upload",
+        "type": "Upload",
+        "formItem": true,
+        "title": "文件上传",
         "icon": "icon-upload"
       },
       {
-        "key": "Upload.Crop",
-        "title": "Upload.Crop",
-        "descriptipn": "图片编辑上传",
+        "id": "Upload.Crop",
+        "type": "Upload.Crop",
+        "formItem": true,
+        "title": "图片编辑上传",
         "icon": "icon-upload"
       }
     ]
   },
   {
-    "key": "other",
+    "id": "other",
     "group": "其他",
     "children": [
       {
-        "key": "Br",
-        "title": "Br",
-        "descriptipn": "换行元素",
-        "icon": "icon-zhankai"
+        "id": "Br",
+        "type": "Br",
+        "formItem": false,
+        "title": "换行元素",
+        "icon": "icon-zhankai",
+        "control": {
+          "move": false,
+          "lock": false,
+          "inline": false,
+          "copy": false,
+          "resize": false
+        }
       },
       {
-        "key": "Text",
-        "title": "Text",
-        "descriptipn": "文本元素",
+        "id": "Text",
+        "type": "Text",
+        "formItem": true,
+        "title": "文本元素",
         "icon": "icon-text"
       },
       {
-        "key": "Mark",
-        "title": "Mark",
-        "descriptipn": "标注信息",
+        "id": "Mark",
+        "type": "Mark",
+        "formItem": false,
+        "title": "标注信息",
         "icon": "icon-RFQ-logo"
       },
       {
-        "key": "Image",
-        "title": "Image",
-        "descriptipn": "图片元素",
+        "id": "Image",
+        "type": "Image",
+        "formItem": false,
+        "title": "图片元素",
         "icon": "icon-pic"
       }
     ]
   },
   {
-    "key": "customize",
+    "id": "customize",
     "group": "自定义",
     "children": []
   }

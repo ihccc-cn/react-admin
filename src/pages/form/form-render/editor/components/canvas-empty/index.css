@@ -1,0 +1,18 @@
+.form-editor-canvas-empty {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-editor-canvas-empty-title {
+  color: #d5d5d5;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}

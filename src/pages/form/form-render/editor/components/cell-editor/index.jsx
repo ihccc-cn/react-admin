@@ -9,6 +9,7 @@ function CellEditor({
   lock,
   inline,
   chosen,
+  control,
   className,
   children,
   onLock,
@@ -71,51 +72,74 @@ function CellEditor({
     };
   }, [fullSize, onMouseMove, onMouseUp]);
 
+  const controlAble = control || {};
+
   return (
     <div ref={cellRef} className={clsx("form-cell", lock && "form-cell-filter", chosen && "form-cell-chosen", className)} style={style} {...restProps}>
       {children}
-      <span className="form-cell-mask">
-        <Icon type="icon-password-fill" onClick={onLock} />
-      </span>
-      <span className="form-cell-button form-cell-handle" title="拖拽交换位置">
-        <Icon type="icon-move" />
-      </span>
-      <div className="form-cell-actions">
-        {name && <span className="form-cell-name">{name}</span>}
-        <span className="form-cell-button" title="锁定" onClick={onLock}>
-          <Icon type="icon-unlock" />
+      {controlAble.mask !== false && (
+        <span className={"form-cell-mask"}>
+          <Icon type="icon-password-fill" onClick={onLock} />
         </span>
+      )}
+      {controlAble.move !== false && (
+        <span className="form-cell-button form-cell-handle" title="拖拽交换位置">
+          <Icon type="icon-move" />
+        </span>
+      )}
+      <div className="form-cell-actions">
+        {controlAble.name !== false && <span className="form-cell-name">{name || "unknow"}</span>}
+        {controlAble.lock !== false && (
+          <span className="form-cell-button" title="锁定" onClick={onLock}>
+            <Icon type="icon-unlock" />
+          </span>
+        )}
+        {/* {controlAble.move !== false && (
         <span className="form-cell-button" title="上移" onClick={onMoveup}>
           <Icon type="icon-rising" />
         </span>
+        )}
+        {controlAble.move !== false && (
         <span className="form-cell-button" title="下移" onClick={onMovedown}>
           <Icon type="icon-falling" />
         </span>
-        <span className="form-cell-button" title={inline ? "行内" : "块级"} onClick={onInline}>
-          {inline ? (
-            <Icon type="icon-viewgallery" style={{ transform: "scale(1.5) rotateZ(-90deg)" }} />
-          ) : (
-            <Icon type="icon-column" style={{ transform: "scale(1.5) rotateZ(90deg)" }} />
-          )}
-        </span>
-        <span className="form-cell-button" title="复制" onClick={onCopy}>
-          <Icon type="icon-copy" />
-        </span>
+        )} */}
+        {controlAble.inline !== false && (
+          <span className="form-cell-button" title={inline ? "行内" : "块级"} onClick={onInline}>
+            {inline ? (
+              <Icon type="icon-viewgallery" style={{ transform: "scale(1.5) rotateZ(-90deg)" }} />
+            ) : (
+              <Icon type="icon-column" style={{ transform: "scale(1.5) rotateZ(90deg)" }} />
+            )}
+          </span>
+        )}
+        {controlAble.copy !== false && (
+          <span className="form-cell-button" title="复制" onClick={onCopy}>
+            <Icon type="icon-copy" />
+          </span>
+        )}
+        {/* {controlAble.replace !== false && (
         <span className="form-cell-button" title="替换">
           <Icon type="icon-component" />
         </span>
-        <span className="form-cell-button form-cell-button-danger" title="删除" onClick={onRemove}>
-          <Icon type="icon-ashbin" />
-        </span>
+        )} */}
+
+        {controlAble.remove !== false && (
+          <span className="form-cell-button form-cell-button-danger" title="删除" onClick={onRemove}>
+            <Icon type="icon-ashbin" />
+          </span>
+        )}
       </div>
-      <span
-        className={clsx("form-cell-resize", hold && "form-cell-resize-hold")}
-        title="拖拽修改尺寸"
-        style={{ transform: `translateX(${offset}px)` }}
-        onMouseDown={onMouseDown}
-      >
-        <span className="form-cell-resize-value">{addPercent(style?.width || 100, changeSize)}</span>
-      </span>
+      {controlAble.resize !== false && (
+        <span
+          className={clsx("form-cell-resize", hold && "form-cell-resize-hold")}
+          title="拖拽修改尺寸"
+          style={{ transform: `translateX(${offset}px)` }}
+          onMouseDown={onMouseDown}
+        >
+          <span className="form-cell-resize-value">{addPercent(style?.width || 100, changeSize)}</span>
+        </span>
+      )}
     </div>
   );
 }

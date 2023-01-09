@@ -21,7 +21,6 @@ function ContentTab({ children }) {
 const schema = {
   columns: [
     {
-      key: "avatar",
       title: "头像",
       dataIndex: "avatar",
       inputNode: "upload.crop",
@@ -29,20 +28,17 @@ const schema = {
       // itemProps: { valuePropName: "fileList" },
     },
     {
-      key: "name",
       title: "姓名",
       dataIndex: "name",
       inputNodeProps: { placeholder: "请输入" },
     },
     {
-      key: "username",
       title: "用户名",
       dataIndex: "username",
       inputNodeProps: { placeholder: "请输入" },
       // itemProps: { rules: [rule.required("姓名")] },
     },
     {
-      key: "password",
       title: "密码",
       tip: "密码长度最少6位！",
       dataIndex: "password",
@@ -52,7 +48,6 @@ const schema = {
       // itemProps: { rules: [rule.required("密码")] },
     },
     {
-      key: "roles",
       title: "角色",
       dataIndex: "roles",
       name: "role_key",
@@ -61,7 +56,6 @@ const schema = {
       inputNodeProps: { options: "roles" },
     },
     {
-      key: "status",
       title: "状态",
       dataIndex: "status",
       inputNode: "radio",
@@ -69,33 +63,28 @@ const schema = {
       inputNodeProps: { options: "user.status", optionType: "button" },
     },
     {
-      key: "email",
       title: "邮箱",
       dataIndex: "email",
       inputNodeProps: { placeholder: "请输入" },
     },
     {
-      key: "phone",
       title: "手机号码",
       dataIndex: "phone",
       inputNodeProps: { placeholder: "请输入" },
     },
     {
-      key: "brithday",
       title: "生日",
       dataIndex: "brithday",
       inputNode: "date",
       input: "DatePicker",
     },
     {
-      key: "address",
       title: "地址",
       dataIndex: "address",
       input: "TextArea",
       inputNodeProps: { placeholder: "请输入" },
     },
     {
-      key: "description",
       title: "描述",
       dataIndex: "description",
       inputNode: "textarea",
@@ -139,7 +128,7 @@ function BasicForm() {
         <div></div>
         <div></div>
         <div>
-          <Editor value={schema} />
+          <Editor schema={schema} />
         </div>
       </ContentTab>
     </div>
