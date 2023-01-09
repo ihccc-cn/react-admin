@@ -59,6 +59,7 @@ function Canvas({ groupName, columns, setColumns, layout, setLayout, empty, rowK
       ...col,
       node: (
         <CellEditor
+          label={col.formItem === false ? col.title : null}
           name={col.name}
           chosen={col.chosen}
           control={col.control}

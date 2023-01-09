@@ -6,7 +6,7 @@ import "./index.css";
 function ActionBar({ onClear }) {
   return (
     <div className="form-editor-action-bar">
-      <Button type="link" size="small" shape="round" icon={<Icon type="icon-help-fill" />} />
+      <Button type="link" size="small" shape="circle" icon={<Icon type="icon-help" />} />
       <Button size="small" shape="round" icon={<Icon type="icon-scenes" />}>
         预览
       </Button>

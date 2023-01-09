@@ -1,5 +1,5 @@
 import { Button, Cascader, Checkbox, DatePicker, Input, InputNumber, Radio, Rate, Select, Slider, Switch, TimePicker, TreeSelect, Upload } from "antd";
-// import Icon from "@/common/components/icon";
+import Icon from "@/common/components/icon";
 
 // function UplpadButton(props) {
 //   return (
@@ -26,6 +26,9 @@ const components = {
   // TreeSelect,
   // Upload: UplpadButton,
   Br: "br",
+  Hr: "hr",
+  Text: "p",
+  Image: "img",
 };
 
 export default components;

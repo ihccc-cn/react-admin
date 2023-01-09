@@ -7,7 +7,7 @@ import TabSetting from "./components/tab-setting";
 import Canvas from "./components/canvas";
 import CanvasEmpty from "./components/canvas-empty";
 import Layout from "./layout";
-import inputNodes from "./input-nodes.json";
+import inputNodes from "../input-nodes.json";
 
 const GROUP_NAME = "form-editor";
 

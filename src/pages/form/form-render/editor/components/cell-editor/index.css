@@ -1,5 +1,6 @@
 .form-cell {
   position: relative;
+  min-height: 20px;
   background-color: #f5f5f5;
   line-height: initial;
   padding-bottom: 1px;
@@ -7,37 +8,46 @@
   user-select: none;
 }
 
-.form-cell-filter .form-cell-mask {
+.form-cell.form-cell-filter .form-cell-mask {
   background-color: rgba(255, 0, 0, 0.03);
 }
 
-.form-cell-filter .form-cell-mask .icon {
+.form-cell.form-cell-filter .form-cell-mask .icon {
   display: block;
 }
 
-.form-cell-filter .form-cell-resize {
+.form-cell.form-cell-filter .form-cell-resize {
   display: none;
 }
 
-.form-cell-filter .form-cell-name {
+.form-cell.form-cell-filter .form-cell-name {
   border-right: none;
 }
 
-.form-cell-filter .form-cell-button {
+.form-cell.form-cell-filter .form-cell-button {
   display: none;
 }
 
-.form-cell-filter .form-cell-actions {
+.form-cell.form-cell-filter .form-cell-actions {
   right: 0;
 }
 
-.form-cell-chosen {
+.form-cell.form-cell-chosen {
   box-shadow: 0 0 2px 2px #6f6af8;
   z-index: 9;
 }
 
-.form-cell-chosen .form-cell-handle {
+.form-cell.form-cell-chosen .form-cell-handle {
   opacity: 1;
+}
+
+.form-cell-label {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 12px;
+  font-weight: bold;
+  opacity: 0.6;
 }
 
 .form-cell-mask {

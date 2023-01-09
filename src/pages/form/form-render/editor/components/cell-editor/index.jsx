@@ -5,6 +5,7 @@ import { addPercent } from "../../../utils";
 import "./index.css";
 
 function CellEditor({
+  label,
   name,
   lock,
   inline,
@@ -76,6 +77,7 @@ function CellEditor({
 
   return (
     <div ref={cellRef} className={clsx("form-cell", lock && "form-cell-filter", chosen && "form-cell-chosen", className)} style={style} {...restProps}>
+      {label && <div className="form-cell-label">{label}</div>}
       {children}
       {controlAble.mask !== false && (
         <span className={"form-cell-mask"}>
@@ -123,7 +125,6 @@ function CellEditor({
           <Icon type="icon-component" />
         </span>
         )} */}
-
         {controlAble.remove !== false && (
           <span className="form-cell-button form-cell-button-danger" title="删除" onClick={onRemove}>
             <Icon type="icon-ashbin" />

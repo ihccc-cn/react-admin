@@ -196,6 +196,20 @@
         }
       },
       {
+        "id": "Hr",
+        "type": "Hr",
+        "formItem": false,
+        "title": "分割线",
+        "icon": "icon-sami-select",
+        "control": {
+          "move": false,
+          "lock": false,
+          "inline": false,
+          "copy": false,
+          "resize": false
+        }
+      },
+      {
         "id": "Text",
         "type": "Text",
         "formItem": true,
