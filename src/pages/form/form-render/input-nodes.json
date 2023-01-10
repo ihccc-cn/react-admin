@@ -188,7 +188,6 @@
         "title": "换行元素",
         "icon": "icon-zhankai",
         "control": {
-          "move": false,
           "lock": false,
           "inline": false,
           "copy": false,
@@ -202,7 +201,6 @@
         "title": "分割线",
         "icon": "icon-sami-select",
         "control": {
-          "move": false,
           "lock": false,
           "inline": false,
           "copy": false,

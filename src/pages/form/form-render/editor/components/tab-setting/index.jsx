@@ -60,8 +60,8 @@ function TabSetting({ form, component }) {
     <div style={{ marginTop: -20 }}>
       <Tabs
         items={[
-          ...(!form ? [] : [{ label: "表单参数", key: "form", children: form }]),
-          ...(!component ? [] : [{ label: "组件参数", key: "component", children: component }]),
+          ...(!form ? [] : [{ label: "表单属性", key: "form", children: form }]),
+          ...(!component ? [] : [{ label: "组件属性", key: "component", children: component }]),
         ]}
       />
     </div>

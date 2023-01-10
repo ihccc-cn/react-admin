@@ -4,7 +4,7 @@ import { Tabs, Collapse } from "antd";
 import { uuid } from "../../../utils";
 import CellField from "../cell-field";
 
-function ComponentPanel({ groupName, items, rowKey }) {
+function ComponentPanel({ groupName, items, rowKey, onItem }) {
   const [source, setSource] = React.useState(items || []);
 
   const setList = (index, list) => {
@@ -28,7 +28,7 @@ function ComponentPanel({ groupName, items, rowKey }) {
             sort={false}
           >
             {group.children.map(item => (
-              <CellField title={item.title} icon={item.icon} key={item[rowKey]} />
+              <CellField title={item.title} type={item.type} icon={item.icon} onClick={() => onItem({ ...item, [rowKey]: uuid() })} key={item[rowKey]} />
             ))}
           </ReactSortable>
         </Collapse.Panel>

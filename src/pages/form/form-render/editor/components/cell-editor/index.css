@@ -1,7 +1,7 @@
 .form-cell {
   position: relative;
   min-height: 20px;
-  background-color: #f5f5f5;
+  background-color: #f9f9f9;
   line-height: initial;
   padding-bottom: 1px;
   box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.3);
@@ -44,6 +44,7 @@
 .form-cell-label {
   position: absolute;
   top: 50%;
+  left: 32px;
   transform: translateY(-50%);
   font-size: 12px;
   font-weight: bold;
@@ -69,15 +70,11 @@
 }
 
 .form-cell-name {
-  height: 20px;
-  display: flex;
-  align-items: center;
+  line-height: 20px;
   padding: 0 6px;
-  background: #6f6af8;
-  border-right: 1px solid #fff;
-  border-radius: 2px 0 0 2px;
   font-size: 12px;
-  color: #fff;
+  color: #6f6af8;
+  opacity: 0.8;
 }
 
 .form-cell-resize {

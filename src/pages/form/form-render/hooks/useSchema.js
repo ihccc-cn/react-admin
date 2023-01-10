@@ -1,9 +1,9 @@
 import React from "react";
 import useUpdate from "ahooks/lib/useUpdate";
-import { EditorUtil } from "../utils";
+import { version, EditorUtil } from "../utils";
 
 function useSchema(schema) {
-  const valueRef = React.useRef({ columns: [], layout: {} });
+  const valueRef = React.useRef({ columns: [], layout: {}, version });
   const update = useUpdate();
 
   const setColumns = React.useCallback(columns => {
@@ -27,7 +27,7 @@ function useSchema(schema) {
   const setValue = React.useCallback(value => {
     if (!value) return;
     if (EditorUtil.checkValue(value)) {
-      valueRef.current = EditorUtil.initValue(value);
+      valueRef.current = EditorUtil.importValue(value);
       update();
     } else {
       console.warn("[form-editor] schema incorrect format.");
@@ -35,8 +35,12 @@ function useSchema(schema) {
   }, []);
 
   const clear = React.useCallback(() => {
-    valueRef.current = { columns: [], layout: {} };
+    valueRef.current = { columns: [], layout: {}, version };
     update();
+  }, []);
+
+  const getExportValue = React.useCallback(() => {
+    return EditorUtil.exportValue(valueRef.current);
   }, []);
 
   React.useEffect(() => {
@@ -44,11 +48,13 @@ function useSchema(schema) {
   }, [schema]);
 
   return {
+    isEmpty: valueRef.current.columns.length === 0,
     value: valueRef.current,
     setColumns,
     setLayout,
     setValue,
     clear,
+    getExportValue,
   };
 }
 

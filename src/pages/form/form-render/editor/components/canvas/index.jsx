@@ -7,10 +7,10 @@ import get from "lodash/get";
 import set from "lodash/set";
 import components from "../../../components";
 import { FlexFormLayout } from "../../../render";
-import { uuid, swap } from "../../../utils";
+import { swap } from "../../../utils";
 import CellEditor from "../cell-editor";
 
-function Canvas({ groupName, columns, setColumns, layout, setLayout, empty, rowKey }) {
+function Canvas({ preview, groupName, columns, setColumns, layout, setLayout, transformItem, empty, rowKey }) {
   const setItemLayout = React.useCallback((name, change) => {
     setLayout(state => {
       const newState = cloneDeep(state);
@@ -55,10 +55,22 @@ function Canvas({ groupName, columns, setColumns, layout, setLayout, empty, rowK
   }, []);
 
   const items = columns.map((col, index) => {
+    const formItem =
+      col.formItem === false ? (
+        React.createElement(components[col.input] || components["Input"])
+      ) : (
+        <Form.Item label={col.title} tooltip={col.tip} name={col.name} {...col.itemProps}>
+          {React.createElement(components[col.input] || components["Input"])}
+        </Form.Item>
+      );
+
     return {
       ...col,
-      node: (
+      node: preview ? (
+        formItem
+      ) : (
         <CellEditor
+          mode={preview ? "view" : "edit"}
           label={col.formItem === false ? col.title : null}
           name={col.name}
           chosen={col.chosen}
@@ -71,13 +83,7 @@ function Canvas({ groupName, columns, setColumns, layout, setLayout, empty, rowK
           onRemove={() => handleRemove(col[rowKey])}
           key={col[rowKey]}
         >
-          {col.formItem === false ? (
-            React.createElement(components[col.input] || components["Input"])
-          ) : (
-            <Form.Item label={col.title} tooltip={col.tip} name={col.name} {...col.itemProps}>
-              {React.createElement(components[col.input] || components["Input"])}
-            </Form.Item>
-          )}
+          {formItem}
         </CellEditor>
       ),
     };
@@ -85,6 +91,7 @@ function Canvas({ groupName, columns, setColumns, layout, setLayout, empty, rowK
 
   return (
     <FlexFormLayout
+      itemPropsProvide={!preview}
       items={items}
       layout={layout}
       empty={empty}
@@ -99,7 +106,7 @@ function Canvas({ groupName, columns, setColumns, layout, setLayout, empty, rowK
           if (!added) return list;
           const index = list.indexOf(added);
           const newColumns = [...list];
-          newColumns.splice(index, 1, { ...added, name: uuid(added.type), input: added.type });
+          newColumns.splice(index, 1, transformItem(added));
           return newColumns;
         });
       }}

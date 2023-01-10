@@ -1,0 +1,127 @@
+{
+  "columns": [
+    {
+      "title": "文本输入",
+      "name": "Input_0",
+      "input": "Input"
+    },
+    {
+      "title": "文本输入",
+      "name": "Input_2",
+      "input": "Input"
+    },
+    {
+      "title": "密码输入",
+      "name": "Password_6",
+      "input": "Password"
+    },
+    {
+      "title": "换行元素",
+      "name": "Br_22",
+      "input": "Br",
+      "formItem": false
+    },
+    {
+      "title": "开关",
+      "name": "Switch_12",
+      "input": "Switch"
+    },
+    {
+      "title": "数字输入",
+      "name": "InputNumber_4",
+      "input": "InputNumber"
+    },
+    {
+      "title": "数字滑块",
+      "name": "Slider_10",
+      "input": "Slider"
+    },
+    {
+      "title": "评分",
+      "name": "Rate_8",
+      "input": "Rate"
+    },
+    {
+      "title": "换行元素",
+      "name": "Br_20",
+      "input": "Br",
+      "formItem": false
+    },
+    {
+      "title": "文本域",
+      "name": "TextArea_14",
+      "input": "TextArea"
+    },
+    {
+      "title": "文本域",
+      "name": "TextArea_16",
+      "input": "TextArea"
+    }
+  ],
+  "layout": {
+    "items": {
+      "Input_0": {
+        "style": {
+          "width": "30%"
+        },
+        "lock": false
+      },
+      "Input_2": {
+        "style": {
+          "width": "30%"
+        },
+        "inline": true,
+        "lock": false
+      },
+      "Password_6": {
+        "style": {
+          "width": "30%"
+        },
+        "inline": true,
+        "lock": false
+      },
+      "InputNumber_4": {
+        "style": {
+          "width": "15%"
+        },
+        "inline": true,
+        "lock": true
+      },
+      "Rate_8": {
+        "style": {
+          "width": "15%"
+        },
+        "inline": true,
+        "lock": false
+      },
+      "Switch_12": {
+        "style": {
+          "width": "15%"
+        },
+        "inline": true,
+        "lock": true
+      },
+      "Slider_10": {
+        "style": {
+          "width": "15%"
+        },
+        "inline": true,
+        "lock": true
+      },
+      "TextArea_14": {
+        "style": {
+          "width": "60%"
+        },
+        "inline": false,
+        "lock": true
+      },
+      "TextArea_16": {
+        "style": {
+          "width": "60%"
+        },
+        "inline": false,
+        "lock": false
+      }
+    }
+  }
+}

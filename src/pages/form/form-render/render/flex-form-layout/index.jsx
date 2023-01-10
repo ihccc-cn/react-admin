@@ -3,7 +3,7 @@ import clsx from "clsx";
 import "./index.css";
 
 function FlexFormLayout(props) {
-  const { tag, items, layout, empty, rowKey, ...restProps } = props;
+  const { tag, items, layout, empty, rowKey, itemPropsProvide, ...restProps } = props;
   const getLayout = name => {
     const { lock, inline, style } = layout.items?.[name] || {};
     return {
@@ -22,7 +22,7 @@ function FlexFormLayout(props) {
           className: clsx(!inline ? "flex-form-layout-item" : "flex-form-layout-item-inline"),
           key: item[rowKey],
         },
-        !tag ? {} : { lock, inline },
+        itemPropsProvide ? { lock, inline } : {},
         style ? { style: style } : {}
       )
     );

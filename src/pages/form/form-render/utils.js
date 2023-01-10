@@ -1,5 +1,7 @@
 import cloneDeep from "lodash/cloneDeep";
 
+export const version = "1.0.0";
+
 export const isObject = value => Object.prototype.toString.call(value) === "[object Object]";
 
 export const uuid = ((start = 0) => {
@@ -19,14 +21,31 @@ export const EditorUtil = {
     return false;
   },
   /**
-   * 初始化数据格式
+   * 转换导入数据格式
    * @param {*} value
    * @returns
    */
-  initValue: value => {
+  importValue: value => {
     const cloneValue = cloneDeep(value);
     cloneValue.columns = cloneValue.columns.map(item => ({ ...item, id: uuid(), name: item.name || item.dataIndex }));
+    cloneValue.version = version;
     return cloneValue;
+  },
+  /**
+   * 转换导出数据格式
+   * @param {*} value
+   * @returns
+   */
+  exportValue: value => {
+    const cloneValue = cloneDeep(value);
+    cloneValue.columns = cloneValue.columns.map(({ title, name, input, formItem }) => ({
+      title,
+      name,
+      input,
+      formItem,
+    }));
+    cloneValue.version = version;
+    return JSON.stringify(cloneValue, null, 2);
   },
 };
 

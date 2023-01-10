@@ -4,7 +4,7 @@ import useSchema from "../hooks/useSchema";
 import components from "../components";
 import FlexFormLayout from "./flex-form-layout";
 
-function FormRender({ schema, layoutStyle, ...restProps }) {
+function FormRender({ schema, ...restProps }) {
   const { value } = useSchema(schema);
 
   const items = value.columns.map(col => {
@@ -19,7 +19,7 @@ function FormRender({ schema, layoutStyle, ...restProps }) {
   });
 
   return (
-    <Form {...restProps}>
+    <Form {...value.form} {...restProps}>
       <FlexFormLayout items={items} layout={value.layout} />
     </Form>
   );

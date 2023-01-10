@@ -1,5 +1,5 @@
 import { Avatar, Tag } from "antd";
-import ActionColumn from "./base-list/helper/actionColumn";
+import actionColumn from "./base-list/helper/action-column";
 
 export const columns = [
   {
@@ -47,7 +47,7 @@ export const columns = [
   },
 ];
 
-export const ac = ActionColumn({
+export const ac = actionColumn({
   buttons: [
     {
       key: "update",

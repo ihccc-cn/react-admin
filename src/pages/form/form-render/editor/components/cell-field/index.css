@@ -26,11 +26,18 @@
 }
 
 .input-cell:hover .input-cell-title {
-  color: #393939;
+  color: #6f6af8;
 }
 
 .input-cell-title {
-  font-weight: bold;
-  color: #a9a9a9;
+  color: #494949;
   transition: 0.2s;
+}
+
+.input-cell-desc {
+  text-align: right;
+  font-size: 12px;
+  font-weight: bold;
+  font-family: auto;
+  color: #c9c9c9;
 }
