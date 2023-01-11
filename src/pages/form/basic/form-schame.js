@@ -77,6 +77,7 @@ export default {
     layout: "vertical",
   },
   layout: {
+    type: "basic-form-layout",
     // inline: true,
     // style: { width: "40%", minWidth: 320 },
     items: {

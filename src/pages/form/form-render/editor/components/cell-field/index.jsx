@@ -5,10 +5,10 @@ import "./index.css";
 
 function CellField({ className, icon, title, type, ...restProps }) {
   return (
-    <div className={clsx("input-cell", className)} title={title} {...restProps}>
+    <div className={clsx("cell-field", className)} title={title} {...restProps}>
       {icon && <Icon type={icon} />}
-      <span className="input-cell-title">{title}</span>
-      <div className="input-cell-desc">{type}</div>
+      <span className="cell-field-title">{title}</span>
+      <div className="cell-field-desc">{type}</div>
     </div>
   );
 }

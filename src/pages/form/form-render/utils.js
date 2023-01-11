@@ -9,6 +9,22 @@ export const uuid = ((start = 0) => {
   return (prefix = "key") => `${prefix}_${id++}`;
 })();
 
+export const attrString = data => {
+  return;
+};
+
+function jsxTemplate(data) {
+  return `<Form name="basic" layout="vertical">
+  <Row gutter={[10, 10]}>
+    <Col span={24}>
+      <Form.Item name="name">
+        <Input placeholder="请输入" />
+      </Form.Item>
+    </Col>
+  </Row>
+</Form>`;
+}
+
 export const EditorUtil = {
   /**
    * 校验数据格式
@@ -17,7 +33,7 @@ export const EditorUtil = {
    */
   checkValue: value => {
     value = value || {};
-    if (Array.isArray(value.columns) && isObject(value.layout)) return true;
+    if (Array.isArray(value.columns) && isObject(value.layout) && !!value.layout.type) return true;
     return false;
   },
   /**
@@ -32,20 +48,23 @@ export const EditorUtil = {
     return cloneValue;
   },
   /**
-   * 转换导出数据格式
+   * 转换导出 json 格式
    * @param {*} value
    * @returns
    */
-  exportValue: value => {
+  exportJson: value => {
     const cloneValue = cloneDeep(value);
-    cloneValue.columns = cloneValue.columns.map(({ title, name, input, formItem }) => ({
-      title,
-      name,
-      input,
-      formItem,
-    }));
+    cloneValue.columns = cloneValue.columns.map(({ id, selected, chosen, ...column }) => column);
     cloneValue.version = version;
     return JSON.stringify(cloneValue, null, 2);
+  },
+  /**
+   * 转换导出 jsx 格式
+   * @param {*} value
+   * @returns
+   */
+  exportJsx: value => {
+    return jsxTemplate(value);
   },
 };
 

@@ -1,238 +1,243 @@
-[
-  {
-    "id": "antd-components",
-    "group": "Ant Design",
-    "children": [
-      {
-        "id": "Input",
-        "type": "Input",
-        "formItem": true,
-        "title": "文本输入",
-        "icon": "icon-input",
-        "props": [
-          {
-            "title": "后置标签",
-            "name": "addonAfter",
-            "tip": "带标签的 input，设置后置标签",
-            "type": "String"
-          },
-          {
-            "title": "前置标签",
-            "name": "addonBefore",
-            "tip": "带标签的 input，设置前置标签",
-            "type": "String"
-          },
-          {
-            "title": "允许清空",
-            "name": "allowClear",
-            "tip": "可以点击清除图标删除内容",
-            "type": "Boolean",
-            "defaultValue": true
-          },
-          {
-            "title": "是否有边框",
-            "name": "bordered",
-            "type": "Boolean",
-            "defaultValue": true
-          },
-          {
-            "title": "默认内容",
-            "name": "defaultValue",
-            "type": "String"
-          },
-          {
-            "title": "是否禁用",
-            "name": "disabled",
-            "type": "Boolean"
-          },
-          {
-            "title": "最大长度",
-            "name": "maxLength",
-            "type": "Number"
-          },
-          {
-            "title": "是否展示字数",
-            "name": "showCount",
-            "type": "Boolean"
-          },
-          {
-            "title": "前缀图标",
-            "name": "prefix",
-            "type": "String"
-          },
-          {
-            "title": "前缀图标",
-            "name": "prefix",
-            "type": "String"
-          },
-          {
-            "title": "占位文本",
-            "name": "placeholder",
-            "type": "String",
-            "defaultValue": "请输入"
-          },
-          {
-            "title": "尺寸",
-            "name": "size",
-            "type": "Enum",
-            "options": "field.size"
-          },
-          {
-            "title": "后缀图标",
-            "name": "prefix",
-            "type": "String"
-          },
-          {
-            "title": "样式",
-            "name": "style",
-            "type": "StyleEditor"
-          }
-        ]
-      },
-      {
-        "id": "InputNumber",
-        "type": "InputNumber",
-        "formItem": true,
-        "title": "数字输入",
-        "icon": "icon-number"
-      },
-      {
-        "id": "Password",
-        "type": "Password",
-        "formItem": true,
-        "title": "密码输入",
-        "icon": "icon-input"
-      },
-      {
-        "id": "Rate",
-        "type": "Rate",
-        "formItem": true,
-        "title": "评分",
-        "icon": "icon-rate"
-      },
-      {
-        "id": "Slider",
-        "type": "Slider",
-        "formItem": true,
-        "title": "数字滑块",
-        "icon": "icon-slider"
-      },
-      {
-        "id": "Switch",
-        "type": "Switch",
-        "formItem": true,
-        "title": "开关",
-        "icon": "icon-switch",
-        "itemProps": {
-          "valuePropName": "checked"
+{
+  "nodes": [
+    {
+      "id": "antd-components",
+      "group": "Ant Design",
+      "children": [
+        {
+          "id": "Input",
+          "type": "Input",
+          "title": "文本输入",
+          "icon": "icon-input"
+        },
+        {
+          "id": "InputNumber",
+          "type": "InputNumber",
+          "title": "数字输入",
+          "icon": "icon-number"
+        },
+        {
+          "id": "Password",
+          "type": "Password",
+          "title": "密码输入",
+          "icon": "icon-input"
+        },
+        {
+          "id": "Rate",
+          "type": "Rate",
+          "title": "评分",
+          "icon": "icon-rate"
+        },
+        {
+          "id": "Slider",
+          "type": "Slider",
+          "title": "数字滑块",
+          "icon": "icon-slider"
+        },
+        {
+          "id": "Switch",
+          "type": "Switch",
+          "title": "开关",
+          "icon": "icon-switch"
+        },
+        {
+          "id": "TextArea",
+          "type": "TextArea",
+          "title": "文本域",
+          "icon": "icon-textarea"
         }
+      ]
+    },
+    {
+      "id": "base-components",
+      "group": "Base-Components",
+      "children": [
+        {
+          "id": "Checkbox",
+          "type": "Checkbox",
+          "title": "多选按钮",
+          "icon": "icon-checkbox"
+        },
+        {
+          "id": "Radio",
+          "type": "Radio",
+          "title": "单选按钮",
+          "icon": "icon-radio"
+        },
+        {
+          "id": "Select",
+          "type": "Select",
+          "title": "下拉选择",
+          "icon": "icon-select"
+        },
+        {
+          "id": "Upload",
+          "type": "Upload",
+          "title": "文件上传",
+          "icon": "icon-upload"
+        },
+        {
+          "id": "Upload.Crop",
+          "type": "Upload.Crop",
+          "title": "图片编辑上传",
+          "icon": "icon-upload"
+        }
+      ]
+    },
+    {
+      "id": "other",
+      "group": "其他",
+      "children": [
+        {
+          "id": "Br",
+          "type": "Br",
+          "title": "换行元素",
+          "icon": "icon-zhankai"
+        },
+        {
+          "id": "Hr",
+          "type": "Hr",
+          "title": "分割线",
+          "icon": "icon-sami-select"
+        },
+        {
+          "id": "Text",
+          "type": "Text",
+          "title": "文本元素",
+          "icon": "icon-text"
+        },
+        {
+          "id": "Mark",
+          "type": "Mark",
+          "title": "标注信息",
+          "icon": "icon-RFQ-logo"
+        },
+        {
+          "id": "Image",
+          "type": "Image",
+          "title": "图片元素",
+          "icon": "icon-pic"
+        }
+      ]
+    },
+    {
+      "id": "customize",
+      "group": "自定义",
+      "children": []
+    }
+  ],
+  "control": {
+    "Br": {
+      "lock": false,
+      "inline": false,
+      "copy": false,
+      "resize": false
+    },
+    "Hr": {
+      "lock": false,
+      "inline": false,
+      "copy": false,
+      "resize": false
+    }
+  },
+  "formItem": {
+    "Switch": {
+      "props": {
+        "valuePropName": "checked"
+      }
+    },
+    "Br": {
+      "enable": false
+    },
+    "Hr": {
+      "enable": false
+    },
+    "Mark": {
+      "enable": false
+    },
+    "Image": {
+      "enable": false
+    }
+  },
+  "props": {
+    "Input": [
+      {
+        "title": "后置标签",
+        "name": "addonAfter",
+        "tip": "带标签的 input，设置后置标签",
+        "type": "String"
       },
       {
-        "id": "TextArea",
-        "type": "TextArea",
-        "formItem": true,
-        "title": "文本域",
-        "icon": "icon-textarea"
+        "title": "前置标签",
+        "name": "addonBefore",
+        "tip": "带标签的 input，设置前置标签",
+        "type": "String"
+      },
+      {
+        "title": "允许清空",
+        "name": "allowClear",
+        "tip": "可以点击清除图标删除内容",
+        "type": "Boolean",
+        "defaultValue": true
+      },
+      {
+        "title": "是否有边框",
+        "name": "bordered",
+        "type": "Boolean",
+        "defaultValue": true
+      },
+      {
+        "title": "默认内容",
+        "name": "defaultValue",
+        "type": "String"
+      },
+      {
+        "title": "是否禁用",
+        "name": "disabled",
+        "type": "Boolean"
+      },
+      {
+        "title": "最大长度",
+        "name": "maxLength",
+        "type": "Number"
+      },
+      {
+        "title": "是否展示字数",
+        "name": "showCount",
+        "type": "Boolean"
+      },
+      {
+        "title": "前缀图标",
+        "name": "prefix",
+        "type": "String"
+      },
+      {
+        "title": "前缀图标",
+        "name": "prefix",
+        "type": "String"
+      },
+      {
+        "title": "占位文本",
+        "name": "placeholder",
+        "type": "String",
+        "defaultValue": "请输入"
+      },
+      {
+        "title": "尺寸",
+        "name": "size",
+        "type": "Enum",
+        "options": "field.size"
+      },
+      {
+        "title": "后缀图标",
+        "name": "prefix",
+        "type": "String"
+      },
+      {
+        "title": "样式",
+        "name": "style",
+        "type": "StyleEditor"
       }
     ]
-  },
-  {
-    "id": "base-components",
-    "group": "Base-Components",
-    "children": [
-      {
-        "id": "Checkbox",
-        "type": "Checkbox",
-        "formItem": true,
-        "title": "多选按钮",
-        "icon": "icon-checkbox"
-      },
-      {
-        "id": "Radio",
-        "type": "Radio",
-        "formItem": true,
-        "title": "单选按钮",
-        "icon": "icon-radio"
-      },
-      {
-        "id": "Select",
-        "type": "Select",
-        "formItem": true,
-        "title": "下拉选择",
-        "icon": "icon-select"
-      },
-      {
-        "id": "Upload",
-        "type": "Upload",
-        "formItem": true,
-        "title": "文件上传",
-        "icon": "icon-upload"
-      },
-      {
-        "id": "Upload.Crop",
-        "type": "Upload.Crop",
-        "formItem": true,
-        "title": "图片编辑上传",
-        "icon": "icon-upload"
-      }
-    ]
-  },
-  {
-    "id": "other",
-    "group": "其他",
-    "children": [
-      {
-        "id": "Br",
-        "type": "Br",
-        "formItem": false,
-        "title": "换行元素",
-        "icon": "icon-zhankai",
-        "control": {
-          "lock": false,
-          "inline": false,
-          "copy": false,
-          "resize": false
-        }
-      },
-      {
-        "id": "Hr",
-        "type": "Hr",
-        "formItem": false,
-        "title": "分割线",
-        "icon": "icon-sami-select",
-        "control": {
-          "lock": false,
-          "inline": false,
-          "copy": false,
-          "resize": false
-        }
-      },
-      {
-        "id": "Text",
-        "type": "Text",
-        "formItem": true,
-        "title": "文本元素",
-        "icon": "icon-text"
-      },
-      {
-        "id": "Mark",
-        "type": "Mark",
-        "formItem": false,
-        "title": "标注信息",
-        "icon": "icon-RFQ-logo"
-      },
-      {
-        "id": "Image",
-        "type": "Image",
-        "formItem": false,
-        "title": "图片元素",
-        "icon": "icon-pic"
-      }
-    ]
-  },
-  {
-    "id": "customize",
-    "group": "自定义",
-    "children": []
   }
-]
+}

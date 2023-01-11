@@ -19,7 +19,7 @@ function FlexFormLayout(props) {
       item.node,
       Object.assign(
         {
-          className: clsx(!inline ? "flex-form-layout-item" : "flex-form-layout-item-inline"),
+          className: clsx(!inline ? "basic-form-layout-item" : "basic-form-layout-item-inline"),
           key: item[rowKey],
         },
         itemPropsProvide ? { lock, inline } : {},
@@ -28,7 +28,7 @@ function FlexFormLayout(props) {
     );
   });
 
-  const containerProps = { className: "flex-form-layout" };
+  const containerProps = { className: "basic-form-layout" };
 
   if (!tag) {
     return (

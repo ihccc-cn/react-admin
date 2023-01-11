@@ -1,0 +1,14 @@
+.basic-form-layout::after {
+  display: table;
+  clear: both;
+  content: "";
+}
+
+.basic-form-layout-item {
+  padding: 0 10px;
+}
+
+.basic-form-layout-item-inline {
+  display: inline-block;
+  padding: 0 10px;
+}

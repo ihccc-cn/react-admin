@@ -14,14 +14,22 @@ import exampleSchame from "../fr-example.json";
 
 const GROUP_NAME = "form-editor";
 
-const transformField = item => {
-  return { ...item, name: uuid(item.type), input: item.type };
+const transformField = ({ props, control, type, ...data }) => {
+  return { ...data, name: uuid(type), input: type };
 };
 
 function Editor({ schema }) {
-  const { value, isEmpty, getExportValue, setColumns, setLayout, setValue, clear } = useSchema();
+  const mainContainerRef = React.useRef(null);
+  const { value, isEmpty, getExportValue, setColumns, setLayout, setValue, clear } = useSchema(schema);
   const [preview, setPreview] = React.useState(false);
   const [exportJson, setExportJson] = React.useState(null);
+
+  const containerHeight = (() => {
+    if (!mainContainerRef.current) return null;
+    const main = mainContainerRef.current.parentElement;
+    const height = main.offsetHeight;
+    return !height ? height : height - 40;
+  })();
 
   console.log("💾[editor-value]: ", value);
 
@@ -38,7 +46,7 @@ function Editor({ schema }) {
   };
 
   const viewExample = (
-    <a onClick={() => setValue(schema || exampleSchame)} style={{ fontSize: 12, textDecoration: "underline" }}>
+    <a onClick={() => setValue(exampleSchame)} style={{ fontSize: 12, textDecoration: "underline" }}>
       查看示例
     </a>
   );
@@ -65,25 +73,29 @@ function Editor({ schema }) {
         }
         left={
           <TabFields
-            component={<TabFields.ComponentPanel groupName={GROUP_NAME} items={inputNodes} onItem={handleField} />}
+            component={<TabFields.ComponentPanel groupName={GROUP_NAME} nodes={inputNodes.nodes} onItem={handleField} />}
             template={<TabFields.TemplatePanel />}
           />
         }
         right={<TabSetting form={<TabSetting.FormPanel />} component={<TabSetting.ComponentPanel />} />}
         style={{ height: "calc(100vh - 140px)" }}
       >
-        <Form name="__form_editor__" layout="vertical" style={{ height: "100%" }}>
-          <Canvas
-            preview={preview}
-            groupName={GROUP_NAME}
-            columns={value.columns}
-            setColumns={setColumns}
-            layout={value.layout}
-            setLayout={setLayout}
-            transformItem={transformField}
-            empty={<CanvasEmpty icon="icon-operation" title="点击/拖拽左侧栏目的组件进行添加" extra={viewExample} />}
-          />
-        </Form>
+        <div ref={mainContainerRef}>
+          <Form name="__form_editor__" layout="vertical">
+            <Canvas
+              preview={preview}
+              groupName={GROUP_NAME}
+              columns={value.columns}
+              setColumns={setColumns}
+              layout={value.layout}
+              setLayout={setLayout}
+              nodesConfig={inputNodes}
+              transformItem={transformField}
+              empty={<CanvasEmpty icon="icon-operation" title="点击/拖拽左侧栏目的组件进行添加" extra={viewExample} />}
+              style={{ minHeight: containerHeight }}
+            />
+          </Form>
+        </div>
       </Layout>
     </React.Fragment>
   );

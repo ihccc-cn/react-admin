@@ -1,4 +1,4 @@
-.input-cell {
+.cell-field {
   position: relative;
   border: 1px solid #e5e5e5;
   background: #fff;
@@ -9,32 +9,32 @@
   transition: 0.2s;
 }
 
-.input-cell:nth-of-type(1) {
+.cell-field:nth-of-type(1) {
   margin: 0 0 8px;
 }
 
-.input-cell:nth-last-of-type(1) {
+.cell-field:nth-last-of-type(1) {
   margin: 8px 0 0;
 }
 
-.input-cell:hover {
+.cell-field:hover {
   border-color: #6f6af8;
 }
 
-.input-cell:hover .icon {
+.cell-field:hover .icon {
   color: #6f6af8;
 }
 
-.input-cell:hover .input-cell-title {
+.cell-field:hover .cell-field-title {
   color: #6f6af8;
 }
 
-.input-cell-title {
+.cell-field-title {
   color: #494949;
   transition: 0.2s;
 }
 
-.input-cell-desc {
+.cell-field-desc {
   text-align: right;
   font-size: 12px;
   font-weight: bold;

@@ -10,7 +10,7 @@ import { FlexFormLayout } from "../../../render";
 import { swap } from "../../../utils";
 import CellEditor from "../cell-editor";
 
-function Canvas({ preview, groupName, columns, setColumns, layout, setLayout, transformItem, empty, rowKey }) {
+function Canvas({ preview, groupName, columns, setColumns, layout, setLayout, nodesConfig, transformItem, empty, rowKey, style }) {
   const setItemLayout = React.useCallback((name, change) => {
     setLayout(state => {
       const newState = cloneDeep(state);
@@ -49,18 +49,32 @@ function Canvas({ preview, groupName, columns, setColumns, layout, setLayout, tr
   }, []);
 
   const handleRemove = React.useCallback(key => {
-    setColumns(columns => {
-      return columns.filter(col => col[rowKey] !== key);
+    setColumns(columns => columns.filter(col => col[rowKey] !== key));
+  }, []);
+
+  const setList = React.useCallback(list => {
+    setColumns(current => {
+      const [added] = differenceBy(list, current, "id");
+      if (!added) return list;
+      const index = list.indexOf(added);
+      const newColumns = [...list];
+      newColumns.splice(index, 1, transformItem(added));
+      return newColumns;
     });
   }, []);
 
   const items = columns.map((col, index) => {
+    const itemConfig = nodesConfig.formItem[col.input] || {};
+    const controlConfig = nodesConfig.control[col.input] || {};
+
+    const inputNdoe = React.createElement(components[col.input] || components["Input"]);
+
     const formItem =
-      col.formItem === false ? (
-        React.createElement(components[col.input] || components["Input"])
+      itemConfig.enable === false ? (
+        inputNdoe
       ) : (
         <Form.Item label={col.title} tooltip={col.tip} name={col.name} {...col.itemProps}>
-          {React.createElement(components[col.input] || components["Input"])}
+          {inputNdoe}
         </Form.Item>
       );
 
@@ -70,11 +84,10 @@ function Canvas({ preview, groupName, columns, setColumns, layout, setLayout, tr
         formItem
       ) : (
         <CellEditor
-          mode={preview ? "view" : "edit"}
-          label={col.formItem === false ? col.title : null}
+          label={itemConfig.enable === false ? col.title : null}
           name={col.name}
           chosen={col.chosen}
-          control={col.control}
+          control={controlConfig}
           onLock={() => toggleLayoutItemLock(col.name)}
           onMoveup={() => handleMoveup(index)}
           onMovedown={() => handleMovedown(index)}
@@ -100,18 +113,9 @@ function Canvas({ preview, groupName, columns, setColumns, layout, setLayout, tr
       filter={CellEditor.FILTER_CLASSNAME}
       animation={300}
       list={columns}
-      setList={list => {
-        setColumns(current => {
-          const [added] = differenceBy(list, current, "id");
-          if (!added) return list;
-          const index = list.indexOf(added);
-          const newColumns = [...list];
-          newColumns.splice(index, 1, transformItem(added));
-          return newColumns;
-        });
-      }}
+      setList={setList}
       group={{ name: groupName, pull: "clone" }}
-      style={{ height: "100%" }}
+      style={{ padding: 20, background: "#ffffff", boxShadow: "0 0 4px rgba(0, 0, 0, 0.1)", ...style }}
     />
   );
 }

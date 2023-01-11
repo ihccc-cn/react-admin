@@ -2,7 +2,7 @@ import React from "react";
 import { Form } from "antd";
 import useSchema from "../hooks/useSchema";
 import components from "../components";
-import FlexFormLayout from "./flex-form-layout";
+import FlexFormLayout from "./basic-form-layout";
 
 function FormRender({ schema, ...restProps }) {
   const { value } = useSchema(schema);

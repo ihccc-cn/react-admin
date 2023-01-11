@@ -11,8 +11,8 @@ function CellEditor({
   inline,
   chosen,
   control,
-  className,
-  children,
+  sizeFormat,
+  sizeChangeLabel,
   onLock,
   onMoveup,
   onMovedown,
@@ -21,6 +21,8 @@ function CellEditor({
   onCopy,
   onRemove,
   style,
+  className,
+  children,
   ...restProps
 }) {
   const cellRef = React.useRef(null);
@@ -47,7 +49,7 @@ function CellEditor({
       if (hold) {
         const offset = e.clientX - startRef.current;
         setOffset(offset);
-        setChangeSize(Math.ceil((offset / fullSize) * 100));
+        setChangeSize(sizeFormat(offset, fullSize));
       }
     },
     [hold]
@@ -76,38 +78,38 @@ function CellEditor({
   const controlAble = control || {};
 
   return (
-    <div ref={cellRef} className={clsx("form-cell", lock && "form-cell-filter", chosen && "form-cell-chosen", className)} style={style} {...restProps}>
-      {label && <div className="form-cell-label">{label}</div>}
+    <div ref={cellRef} className={clsx("cell-editor", lock && "cell-editor-filter", chosen && "cell-editor-chosen", className)} style={style} {...restProps}>
+      {label && <div className="cell-editor-label">{label}</div>}
       {children}
       {controlAble.mask !== false && (
-        <span className={"form-cell-mask"}>
+        <span className={"cell-editor-mask"}>
           <Icon type="icon-password-fill" onClick={onLock} />
         </span>
       )}
       {controlAble.move !== false && (
-        <span className="form-cell-button form-cell-handle" title="拖拽交换位置">
+        <span className="cell-editor-button cell-editor-handle" title="拖拽交换位置">
           <Icon type="icon-move" />
         </span>
       )}
-      <div className="form-cell-actions">
-        {controlAble.name !== false && <span className="form-cell-name">{name || "unknow"}</span>}
+      <div className="cell-editor-actions">
+        {controlAble.name !== false && <span className="cell-editor-name">{name || "unknow"}</span>}
         {controlAble.lock !== false && (
-          <span className="form-cell-button" title="锁定" onClick={onLock}>
+          <span className="cell-editor-button" title="锁定" onClick={onLock}>
             <Icon type="icon-unlock" />
           </span>
         )}
         {/* {controlAble.move !== false && (
-        <span className="form-cell-button" title="上移" onClick={onMoveup}>
+        <span className="cell-editor-button" title="上移" onClick={onMoveup}>
           <Icon type="icon-rising" />
         </span>
         )}
         {controlAble.move !== false && (
-        <span className="form-cell-button" title="下移" onClick={onMovedown}>
+        <span className="cell-editor-button" title="下移" onClick={onMovedown}>
           <Icon type="icon-falling" />
         </span>
         )} */}
         {controlAble.inline !== false && (
-          <span className="form-cell-button" title={inline ? "行内" : "块级"} onClick={onInline}>
+          <span className="cell-editor-button" title={inline ? "行内" : "块级"} onClick={onInline}>
             {inline ? (
               <Icon type="icon-viewgallery" style={{ transform: "scale(1.5) rotateZ(-90deg)" }} />
             ) : (
@@ -116,36 +118,41 @@ function CellEditor({
           </span>
         )}
         {controlAble.copy !== false && (
-          <span className="form-cell-button" title="复制" onClick={onCopy}>
+          <span className="cell-editor-button" title="复制" onClick={onCopy}>
             <Icon type="icon-copy" />
           </span>
         )}
         {/* {controlAble.replace !== false && (
-        <span className="form-cell-button" title="替换">
+        <span className="cell-editor-button" title="替换">
           <Icon type="icon-component" />
         </span>
         )} */}
         {controlAble.remove !== false && (
-          <span className="form-cell-button form-cell-button-danger" title="删除" onClick={onRemove}>
+          <span className="cell-editor-button cell-editor-button-danger" title="删除" onClick={onRemove}>
             <Icon type="icon-ashbin" />
           </span>
         )}
       </div>
       {controlAble.resize !== false && (
         <span
-          className={clsx("form-cell-resize", hold && "form-cell-resize-hold")}
+          className={clsx("cell-editor-resize", hold && "cell-editor-resize-hold")}
           title="拖拽修改尺寸"
           style={{ transform: `translateX(${offset}px)` }}
           onMouseDown={onMouseDown}
         >
-          <span className="form-cell-resize-value">{addPercent(style?.width || 100, changeSize)}</span>
+          {sizeChangeLabel && <span className="cell-editor-resize-value">{sizeChangeLabel(changeSize, style?.width)}</span>}
         </span>
       )}
     </div>
   );
 }
 
-CellEditor.HANDLE_CLASSNAME = ".form-cell-handle";
-CellEditor.FILTER_CLASSNAME = ".form-cell-filter";
+CellEditor.HANDLE_CLASSNAME = ".cell-editor-handle";
+CellEditor.FILTER_CLASSNAME = ".cell-editor-filter";
+
+CellEditor.defaultProps = {
+  sizeFormat: (size, full) => Math.round((size / full) * 100),
+  sizeChangeLabel: (size, width) => addPercent(width || 100, size),
+};
 
 export default CellEditor;

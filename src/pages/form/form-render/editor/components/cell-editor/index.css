@@ -1,47 +1,51 @@
-.form-cell {
+.cell-editor {
   position: relative;
   min-height: 20px;
-  background-color: #f9f9f9;
   line-height: initial;
-  padding-bottom: 1px;
-  box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.2);
   user-select: none;
 }
 
-.form-cell.form-cell-filter .form-cell-mask {
-  background-color: rgba(255, 0, 0, 0.03);
+.cell-editor::after {
+  display: table;
+  clear: both;
+  content: "";
 }
 
-.form-cell.form-cell-filter .form-cell-mask .icon {
+.cell-editor.cell-editor-filter .cell-editor-mask {
+  background: rgba(255, 0, 0, 0.03);
+}
+
+.cell-editor.cell-editor-filter .cell-editor-mask .icon {
   display: block;
 }
 
-.form-cell.form-cell-filter .form-cell-resize {
+.cell-editor.cell-editor-filter .cell-editor-resize {
   display: none;
 }
 
-.form-cell.form-cell-filter .form-cell-name {
+.cell-editor.cell-editor-filter .cell-editor-name {
   border-right: none;
 }
 
-.form-cell.form-cell-filter .form-cell-button {
+.cell-editor.cell-editor-filter .cell-editor-button {
   display: none;
 }
 
-.form-cell.form-cell-filter .form-cell-actions {
+.cell-editor.cell-editor-filter .cell-editor-actions {
   right: 0;
 }
 
-.form-cell.form-cell-chosen {
-  box-shadow: 0 0 2px 2px #6f6af8;
+.cell-editor.cell-editor-chosen {
+  box-shadow: 0 0 4px 0 #6f6af8;
   z-index: 9;
 }
 
-.form-cell.form-cell-chosen .form-cell-handle {
+.cell-editor.cell-editor-chosen .cell-editor-handle {
   opacity: 1;
 }
 
-.form-cell-label {
+.cell-editor-label {
   position: absolute;
   top: 50%;
   left: 32px;
@@ -51,7 +55,7 @@
   opacity: 0.6;
 }
 
-.form-cell-mask {
+.cell-editor-mask {
   position: absolute;
   top: 0;
   left: 0;
@@ -60,16 +64,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  background: rgba(255, 255, 255, 0.5);
+  transition: 0.2s;
 }
 
-.form-cell-mask .icon {
+.cell-editor-mask .icon {
   color: #f44336;
   font-size: 16px;
   cursor: pointer;
   display: none;
 }
 
-.form-cell-name {
+.cell-editor-name {
   line-height: 20px;
   padding: 0 6px;
   font-size: 12px;
@@ -77,7 +83,7 @@
   opacity: 0.8;
 }
 
-.form-cell-resize {
+.cell-editor-resize {
   position: absolute;
   top: 0;
   right: 0;
@@ -87,12 +93,12 @@
   z-index: 9;
 }
 
-.form-cell-resize-hold {
+.cell-editor-resize-hold {
   border-left-style: dashed;
   opacity: 1;
 }
 
-.form-cell-resize-value {
+.cell-editor-resize-value {
   display: none;
   position: absolute;
   top: 0;
@@ -106,11 +112,11 @@
   box-shadow: 0 4px 6px 2px rgba(0, 0, 0, 0.1);
 }
 
-.form-cell-resize-hold .form-cell-resize-value {
+.cell-editor-resize-hold .cell-editor-resize-value {
   display: block;
 }
 
-.form-cell-button {
+.cell-editor-button {
   width: 20px;
   height: 20px;
   background: #6f6af8;
@@ -122,15 +128,15 @@
   transition: 0.2s;
 }
 
-.form-cell-button:hover {
+.cell-editor-button:hover {
   opacity: 1;
 }
 
-.form-cell-button-danger {
+.cell-editor-button-danger {
   background: #f44336;
 }
 
-.form-cell-handle {
+.cell-editor-handle {
   position: absolute;
   left: 0;
   bottom: 0;
@@ -138,7 +144,7 @@
   cursor: move;
 }
 
-.form-cell-actions {
+.cell-editor-actions {
   display: flex;
   position: absolute;
   top: 0;

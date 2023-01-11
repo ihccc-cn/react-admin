@@ -3,7 +3,7 @@ import useUpdate from "ahooks/lib/useUpdate";
 import { version, EditorUtil } from "../utils";
 
 function useSchema(schema) {
-  const valueRef = React.useRef({ columns: [], layout: {}, version });
+  const valueRef = React.useRef({ columns: [], layout: { type: "basic-form-layout" }, version });
   const update = useUpdate();
 
   const setColumns = React.useCallback(columns => {
@@ -35,12 +35,12 @@ function useSchema(schema) {
   }, []);
 
   const clear = React.useCallback(() => {
-    valueRef.current = { columns: [], layout: {}, version };
+    valueRef.current = { columns: [], layout: { type: "basic-form-layout" }, version };
     update();
   }, []);
 
   const getExportValue = React.useCallback(() => {
-    return EditorUtil.exportValue(valueRef.current);
+    return EditorUtil.exportJson(valueRef.current);
   }, []);
 
   React.useEffect(() => {

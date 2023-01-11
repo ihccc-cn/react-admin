@@ -18,8 +18,7 @@
     {
       "title": "换行元素",
       "name": "Br_22",
-      "input": "Br",
-      "formItem": false
+      "input": "Br"
     },
     {
       "title": "开关",
@@ -44,8 +43,7 @@
     {
       "title": "换行元素",
       "name": "Br_20",
-      "input": "Br",
-      "formItem": false
+      "input": "Br"
     },
     {
       "title": "文本域",
@@ -63,22 +61,19 @@
       "Input_0": {
         "style": {
           "width": "30%"
-        },
-        "lock": false
+        }
       },
       "Input_2": {
         "style": {
           "width": "30%"
         },
-        "inline": true,
-        "lock": false
+        "inline": true
       },
       "Password_6": {
         "style": {
           "width": "30%"
         },
-        "inline": true,
-        "lock": false
+        "inline": true
       },
       "InputNumber_4": {
         "style": {
@@ -91,8 +86,7 @@
         "style": {
           "width": "15%"
         },
-        "inline": true,
-        "lock": false
+        "inline": true
       },
       "Switch_12": {
         "style": {
@@ -119,9 +113,10 @@
         "style": {
           "width": "60%"
         },
-        "inline": false,
-        "lock": false
+        "inline": false
       }
-    }
-  }
+    },
+    "type": "basic-form-layout"
+  },
+  "version": "1.0.0"
 }

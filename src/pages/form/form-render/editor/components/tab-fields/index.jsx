@@ -4,8 +4,8 @@ import { Tabs, Collapse } from "antd";
 import { uuid } from "../../../utils";
 import CellField from "../cell-field";
 
-function ComponentPanel({ groupName, items, rowKey, onItem }) {
-  const [source, setSource] = React.useState(items || []);
+function ComponentPanel({ groupName, nodes, rowKey, onItem }) {
+  const [source, setSource] = React.useState(nodes || []);
 
   const setList = (index, list) => {
     setSource(source => {
