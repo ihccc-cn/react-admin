@@ -6,7 +6,8 @@ import TabFields from "./components/tab-fields";
 import TabSetting from "./components/tab-setting";
 import Canvas from "./components/canvas";
 import CanvasEmpty from "./components/canvas-empty";
-import IoModal from "./components/io-modal";
+import ModalExport from "./components/modal-export";
+import ModalImport from "./components/modal-import";
 import Layout from "./layout";
 import { uuid } from "../utils";
 import inputNodes from "../input-nodes.json";
@@ -14,7 +15,7 @@ import exampleSchame from "../fr-example.json";
 
 const GROUP_NAME = "form-editor";
 
-const transformField = ({ props, control, type, ...data }) => {
+const transformField = ({ type, ...data }) => {
   return { ...data, name: uuid(type), input: type };
 };
 
@@ -22,28 +23,29 @@ function Editor({ schema }) {
   const mainContainerRef = React.useRef(null);
   const { value, isEmpty, getExportValue, setColumns, setLayout, setValue, clear } = useSchema(schema);
   const [preview, setPreview] = React.useState(false);
+  const [imVisible, setImVisible] = React.useState(false);
   const [exportJson, setExportJson] = React.useState(null);
-
-  const containerHeight = (() => {
-    if (!mainContainerRef.current) return null;
-    const main = mainContainerRef.current.parentElement;
-    const height = main.offsetHeight;
-    return !height ? height : height - 40;
-  })();
+  const [containerHeight, setContainerHeight] = React.useState(null);
 
   console.log("💾[editor-value]: ", value);
 
-  const handlePreview = () => {
+  const handlePreview = React.useCallback(() => {
     setPreview(preview => !preview);
-  };
+  }, []);
 
-  const handleExport = () => {
+  const handleExport = React.useCallback(() => {
     setExportJson(getExportValue());
-  };
+  }, []);
 
-  const handleField = item => {
+  const handleField = React.useCallback(item => {
     setColumns(current => current.concat(transformField(item)));
-  };
+  }, []);
+
+  React.useEffect(() => {
+    if (!mainContainerRef.current) return;
+    const height = mainContainerRef.current.parentElement.offsetHeight;
+    setContainerHeight(!height ? height : height - 40);
+  }, []);
 
   const viewExample = (
     <a onClick={() => setValue(exampleSchame)} style={{ fontSize: 12, textDecoration: "underline" }}>
@@ -60,13 +62,15 @@ function Editor({ schema }) {
       .form-editor-layout .ant-collapse-item .ant-collapse-content .ant-collapse-content-box { padding: 4px 12px 12px; }
       `}
       </style>
-      <IoModal open={!!exportJson} value={exportJson} onCancel={() => setExportJson(null)} />
+      <ModalExport open={!!exportJson} value={exportJson} onCancel={() => setExportJson(null)} />
+      <ModalImport open={imVisible} onOk={value => setValue(value)} onCancel={() => setImVisible(false)} />
       <Layout
         top={
           <ActionBar
             visible={{ preview: !isEmpty, export: !isEmpty, clear: !isEmpty }}
             preview={preview}
             onPreview={handlePreview}
+            onImport={() => setImVisible(true)}
             onExport={handleExport}
             onClear={clear}
           />

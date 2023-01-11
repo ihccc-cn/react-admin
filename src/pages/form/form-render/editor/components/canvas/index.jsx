@@ -64,16 +64,17 @@ function Canvas({ preview, groupName, columns, setColumns, layout, setLayout, no
   }, []);
 
   const items = columns.map((col, index) => {
-    const itemConfig = nodesConfig.formItem[col.input] || {};
     const controlConfig = nodesConfig.control[col.input] || {};
+    const itemConfig = nodesConfig.formItem[col.input] || {};
+    const propsConfig = nodesConfig.props[col.input] || {};
 
-    const inputNdoe = React.createElement(components[col.input] || components["Input"]);
+    const inputNdoe = React.createElement(components[col.input] || components["Input"], propsConfig.default);
 
     const formItem =
       itemConfig.enable === false ? (
         inputNdoe
       ) : (
-        <Form.Item label={col.title} tooltip={col.tip} name={col.name} {...col.itemProps}>
+        <Form.Item {...itemConfig.props} label={col.title} tooltip={col.tip} name={col.name}>
           {inputNdoe}
         </Form.Item>
       );

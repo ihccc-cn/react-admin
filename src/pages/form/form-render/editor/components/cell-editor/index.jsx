@@ -92,7 +92,7 @@ function CellEditor({
         </span>
       )}
       <div className="cell-editor-actions">
-        {controlAble.name !== false && <span className="cell-editor-name">{name || "unknow"}</span>}
+        {controlAble.name !== false && !label && <span className="cell-editor-name">{name || "unknow"}</span>}
         {controlAble.lock !== false && (
           <span className="cell-editor-button" title="锁定" onClick={onLock}>
             <Icon type="icon-unlock" />

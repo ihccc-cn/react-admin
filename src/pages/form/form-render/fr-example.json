@@ -1,18 +1,18 @@
 {
   "columns": [
     {
-      "title": "文本输入",
-      "name": "Input_0",
+      "title": "令牌",
+      "name": "token",
       "input": "Input"
     },
     {
-      "title": "文本输入",
-      "name": "Input_2",
+      "title": "用户名",
+      "name": "username",
       "input": "Input"
     },
     {
-      "title": "密码输入",
-      "name": "Password_6",
+      "title": "加密密码",
+      "name": "password",
       "input": "Password"
     },
     {
@@ -21,24 +21,14 @@
       "input": "Br"
     },
     {
-      "title": "开关",
-      "name": "Switch_12",
-      "input": "Switch"
-    },
-    {
-      "title": "数字输入",
-      "name": "InputNumber_4",
+      "title": "件数",
+      "name": "number",
       "input": "InputNumber"
     },
     {
-      "title": "数字滑块",
-      "name": "Slider_10",
+      "title": "有效时间（秒）",
+      "name": "time",
       "input": "Slider"
-    },
-    {
-      "title": "评分",
-      "name": "Rate_8",
-      "input": "Rate"
     },
     {
       "title": "换行元素",
@@ -46,72 +36,82 @@
       "input": "Br"
     },
     {
-      "title": "文本域",
-      "name": "TextArea_14",
+      "title": "自动结单",
+      "name": "enable",
+      "input": "Switch"
+    },
+    {
+      "title": "评分",
+      "name": "score",
+      "input": "Rate"
+    },
+    {
+      "title": "送货地址",
+      "name": "address",
       "input": "TextArea"
     },
     {
-      "title": "文本域",
-      "name": "TextArea_16",
+      "title": "备注",
+      "name": "remark",
       "input": "TextArea"
     }
   ],
   "layout": {
     "items": {
-      "Input_0": {
+      "token": {
         "style": {
-          "width": "30%"
+          "width": "35%"
         }
       },
-      "Input_2": {
+      "username": {
+        "style": {
+          "width": "20%"
+        },
+        "inline": true
+      },
+      "password": {
         "style": {
           "width": "30%"
         },
         "inline": true
       },
-      "Password_6": {
+      "number": {
+        "style": {
+          "width": "20%"
+        },
+        "inline": true,
+        "lock": false
+      },
+      "score": {
         "style": {
           "width": "30%"
         },
         "inline": true
       },
-      "InputNumber_4": {
+      "enable": {
         "style": {
-          "width": "15%"
+          "width": "20%"
         },
         "inline": true,
-        "lock": true
+        "lock": false
       },
-      "Rate_8": {
+      "time": {
         "style": {
-          "width": "15%"
-        },
-        "inline": true
-      },
-      "Switch_12": {
-        "style": {
-          "width": "15%"
+          "width": "30%"
         },
         "inline": true,
-        "lock": true
+        "lock": false
       },
-      "Slider_10": {
+      "address": {
         "style": {
-          "width": "15%"
-        },
-        "inline": true,
-        "lock": true
-      },
-      "TextArea_14": {
-        "style": {
-          "width": "60%"
+          "width": "50%"
         },
         "inline": false,
-        "lock": true
+        "lock": false
       },
-      "TextArea_16": {
+      "remark": {
         "style": {
-          "width": "60%"
+          "width": "65%"
         },
         "inline": false
       }

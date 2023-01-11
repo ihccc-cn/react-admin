@@ -160,84 +160,103 @@
     }
   },
   "props": {
-    "Input": [
-      {
-        "title": "后置标签",
-        "name": "addonAfter",
-        "tip": "带标签的 input，设置后置标签",
-        "type": "String"
+    "Input": {
+      "default": {
+        "allowClear": true,
+        "placeholder": "请输入"
       },
-      {
-        "title": "前置标签",
-        "name": "addonBefore",
-        "tip": "带标签的 input，设置前置标签",
-        "type": "String"
-      },
-      {
-        "title": "允许清空",
-        "name": "allowClear",
-        "tip": "可以点击清除图标删除内容",
-        "type": "Boolean",
-        "defaultValue": true
-      },
-      {
-        "title": "是否有边框",
-        "name": "bordered",
-        "type": "Boolean",
-        "defaultValue": true
-      },
-      {
-        "title": "默认内容",
-        "name": "defaultValue",
-        "type": "String"
-      },
-      {
-        "title": "是否禁用",
-        "name": "disabled",
-        "type": "Boolean"
-      },
-      {
-        "title": "最大长度",
-        "name": "maxLength",
-        "type": "Number"
-      },
-      {
-        "title": "是否展示字数",
-        "name": "showCount",
-        "type": "Boolean"
-      },
-      {
-        "title": "前缀图标",
-        "name": "prefix",
-        "type": "String"
-      },
-      {
-        "title": "前缀图标",
-        "name": "prefix",
-        "type": "String"
-      },
-      {
-        "title": "占位文本",
-        "name": "placeholder",
-        "type": "String",
-        "defaultValue": "请输入"
-      },
-      {
-        "title": "尺寸",
-        "name": "size",
-        "type": "Enum",
-        "options": "field.size"
-      },
-      {
-        "title": "后缀图标",
-        "name": "prefix",
-        "type": "String"
-      },
-      {
-        "title": "样式",
-        "name": "style",
-        "type": "StyleEditor"
+      "config": [
+        {
+          "title": "后置标签",
+          "name": "addonAfter",
+          "tip": "带标签的 input，设置后置标签",
+          "type": "String"
+        },
+        {
+          "title": "前置标签",
+          "name": "addonBefore",
+          "tip": "带标签的 input，设置前置标签",
+          "type": "String"
+        },
+        {
+          "title": "允许清空",
+          "name": "allowClear",
+          "tip": "可以点击清除图标删除内容",
+          "type": "Boolean"
+        },
+        {
+          "title": "是否有边框",
+          "name": "bordered",
+          "type": "Boolean"
+        },
+        {
+          "title": "默认内容",
+          "name": "defaultValue",
+          "type": "String"
+        },
+        {
+          "title": "是否禁用",
+          "name": "disabled",
+          "type": "Boolean"
+        },
+        {
+          "title": "最大长度",
+          "name": "maxLength",
+          "type": "Number"
+        },
+        {
+          "title": "是否展示字数",
+          "name": "showCount",
+          "type": "Boolean"
+        },
+        {
+          "title": "前缀图标",
+          "name": "prefix",
+          "type": "String"
+        },
+        {
+          "title": "前缀图标",
+          "name": "prefix",
+          "type": "String"
+        },
+        {
+          "title": "占位文本",
+          "name": "placeholder",
+          "type": "String"
+        },
+        {
+          "title": "尺寸",
+          "name": "size",
+          "type": "Enum",
+          "options": "field.size"
+        },
+        {
+          "title": "后缀图标",
+          "name": "prefix",
+          "type": "String"
+        },
+        {
+          "title": "样式",
+          "name": "style",
+          "type": "StyleEditor"
+        }
+      ]
+    },
+    "InputNumber": {
+      "default": {
+        "placeholder": "请输入"
       }
-    ]
+    },
+    "Password": {
+      "default": {
+        "placeholder": "请输入"
+      }
+    },
+    "TextArea": {
+      "default": {
+        "placeholder": "请输入",
+        "rows": 2
+      }
+    }
   }
 }
