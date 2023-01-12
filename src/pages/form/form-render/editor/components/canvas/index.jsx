@@ -10,7 +10,7 @@ import { FlexFormLayout } from "../../../render";
 import { swap } from "../../../utils";
 import CellEditor from "../cell-editor";
 
-function Canvas({ preview, groupName, columns, setColumns, layout, setLayout, nodesConfig, transformItem, empty, rowKey, style }) {
+function Canvas({ preview, groupName, columns, setColumns, layout, setLayout, nodesConfig, transformItem, empty, rowKey, style, selected, onSelect }) {
   const setItemLayout = React.useCallback((name, change) => {
     setLayout(state => {
       const newState = cloneDeep(state);
@@ -52,6 +52,20 @@ function Canvas({ preview, groupName, columns, setColumns, layout, setLayout, no
     setColumns(columns => columns.filter(col => col[rowKey] !== key));
   }, []);
 
+  const handleSelect = React.useCallback(
+    col => {
+      if (!onSelect) return;
+      if (col[rowKey] === selected[rowKey]) {
+        onSelect({});
+        return;
+      }
+      const itemConfig = nodesConfig.formItem[col.input || "Input"] || {};
+      const propsConfig = nodesConfig.props[col.input || "Input"] || {};
+      onSelect(Object.assign({ formItem: itemConfig, props: propsConfig }, col));
+    },
+    [selected]
+  );
+
   const setList = React.useCallback(list => {
     setColumns(current => {
       const [added] = differenceBy(list, current, "id");
@@ -64,9 +78,9 @@ function Canvas({ preview, groupName, columns, setColumns, layout, setLayout, no
   }, []);
 
   const items = columns.map((col, index) => {
-    const controlConfig = nodesConfig.control[col.input] || {};
-    const itemConfig = nodesConfig.formItem[col.input] || {};
-    const propsConfig = nodesConfig.props[col.input] || {};
+    const controlConfig = nodesConfig.control[col.input || "Input"] || {};
+    const itemConfig = nodesConfig.formItem[col.input || "Input"] || {};
+    const propsConfig = nodesConfig.props[col.input || "Input"] || {};
 
     const inputNdoe = React.createElement(components[col.input] || components["Input"], propsConfig.default);
 
@@ -87,7 +101,7 @@ function Canvas({ preview, groupName, columns, setColumns, layout, setLayout, no
         <CellEditor
           label={itemConfig.enable === false ? col.title : null}
           name={col.name}
-          chosen={col.chosen}
+          chosen={selected[rowKey] === col[rowKey] || col.chosen}
           control={controlConfig}
           onLock={() => toggleLayoutItemLock(col.name)}
           onMoveup={() => handleMoveup(index)}
@@ -95,6 +109,7 @@ function Canvas({ preview, groupName, columns, setColumns, layout, setLayout, no
           onInline={() => toggleLayoutItemInline(col.name)}
           onResize={size => setLayoutItemWidth(col.name, size)}
           onRemove={() => handleRemove(col[rowKey])}
+          onClick={() => handleSelect(col)}
           key={col[rowKey]}
         >
           {formItem}
@@ -116,7 +131,7 @@ function Canvas({ preview, groupName, columns, setColumns, layout, setLayout, no
       list={columns}
       setList={setList}
       group={{ name: groupName, pull: "clone" }}
-      style={{ padding: 20, background: "#ffffff", boxShadow: "0 0 4px rgba(0, 0, 0, 0.1)", ...style }}
+      style={{ padding: 20, boxShadow: "0 0 4px rgba(0, 0, 0, 0.1)", ...style }}
     />
   );
 }

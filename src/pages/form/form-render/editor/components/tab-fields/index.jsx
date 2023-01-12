@@ -1,10 +1,11 @@
 import React from "react";
 import { ReactSortable } from "react-sortablejs";
-import { Tabs, Collapse } from "antd";
+import { Tabs, Collapse, Button } from "antd";
+import Icon from "@/common/components/icon";
 import { uuid } from "../../../utils";
 import CellField from "../cell-field";
 
-function ComponentPanel({ groupName, nodes, rowKey, onItem }) {
+function ComponentPanel({ groupName, nodes, rowKey, onItem, onAdd }) {
   const [source, setSource] = React.useState(nodes || []);
 
   const setList = (index, list) => {
@@ -18,7 +19,11 @@ function ComponentPanel({ groupName, nodes, rowKey, onItem }) {
   return (
     <Collapse defaultActiveKey={[source[0][rowKey]]} bordered={false}>
       {source.map((group, index) => (
-        <Collapse.Panel header={group.group} key={group[rowKey]}>
+        <Collapse.Panel
+          header={group.group}
+          {...(group.addAble ? { extra: <Button type="link" size="small" icon={<Icon type="icon-add" />} onClick={onAdd} /> } : {})}
+          key={group[rowKey]}
+        >
           <ReactSortable
             animation={150}
             list={group.children}
@@ -47,14 +52,12 @@ function TemplatePanel() {
 
 function TabFields({ component, template }) {
   return (
-    <div style={{ marginTop: -20 }}>
-      <Tabs
-        items={[
-          ...(!component ? [] : [{ label: "组件", key: "form", children: component }]),
-          ...(!template ? [] : [{ label: "模板", key: "component", children: template }]),
-        ]}
-      />
-    </div>
+    <Tabs
+      items={[
+        ...(!component ? [] : [{ label: "组件", key: "form", children: component }]),
+        ...(!template ? [] : [{ label: "模板", key: "component", children: template }]),
+      ]}
+    />
   );
 }
 

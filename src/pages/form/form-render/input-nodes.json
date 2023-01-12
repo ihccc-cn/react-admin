@@ -4,259 +4,85 @@
       "id": "antd-components",
       "group": "Ant Design",
       "children": [
-        {
-          "id": "Input",
-          "type": "Input",
-          "title": "文本输入",
-          "icon": "icon-input"
-        },
-        {
-          "id": "InputNumber",
-          "type": "InputNumber",
-          "title": "数字输入",
-          "icon": "icon-number"
-        },
-        {
-          "id": "Password",
-          "type": "Password",
-          "title": "密码输入",
-          "icon": "icon-input"
-        },
-        {
-          "id": "Rate",
-          "type": "Rate",
-          "title": "评分",
-          "icon": "icon-rate"
-        },
-        {
-          "id": "Slider",
-          "type": "Slider",
-          "title": "数字滑块",
-          "icon": "icon-slider"
-        },
-        {
-          "id": "Switch",
-          "type": "Switch",
-          "title": "开关",
-          "icon": "icon-switch"
-        },
-        {
-          "id": "TextArea",
-          "type": "TextArea",
-          "title": "文本域",
-          "icon": "icon-textarea"
-        }
+        { "id": "Input", "type": "Input", "title": "文本输入", "icon": "icon-input" },
+        { "id": "InputNumber", "type": "InputNumber", "title": "数字输入", "icon": "icon-number" },
+        { "id": "Password", "type": "Password", "title": "密码输入", "icon": "icon-input" },
+        { "id": "Rate", "type": "Rate", "title": "评分", "icon": "icon-rate" },
+        { "id": "Slider", "type": "Slider", "title": "数字滑块", "icon": "icon-slider" },
+        { "id": "Switch", "type": "Switch", "title": "开关", "icon": "icon-switch" },
+        { "id": "TextArea", "type": "TextArea", "title": "文本域", "icon": "icon-textarea" }
       ]
     },
     {
-      "id": "base-components",
-      "group": "Base-Components",
+      "id": "customize",
+      "group": "自定义",
+      "addAble": true,
       "children": [
-        {
-          "id": "Checkbox",
-          "type": "Checkbox",
-          "title": "多选按钮",
-          "icon": "icon-checkbox"
-        },
-        {
-          "id": "Radio",
-          "type": "Radio",
-          "title": "单选按钮",
-          "icon": "icon-radio"
-        },
-        {
-          "id": "Select",
-          "type": "Select",
-          "title": "下拉选择",
-          "icon": "icon-select"
-        },
-        {
-          "id": "Upload",
-          "type": "Upload",
-          "title": "文件上传",
-          "icon": "icon-upload"
-        },
-        {
-          "id": "Upload.Crop",
-          "type": "Upload.Crop",
-          "title": "图片编辑上传",
-          "icon": "icon-upload"
-        }
+        { "id": "Checkbox", "type": "Checkbox", "title": "多选按钮", "icon": "icon-checkbox" },
+        { "id": "Radio", "type": "Radio", "title": "单选按钮", "icon": "icon-radio" },
+        { "id": "Select", "type": "Select", "title": "下拉选择", "icon": "icon-select" },
+        { "id": "Upload", "type": "Upload", "title": "文件上传", "icon": "icon-upload" },
+        { "id": "Upload.Crop", "type": "Upload.Crop", "title": "图片编辑上传", "icon": "icon-upload" }
       ]
     },
     {
       "id": "other",
       "group": "其他",
       "children": [
-        {
-          "id": "Br",
-          "type": "Br",
-          "title": "换行元素",
-          "icon": "icon-zhankai"
-        },
-        {
-          "id": "Hr",
-          "type": "Hr",
-          "title": "分割线",
-          "icon": "icon-sami-select"
-        },
-        {
-          "id": "Text",
-          "type": "Text",
-          "title": "文本元素",
-          "icon": "icon-text"
-        },
-        {
-          "id": "Mark",
-          "type": "Mark",
-          "title": "标注信息",
-          "icon": "icon-RFQ-logo"
-        },
-        {
-          "id": "Image",
-          "type": "Image",
-          "title": "图片元素",
-          "icon": "icon-pic"
-        }
+        { "id": "Br", "type": "Br", "title": "换行元素", "icon": "icon-zhankai" },
+        { "id": "Hr", "type": "Hr", "title": "分割线", "icon": "icon-sami-select" },
+        { "id": "Text", "type": "Text", "title": "文本元素", "icon": "icon-text" },
+        { "id": "Mark", "type": "Mark", "title": "标注信息", "icon": "icon-RFQ-logo" },
+        { "id": "Image", "type": "Image", "title": "图片元素", "icon": "icon-pic" }
       ]
-    },
-    {
-      "id": "customize",
-      "group": "自定义",
-      "children": []
     }
   ],
   "control": {
-    "Br": {
-      "lock": false,
-      "inline": false,
-      "copy": false,
-      "resize": false
-    },
-    "Hr": {
-      "lock": false,
-      "inline": false,
-      "copy": false,
-      "resize": false
-    }
+    "Br": { "lock": false, "inline": false, "copy": false, "resize": false },
+    "Hr": { "lock": false, "inline": false, "copy": false, "resize": false }
   },
   "formItem": {
-    "Switch": {
-      "props": {
-        "valuePropName": "checked"
-      }
-    },
-    "Br": {
-      "enable": false
-    },
-    "Hr": {
-      "enable": false
-    },
-    "Mark": {
-      "enable": false
-    },
-    "Image": {
-      "enable": false
-    }
+    "Switch": { "props": { "valuePropName": "checked" } },
+    "Br": { "enable": false },
+    "Hr": { "enable": false },
+    "Mark": { "enable": false },
+    "Image": { "enable": false }
   },
   "props": {
     "Input": {
-      "default": {
-        "allowClear": true,
-        "placeholder": "请输入"
-      },
+      "default": { "allowClear": true, "placeholder": "请输入" },
       "config": [
-        {
-          "title": "后置标签",
-          "name": "addonAfter",
-          "tip": "带标签的 input，设置后置标签",
-          "type": "String"
-        },
-        {
-          "title": "前置标签",
-          "name": "addonBefore",
-          "tip": "带标签的 input，设置前置标签",
-          "type": "String"
-        },
-        {
-          "title": "允许清空",
-          "name": "allowClear",
-          "tip": "可以点击清除图标删除内容",
-          "type": "Boolean"
-        },
-        {
-          "title": "是否有边框",
-          "name": "bordered",
-          "type": "Boolean"
-        },
-        {
-          "title": "默认内容",
-          "name": "defaultValue",
-          "type": "String"
-        },
-        {
-          "title": "是否禁用",
-          "name": "disabled",
-          "type": "Boolean"
-        },
-        {
-          "title": "最大长度",
-          "name": "maxLength",
-          "type": "Number"
-        },
-        {
-          "title": "是否展示字数",
-          "name": "showCount",
-          "type": "Boolean"
-        },
-        {
-          "title": "前缀图标",
-          "name": "prefix",
-          "type": "String"
-        },
-        {
-          "title": "前缀图标",
-          "name": "prefix",
-          "type": "String"
-        },
-        {
-          "title": "占位文本",
-          "name": "placeholder",
-          "type": "String"
-        },
-        {
-          "title": "尺寸",
-          "name": "size",
-          "type": "Enum",
-          "options": "field.size"
-        },
-        {
-          "title": "后缀图标",
-          "name": "prefix",
-          "type": "String"
-        },
-        {
-          "title": "样式",
-          "name": "style",
-          "type": "StyleEditor"
-        }
+        { "title": "后置标签", "name": "addonAfter", "tip": "带标签的 input，设置后置标签。", "type": "Input" },
+        { "title": "前置标签", "name": "addonBefore", "tip": "带标签的 input，设置前置标签。", "type": "Input" },
+        { "title": "允许清空", "name": "allowClear", "tip": "可以点击清除图标删除内容。", "type": "Switch" },
+        { "title": "是否有边框", "name": "bordered", "type": "Switch" },
+        { "title": "默认内容", "name": "defaultValue", "type": "Input" },
+        { "title": "是否禁用", "name": "disabled", "type": "Switch" },
+        { "title": "最大长度", "name": "maxLength", "type": "InputNumber" },
+        { "title": "是否展示字数", "name": "showCount", "type": "Switch" },
+        { "title": "前缀图标", "name": "prefix", "type": "Input" },
+        { "title": "占位文本", "name": "placeholder", "type": "Input" },
+        { "title": "尺寸", "name": "size", "type": "Select", "options": "field.size" },
+        { "title": "后缀图标", "name": "suffix", "type": "Input" },
+        { "title": "样式", "name": "style", "type": "StyleEditor" }
       ]
     },
-    "InputNumber": {
-      "default": {
-        "placeholder": "请输入"
-      }
-    },
+    "InputNumber": { "default": { "placeholder": "请输入" } },
     "Password": {
-      "default": {
-        "placeholder": "请输入"
-      }
+      "default": { "placeholder": "请输入" },
+      "config": [{ "title": "显示密文切换按钮", "name": "visibilityToggle", "type": "Switch", "defaultValue": true }]
     },
     "TextArea": {
-      "default": {
-        "placeholder": "请输入",
-        "rows": 2
-      }
-    }
+      "default": { "placeholder": "请输入", "rows": 2 },
+      "config": [
+        { "title": "允许清空", "name": "allowClear", "tip": "可以点击清除图标删除内容。", "type": "Switch" },
+        { "title": "自适应高度", "name": "autoSize", "type": "Switch" },
+        { "title": "是否有边框", "name": "bordered", "type": "Switch" },
+        { "title": "默认内容", "name": "defaultValue", "type": "Input" },
+        { "title": "最大长度", "name": "maxLength", "type": "InputNumber" },
+        { "title": "是否展示字数", "name": "showCount", "type": "Switch" }
+      ]
+    },
+    "Text": { "default": { "children": "文本内容..." } }
   }
 }

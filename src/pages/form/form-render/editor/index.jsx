@@ -12,6 +12,7 @@ import Layout from "./layout";
 import { uuid } from "../utils";
 import inputNodes from "../input-nodes.json";
 import exampleSchame from "../fr-example.json";
+import "./index.css";
 
 const GROUP_NAME = "form-editor";
 
@@ -19,12 +20,13 @@ const transformField = ({ type, ...data }) => {
   return { ...data, name: uuid(type), input: type };
 };
 
-function Editor({ schema }) {
+function Editor({ schema, style }) {
   const mainContainerRef = React.useRef(null);
   const { value, isEmpty, getExportValue, setColumns, setLayout, setValue, clear } = useSchema(schema);
   const [preview, setPreview] = React.useState(false);
   const [imVisible, setImVisible] = React.useState(false);
   const [exportJson, setExportJson] = React.useState(null);
+  const [selectNode, setSelectNode] = React.useState({});
   const [containerHeight, setContainerHeight] = React.useState(null);
 
   console.log("💾[editor-value]: ", value);
@@ -53,13 +55,13 @@ function Editor({ schema }) {
     </a>
   );
 
+  console.log(selectNode);
+
   return (
     <React.Fragment>
       <style>
         {`
-      .form-editor-layout .ant-tabs-content { height: calc(100vh - 224px); overflow: auto; }
-      .form-editor-layout .ant-collapse-item .ant-collapse-header { padding: 6px 8px; }
-      .form-editor-layout .ant-collapse-item .ant-collapse-content .ant-collapse-content-box { padding: 4px 12px 12px; }
+      .form-editor-layout .ant-tabs-content { height: calc(100vh - 188px); }
       `}
       </style>
       <ModalExport open={!!exportJson} value={exportJson} onCancel={() => setExportJson(null)} />
@@ -77,15 +79,24 @@ function Editor({ schema }) {
         }
         left={
           <TabFields
-            component={<TabFields.ComponentPanel groupName={GROUP_NAME} nodes={inputNodes.nodes} onItem={handleField} />}
+            component={
+              <TabFields.ComponentPanel
+                groupName={GROUP_NAME}
+                nodes={inputNodes.nodes}
+                onItem={handleField}
+                onAdd={event => {
+                  event.stopPropagation();
+                }}
+              />
+            }
             template={<TabFields.TemplatePanel />}
           />
         }
-        right={<TabSetting form={<TabSetting.FormPanel />} component={<TabSetting.ComponentPanel />} />}
-        style={{ height: "calc(100vh - 140px)" }}
+        right={<TabSetting form={<TabSetting.FormPanel />} component={<TabSetting.ComponentPanel node={selectNode} />} />}
+        style={style}
       >
         <div ref={mainContainerRef}>
-          <Form name="__form_editor__" layout="vertical">
+          <Form name="__form_editor__" layout="vertical" style={{ background: "#fff" }}>
             <Canvas
               preview={preview}
               groupName={GROUP_NAME}
@@ -96,6 +107,8 @@ function Editor({ schema }) {
               nodesConfig={inputNodes}
               transformItem={transformField}
               empty={<CanvasEmpty icon="icon-operation" title="点击/拖拽左侧栏目的组件进行添加" extra={viewExample} />}
+              selected={selectNode}
+              onSelect={setSelectNode}
               style={{ minHeight: containerHeight }}
             />
           </Form>

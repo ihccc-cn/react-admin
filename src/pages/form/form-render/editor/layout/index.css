@@ -6,8 +6,15 @@
 .form-editor-layout-side {
   width: 256px;
   height: auto;
-  padding: 20px;
   overflow: auto;
+}
+
+.form-editor-layout-side-left {
+  border-right: 1px solid #f1f1f1;
+}
+
+.form-editor-layout-side-right {
+  border-left: 1px solid #f1f1f1;
 }
 
 .form-editor-layout-body {

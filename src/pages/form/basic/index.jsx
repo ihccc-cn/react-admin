@@ -1,5 +1,5 @@
 import React from "react";
-import { Tabs, Form } from "antd";
+import { Tabs, Form /** Modal */ } from "antd";
 import FormRender from "../form-render/render";
 import Editor from "../form-render/editor";
 import schema from "./form-schame";
@@ -24,6 +24,9 @@ function BasicForm() {
 
   return (
     <div style={{ padding: "0 20px 20px" }}>
+      {/* <Modal open centered width={1600} footer={null}>
+        <Editor schema={schema} style={{ height: 680 }}/>
+      </Modal> */}
       <ContentTab>
         <div>
           <FormRender form={form} schema={schema} />
@@ -31,7 +34,7 @@ function BasicForm() {
         <div></div>
         <div></div>
         <div>
-          <Editor schema={schema} />
+          <Editor schema={schema} style={{ height: "calc(100vh - 140px)" }} />
         </div>
       </ContentTab>
     </div>

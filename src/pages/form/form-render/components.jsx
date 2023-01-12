@@ -27,7 +27,8 @@ const components = {
   // Upload: UplpadButton,
   Br: "br",
   Hr: "hr",
-  Text: "p",
+  Text: "span",
+  Mark: "i",
   Image: "img",
 };
 

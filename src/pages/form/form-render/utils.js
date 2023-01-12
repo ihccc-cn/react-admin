@@ -98,3 +98,13 @@ export const swap = (array, x, y) => {
   arrayCopy[y] = tempNode;
   return arrayCopy;
 };
+
+/**
+ * 格式化输入值
+ * @param {*} event
+ * @returns
+ */
+export const inputValueFormat = event => {
+  if (event && event.target instanceof HTMLElement) return event.target.value;
+  return event;
+};
