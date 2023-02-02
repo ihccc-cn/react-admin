@@ -93,7 +93,7 @@
         { "title": "默认值", "name": "defaultValue", "type": "Slider", "defaultValue": 0, "props": { "max": 10 } },
         { "title": "是否禁用", "name": "disabled", "type": "Switch" },
         { "title": "样式", "name": "style", "type": "StyleInput" },
-        { "title": "提示信息", "name": "tooltips", "type": "Input" }
+        { "title": "提示信息", "name": "tooltips", "type": "ArrayInput" }
       ]
     },
     "Switch": {

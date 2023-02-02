@@ -95,16 +95,6 @@ export const swap = (array, x, y) => {
   return arrayCopy;
 };
 
-/**
- * 格式化输入值
- * @param {*} event
- * @returns
- */
-export const inputValueFormat = event => {
-  if (event && event.target) return event.target.value;
-  return event;
-};
-
 export const stopPropagationEvent = fn => event => {
   event.stopPropagation();
   event.nativeEvent?.stopImmediatePropagation();

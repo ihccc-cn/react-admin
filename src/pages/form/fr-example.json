@@ -25,7 +25,9 @@
     }
   },
   "form": {
-    "props": {}
+    "props": {
+      "layout": "vertical"
+    }
   },
   "formItem": {
     "token": {

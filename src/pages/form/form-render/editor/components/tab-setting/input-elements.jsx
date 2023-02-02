@@ -1,6 +1,15 @@
 import React from "react";
 import { Input, InputNumber, Radio, Select, Slider, Switch } from "antd";
-import { inputValueFormat } from "../../../utils";
+import Combination from "@/common/components/combination";
+import { inputValueFormat } from "@/utils";
+
+function ArrayInput({ buttonProps, value, onChange, ...props }) {
+  return (
+    <Combination buttonProps={buttonProps} value={value} onChange={onChange}>
+      <Input {...props} />
+    </Combination>
+  );
+}
 
 function StyleInput({ value, onChange, ...props }) {
   const [style, setStyle] = React.useState();
@@ -32,6 +41,7 @@ const inputElements = {
   Slider: <Slider />,
   Switch: <Switch size="small" />,
   TextArea: <Input.TextArea size="small" rows={5} placeholder="请输入" />,
+  ArrayInput: <ArrayInput size="small" placeholder="请输入" buttonProps={{ size: "small" }} />,
   StyleInput: <StyleInput size="small" rows={5} placeholder="请输入" />,
 };
 

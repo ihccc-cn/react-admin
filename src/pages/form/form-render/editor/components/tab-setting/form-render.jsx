@@ -1,7 +1,7 @@
 import React from "react";
 import { Tooltip } from "antd";
 import Icon from "@/common/components/icon";
-import { inputValueFormat } from "../../../utils";
+import { inputValueFormat } from "@/utils";
 import inputElements from "./input-elements";
 import options from "./options";
 import extraBlocks from "./extra-blocks";

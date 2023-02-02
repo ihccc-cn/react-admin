@@ -14,3 +14,13 @@ export const loginOut = async () => {
   //   });
   // }
 };
+
+/**
+ * 格式化输入值
+ * @param {*} event
+ * @returns
+ */
+export const inputValueFormat = event => {
+  if (event && event.target) return event.target.value;
+  return event;
+};

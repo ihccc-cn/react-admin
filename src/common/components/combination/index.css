@@ -1,0 +1,15 @@
+.combination-item {
+  display: flex;
+  margin-bottom: 8px;
+}
+
+.combination-item-remove {
+  margin-left: 8px;
+  color: #f44336;
+  opacity: 0.4;
+  transition: 0.2s;
+}
+
+.combination-item-remove:hover {
+  opacity: 1;
+}
