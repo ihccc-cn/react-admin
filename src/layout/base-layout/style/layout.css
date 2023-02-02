@@ -42,7 +42,7 @@ header {
 }
 
 .wow-aside-placeholder.wow-pin {
-  width: 256px;
+  min-width: 256px;
 }
 
 .wow-aside-main {

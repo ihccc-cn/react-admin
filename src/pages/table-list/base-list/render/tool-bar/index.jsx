@@ -7,7 +7,7 @@ function ToolBar({}) {
   return (
     <div className={clsx("tool-bar")}>
       <Space>
-        <Button icon={<Icon type="icon-exchangerate" />}>刷新</Button>
+        <Button type="dashed" icon={<Icon type="icon-exchangerate" />}></Button>
         <Button type="primary" icon={<Icon type="icon-add-select" />}>
           新增
         </Button>

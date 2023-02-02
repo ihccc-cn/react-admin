@@ -14,7 +14,7 @@ export default {
   /**
    * 表格列表
    */
-  tableList: React.lazy(() => import("@/pages/table-list")),
+  tableList: React.lazy(() => import("@/pages/table-list/basic")),
 
   /**
    * 表单页面

@@ -1,5 +1,13 @@
-import { Button, Cascader, Checkbox, DatePicker, Input, InputNumber, Radio, Rate, Select, Slider, Switch, TimePicker, TreeSelect, Upload } from "antd";
-import Icon from "@/common/components/icon";
+import {
+  Input,
+  InputNumber,
+  Rate,
+  Select,
+  Slider,
+  Switch,
+  // Button, Cascader, Checkbox, DatePicker,  Radio, TimePicker, TreeSelect, Upload
+} from "antd";
+// import Icon from "@/common/components/icon";
 
 // function UplpadButton(props) {
 //   return (

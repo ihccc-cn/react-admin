@@ -10,7 +10,9 @@ import { FlexFormLayout } from "../../../render";
 import { swap } from "../../../utils";
 import CellEditor from "../cell-editor";
 
-function Canvas({ preview, groupName, columns, setColumns, layout, setLayout, nodesConfig, transformItem, empty, rowKey, style, selected, onSelect }) {
+function Canvas({ ghost, preview, groupName, schema, setColumns, setLayout, nodesConfig, transformItem, empty, rowKey, style, selected, onSelect }) {
+  const columns = schema.columns;
+
   const setItemLayout = React.useCallback((name, change) => {
     setLayout(state => {
       const newState = cloneDeep(state);
@@ -37,7 +39,11 @@ function Canvas({ preview, groupName, columns, setColumns, layout, setLayout, no
   }, []);
 
   const toggleLayoutItemLock = React.useCallback(name => {
-    setItemLayout(name, state => ({ lock: !state.lock }));
+    setItemLayout(name, state => {
+      const nextLock = !state.lock;
+      if (nextLock) onSelect({});
+      return { lock: nextLock };
+    });
   }, []);
 
   const handleMoveup = React.useCallback(index => {
@@ -48,22 +54,19 @@ function Canvas({ preview, groupName, columns, setColumns, layout, setLayout, no
     setColumns(columns => swap(columns, index, index + 1));
   }, []);
 
-  const handleRemove = React.useCallback(key => {
-    setColumns(columns => columns.filter(col => col[rowKey] !== key));
-  }, []);
+  const handleRemove = React.useCallback(
+    key => {
+      if (key === selected[rowKey]) onSelect && onSelect({});
+      setColumns(columns => columns.filter(col => col[rowKey] !== key));
+    },
+    [selected, onSelect]
+  );
 
   const handleSelect = React.useCallback(
     col => {
-      if (!onSelect) return;
-      if (col[rowKey] === selected[rowKey]) {
-        onSelect({});
-        return;
-      }
-      const itemConfig = nodesConfig.formItem[col.input || "Input"] || {};
-      const propsConfig = nodesConfig.props[col.input || "Input"] || {};
-      onSelect(Object.assign({ formItem: itemConfig, props: propsConfig }, col));
+      onSelect && onSelect(col[rowKey] === selected[rowKey] ? {} : col);
     },
-    [selected]
+    [selected, onSelect]
   );
 
   const setList = React.useCallback(list => {
@@ -82,13 +85,16 @@ function Canvas({ preview, groupName, columns, setColumns, layout, setLayout, no
     const itemConfig = nodesConfig.formItem[col.input || "Input"] || {};
     const propsConfig = nodesConfig.props[col.input || "Input"] || {};
 
-    const inputNdoe = React.createElement(components[col.input] || components["Input"], propsConfig.default);
+    const formItemValue = schema.formItem?.[col.name]?.props;
+    const componentValue = schema.component?.[col.name]?.props;
+
+    const inputNdoe = React.createElement(components[col.input] || components["Input"], Object.assign({}, propsConfig.defaultProps, componentValue));
 
     const formItem =
       itemConfig.enable === false ? (
         inputNdoe
       ) : (
-        <Form.Item {...itemConfig.props} label={col.title} tooltip={col.tip} name={col.name}>
+        <Form.Item {...itemConfig.props} label={col.title} tooltip={col.tip} name={col.name} {...formItemValue}>
           {inputNdoe}
         </Form.Item>
       );
@@ -99,9 +105,10 @@ function Canvas({ preview, groupName, columns, setColumns, layout, setLayout, no
         formItem
       ) : (
         <CellEditor
+          ghost={ghost}
           label={itemConfig.enable === false ? col.title : null}
           name={col.name}
-          chosen={selected[rowKey] === col[rowKey] || col.chosen}
+          selected={selected[rowKey] === col[rowKey] || col.chosen}
           control={controlConfig}
           onLock={() => toggleLayoutItemLock(col.name)}
           onMoveup={() => handleMoveup(index)}
@@ -109,7 +116,7 @@ function Canvas({ preview, groupName, columns, setColumns, layout, setLayout, no
           onInline={() => toggleLayoutItemInline(col.name)}
           onResize={size => setLayoutItemWidth(col.name, size)}
           onRemove={() => handleRemove(col[rowKey])}
-          onClick={() => handleSelect(col)}
+          onSelect={() => handleSelect(col)}
           key={col[rowKey]}
         >
           {formItem}
@@ -122,7 +129,7 @@ function Canvas({ preview, groupName, columns, setColumns, layout, setLayout, no
     <FlexFormLayout
       itemPropsProvide={!preview}
       items={items}
-      layout={layout}
+      layout={schema.layout}
       empty={empty}
       tag={ReactSortable}
       handle={CellEditor.HANDLE_CLASSNAME}

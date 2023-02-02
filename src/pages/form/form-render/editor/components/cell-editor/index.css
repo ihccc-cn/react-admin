@@ -4,6 +4,7 @@
   line-height: initial;
   box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.2);
   user-select: none;
+  transition: 0.4s;
 }
 
 .cell-editor::after {
@@ -12,37 +13,28 @@
   content: "";
 }
 
-.cell-editor.cell-editor-filter .cell-editor-mask {
+.cell-editor.cell-editor-lock .cell-editor-mask {
   background: rgba(255, 0, 0, 0.03);
 }
 
-.cell-editor.cell-editor-filter .cell-editor-mask .icon {
+.cell-editor.cell-editor-lock .cell-editor-mask .icon {
   display: block;
 }
 
-.cell-editor.cell-editor-filter .cell-editor-resize {
+.cell-editor.cell-editor-lock .cell-editor-resize {
   display: none;
 }
 
-.cell-editor.cell-editor-filter .cell-editor-name {
+.cell-editor.cell-editor-lock .cell-editor-name {
   border-right: none;
 }
 
-.cell-editor.cell-editor-filter .cell-editor-button {
+.cell-editor.cell-editor-lock .cell-editor-button {
   display: none;
 }
 
-.cell-editor.cell-editor-filter .cell-editor-actions {
+.cell-editor.cell-editor-lock .cell-editor-actions {
   right: 0;
-}
-
-.cell-editor.cell-editor-chosen {
-  box-shadow: 0 0 4px 0 #6f6af8;
-  z-index: 9;
-}
-
-.cell-editor.cell-editor-chosen .cell-editor-handle {
-  opacity: 1;
 }
 
 .cell-editor-label {
@@ -75,45 +67,19 @@
   display: none;
 }
 
+.cell-editor-actions {
+  display: flex;
+  position: absolute;
+  top: 0;
+  right: 4px;
+}
+
 .cell-editor-name {
   line-height: 20px;
   padding: 0 6px;
   font-size: 12px;
   color: #6f6af8;
   opacity: 0.8;
-}
-
-.cell-editor-resize {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  border-left: 4px solid #6f6af8;
-  cursor: col-resize;
-  z-index: 9;
-}
-
-.cell-editor-resize-hold {
-  border-left-style: dashed;
-  opacity: 1;
-}
-
-.cell-editor-resize-value {
-  display: none;
-  position: absolute;
-  top: 0;
-  left: 0;
-  padding: 0 4px;
-  background: #6f6af8;
-  color: #fff;
-  font-weight: 500;
-  border-radius: 16px;
-  transform: translate(-50%, -50%);
-  box-shadow: 0 4px 6px 2px rgba(0, 0, 0, 0.1);
-}
-
-.cell-editor-resize-hold .cell-editor-resize-value {
-  display: block;
 }
 
 .cell-editor-button {
@@ -144,9 +110,49 @@
   cursor: move;
 }
 
-.cell-editor-actions {
-  display: flex;
-  position: absolute;
-  top: 0;
+.cell-editor.cell-editor-ghost {
+  box-shadow: none;
+}
+
+.cell-editor.cell-editor-ghost:hover {
+  box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.2);
+}
+
+.cell-editor.cell-editor-ghost .cell-editor-mask,
+.cell-editor.cell-editor-ghost .cell-editor-actions,
+.cell-editor.cell-editor-ghost .cell-editor-handle {
+  opacity: 0;
+  transition: 0.4s;
+}
+
+.cell-editor.cell-editor-ghost .cell-editor-actions {
+  right: 0;
+}
+
+.cell-editor.cell-editor-ghost .cell-editor-resize {
+  opacity: 0;
+}
+
+.cell-editor.cell-editor-ghost:hover .cell-editor-mask,
+.cell-editor.cell-editor-ghost:hover .cell-editor-actions,
+.cell-editor.cell-editor-ghost:hover .cell-editor-handle,
+.cell-editor.cell-editor-ghost.cell-editor-selected .cell-editor-mask,
+.cell-editor.cell-editor-ghost.cell-editor-selected .cell-editor-actions,
+.cell-editor.cell-editor-ghost.cell-editor-selected .cell-editor-handle,
+.cell-editor.cell-editor-ghost.cell-editor-selected .cell-editor-resize {
+  opacity: 1;
+}
+
+.cell-editor.cell-editor-ghost.cell-editor-selected .cell-editor-actions {
   right: 4px;
+}
+
+.cell-editor.cell-editor-selected,
+.cell-editor.cell-editor-selected:hover {
+  box-shadow: 0 0 4px 0 #6f6af8;
+  z-index: 9;
+}
+
+.cell-editor.cell-editor-selected .cell-editor-handle {
+  opacity: 1;
 }

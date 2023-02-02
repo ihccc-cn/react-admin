@@ -1,0 +1,46 @@
+{
+  "columns": [
+    { "title": "令牌", "name": "token", "input": "Input" },
+    { "title": "用户名", "name": "username", "input": "Input" },
+    { "title": "加密密码", "name": "password", "input": "Password" },
+    { "title": "件数", "name": "number", "input": "InputNumber" },
+    { "title": "有效时间（秒）", "name": "time", "input": "Slider" },
+    { "title": "自动结单", "name": "enable", "input": "Switch" },
+    { "title": "评分", "name": "score", "input": "Rate" },
+    { "title": "送货地址", "name": "address", "input": "TextArea" },
+    { "title": "备注", "name": "remark", "input": "TextArea" }
+  ],
+  "layout": {
+    "type": "basic-form-layout",
+    "items": {
+      "token": { "style": { "width": "50%" } },
+      "username": { "style": { "width": "35%" }, "inline": true },
+      "password": { "style": { "width": "35%" }, "inline": true },
+      "number": { "style": { "width": "35%" }, "inline": true, "lock": false },
+      "score": { "style": { "width": "35%" }, "inline": true },
+      "enable": { "style": { "width": "35%" }, "inline": true, "lock": false },
+      "time": { "style": { "width": "35%" }, "inline": true, "lock": false },
+      "address": { "style": { "width": "50%" }, "inline": false, "lock": false },
+      "remark": { "style": { "width": "70%" }, "inline": false }
+    }
+  },
+  "form": {
+    "props": {}
+  },
+  "formItem": {
+    "token": {
+      "props": {}
+    }
+  },
+  "component": {
+    "token": {
+      "type": "Input",
+      "props": {}
+    }
+  },
+  "relation": [
+    { "source": "token", "target": "username", "effects": { "type": "hidden", "operator": "!", "is": "true" } },
+    { "source": "token", "target": "password", "effects": { "type": "hidden", "operator": "!", "is": "false" } }
+  ],
+  "version": "1.0.0"
+}

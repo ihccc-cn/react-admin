@@ -50,8 +50,14 @@
   position: absolute;
   top: 96px;
   right: 0;
-  display: flex;
+  display: none;
   transform: translateX(50%);
+}
+
+.wow-aside:hover .wow-fold-button-two,
+.wow-aside:active .wow-fold-button-two,
+.wow-aside.wow-fade .wow-fold-button-two {
+  display: flex;
 }
 
 .wow-fold-button-left {

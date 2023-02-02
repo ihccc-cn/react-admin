@@ -1,5 +1,5 @@
 import useApi from "@/common/hooks/useApi";
-import BaseList from "./base-list";
+import BaseList from "../base-list/render";
 import { columns, ac } from "./columns";
 import { query } from "./services";
 

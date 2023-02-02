@@ -24,7 +24,7 @@ const items = [
   },
   {
     label: "退出登录",
-    icon: <Icon type="icon-switch" />,
+    icon: <Icon type="icon-power-off" />,
     key: "logout",
   },
 ];

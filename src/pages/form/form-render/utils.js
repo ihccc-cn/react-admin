@@ -9,10 +9,6 @@ export const uuid = ((start = 0) => {
   return (prefix = "key") => `${prefix}_${id++}`;
 })();
 
-export const attrString = data => {
-  return;
-};
-
 function jsxTemplate(data) {
   return `<Form name="basic" layout="vertical">
   <Row gutter={[10, 10]}>
@@ -105,6 +101,12 @@ export const swap = (array, x, y) => {
  * @returns
  */
 export const inputValueFormat = event => {
-  if (event && event.target instanceof HTMLElement) return event.target.value;
+  if (event && event.target) return event.target.value;
   return event;
+};
+
+export const stopPropagationEvent = fn => event => {
+  event.stopPropagation();
+  event.nativeEvent?.stopImmediatePropagation();
+  fn && fn(event);
 };

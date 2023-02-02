@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "ahooks": "^3.7.3",
-    "antd": "^5.1.1",
+    "antd": "^5.1.7",
     "base-components-antd": "^1.2.4",
     "clsx": "^1.2.1",
     "dayjs": "^1.11.6",

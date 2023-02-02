@@ -1,6 +1,6 @@
 .form-editor-layout .ant-tabs-nav {
-  padding: 0 12px;
-  margin: 0;
+  width: calc(100% - 24px);
+  margin: 0 auto;
 }
 
 .form-editor-layout .ant-tabs-content {
@@ -18,6 +18,10 @@
 .form-editor-layout .ant-tabs-content::-webkit-scrollbar-thumb {
   background-color: #c9c9c9;
   border-radius: 6px;
+}
+
+.form-editor-layout .ant-collapse {
+  background-color: unset;
 }
 
 .form-editor-layout .ant-collapse-item .ant-collapse-header {

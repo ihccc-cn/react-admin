@@ -1,18 +1,20 @@
 import React from "react";
 import clsx from "clsx";
 import Icon from "@/common/components/icon";
-import { addPercent } from "../../../utils";
+import { addPercent, stopPropagationEvent } from "../../../utils";
+import DragBar from "./drag-bar";
 import "./index.css";
 
 function CellEditor({
   label,
   name,
+  ghost,
   lock,
   inline,
-  chosen,
+  selected,
   control,
   sizeFormat,
-  sizeChangeLabel,
+  sizeLabel,
   onLock,
   onMoveup,
   onMovedown,
@@ -20,70 +22,57 @@ function CellEditor({
   onResize,
   onCopy,
   onRemove,
+  onSelect,
   style,
   className,
   children,
   ...restProps
 }) {
   const cellRef = React.useRef(null);
-  const startRef = React.useRef(0);
 
   const [fullSize, setFullSize] = React.useState(0);
-  const [hold, setHold] = React.useState(false);
   const [offset, setOffset] = React.useState(0);
-  const [changeSize, setChangeSize] = React.useState(0);
+  const [selectAble, setSelectAble] = React.useState(true);
+
+  const changeSize = React.useMemo(() => sizeFormat(offset, fullSize), [offset, fullSize]);
 
   const countFullSize = React.useCallback(() => {
     const parentElement = cellRef.current.parentElement;
-    if (parentElement) setFullSize(parentElement.offsetWidth);
+    if (parentElement) setFullSize(parentElement.offsetWidth - 40);
+    setSelectAble(false);
   }, []);
 
-  const onMouseDown = React.useCallback(e => {
-    startRef.current = e.clientX;
-    setHold(true);
-    countFullSize();
-  }, []);
-
-  const onMouseMove = React.useCallback(
-    e => {
-      if (hold) {
-        const offset = e.clientX - startRef.current;
-        setOffset(offset);
-        setChangeSize(sizeFormat(offset, fullSize));
-      }
+  const handleClick = React.useCallback(
+    event => {
+      if (lock || !selectAble) return;
+      onSelect && onSelect(event);
     },
-    [hold]
+    [lock, selectAble, onSelect]
   );
-
-  const onMouseUp = () => {
-    if (hold) {
-      onResize && onResize(changeSize);
-      setHold(false);
-      setOffset(0);
-      setChangeSize(0);
-    }
-  };
-
-  React.useEffect(() => {
-    if (fullSize > 0) {
-      document.body.addEventListener("mousemove", onMouseMove, false);
-      document.body.addEventListener("mouseup", onMouseUp, false);
-    }
-    return () => {
-      document.body.removeEventListener("mousemove", onMouseMove, false);
-      document.body.removeEventListener("mouseup", onMouseUp, false);
-    };
-  }, [fullSize, onMouseMove, onMouseUp]);
 
   const controlAble = control || {};
 
   return (
-    <div ref={cellRef} className={clsx("cell-editor", lock && "cell-editor-filter", chosen && "cell-editor-chosen", className)} style={style} {...restProps}>
+    <div
+      ref={cellRef}
+      className={clsx(
+        "cell-editor",
+        {
+          "cell-editor-ghost": ghost,
+          "cell-editor-lock": lock,
+          "cell-editor-selected": selected,
+        },
+        className
+      )}
+      style={style}
+      {...restProps}
+      onClick={controlAble.select !== false ? handleClick : void 0}
+    >
       {label && <div className="cell-editor-label">{label}</div>}
       {children}
       {controlAble.mask !== false && (
         <span className={"cell-editor-mask"}>
-          <Icon type="icon-password-fill" onClick={onLock} />
+          <Icon type="icon-password-fill" onClick={stopPropagationEvent(onLock)} />
         </span>
       )}
       {controlAble.move !== false && (
@@ -94,22 +83,22 @@ function CellEditor({
       <div className="cell-editor-actions">
         {controlAble.name !== false && !label && <span className="cell-editor-name">{name || "unknow"}</span>}
         {controlAble.lock !== false && (
-          <span className="cell-editor-button" title="锁定" onClick={onLock}>
+          <span className="cell-editor-button" title="锁定" onClick={stopPropagationEvent(onLock)}>
             <Icon type="icon-unlock" />
           </span>
         )}
         {/* {controlAble.move !== false && (
-        <span className="cell-editor-button" title="上移" onClick={onMoveup}>
+        <span className="cell-editor-button" title="上移" onClick={stopPropagationEvent(onMoveup)}>
           <Icon type="icon-rising" />
         </span>
         )}
         {controlAble.move !== false && (
-        <span className="cell-editor-button" title="下移" onClick={onMovedown}>
+        <span className="cell-editor-button" title="下移" onClick={stopPropagationEvent(onMovedown)}>
           <Icon type="icon-falling" />
         </span>
         )} */}
         {controlAble.inline !== false && (
-          <span className="cell-editor-button" title={inline ? "行内" : "块级"} onClick={onInline}>
+          <span className="cell-editor-button" title={inline ? "行内" : "块级"} onClick={stopPropagationEvent(onInline)}>
             {inline ? (
               <Icon type="icon-viewgallery" style={{ transform: "scale(1.5) rotateZ(-90deg)" }} />
             ) : (
@@ -118,7 +107,7 @@ function CellEditor({
           </span>
         )}
         {controlAble.copy !== false && (
-          <span className="cell-editor-button" title="复制" onClick={onCopy}>
+          <span className="cell-editor-button" title="复制" onClick={stopPropagationEvent(onCopy)}>
             <Icon type="icon-copy" />
           </span>
         )}
@@ -128,31 +117,35 @@ function CellEditor({
         </span>
         )} */}
         {controlAble.remove !== false && (
-          <span className="cell-editor-button cell-editor-button-danger" title="删除" onClick={onRemove}>
+          <span className="cell-editor-button cell-editor-button-danger" title="删除" onClick={stopPropagationEvent(onRemove)}>
             <Icon type="icon-ashbin" />
           </span>
         )}
       </div>
       {controlAble.resize !== false && (
-        <span
-          className={clsx("cell-editor-resize", hold && "cell-editor-resize-hold")}
+        <DragBar
+          className="cell-editor-resize"
           title="拖拽修改尺寸"
-          style={{ transform: `translateX(${offset}px)` }}
-          onMouseDown={onMouseDown}
-        >
-          {sizeChangeLabel && <span className="cell-editor-resize-value">{sizeChangeLabel(changeSize, style?.width)}</span>}
-        </span>
+          offset={offset}
+          showLabel={() => sizeLabel(changeSize, style?.width || 100)}
+          onStart={countFullSize}
+          onChange={setOffset}
+          onEnd={() => {
+            onResize && onResize(changeSize);
+            setTimeout(() => setSelectAble(true), 0);
+          }}
+        />
       )}
     </div>
   );
 }
 
 CellEditor.HANDLE_CLASSNAME = ".cell-editor-handle";
-CellEditor.FILTER_CLASSNAME = ".cell-editor-filter";
+CellEditor.FILTER_CLASSNAME = ".cell-editor-lock";
 
 CellEditor.defaultProps = {
-  sizeFormat: (size, full) => Math.round((size / full) * 100),
-  sizeChangeLabel: (size, width) => addPercent(width || 100, size),
+  sizeFormat: (value, full) => Math.round((value / full) * 100),
+  sizeLabel: (value, width) => addPercent(width || 100, value),
 };
 
 export default CellEditor;

@@ -38,8 +38,8 @@
     }
   ],
   "control": {
-    "Br": { "lock": false, "inline": false, "copy": false, "resize": false },
-    "Hr": { "lock": false, "inline": false, "copy": false, "resize": false }
+    "Br": { "lock": false, "inline": false, "copy": false, "resize": false, "select": false },
+    "Hr": { "lock": false, "inline": false, "copy": false, "resize": false, "select": false }
   },
   "formItem": {
     "Switch": { "props": { "valuePropName": "checked" } },
@@ -50,39 +50,74 @@
   },
   "props": {
     "Input": {
-      "default": { "allowClear": true, "placeholder": "请输入" },
+      "defaultProps": { "allowClear": true, "placeholder": "请输入" },
       "config": [
         { "title": "后置标签", "name": "addonAfter", "tip": "带标签的 input，设置后置标签。", "type": "Input" },
         { "title": "前置标签", "name": "addonBefore", "tip": "带标签的 input，设置前置标签。", "type": "Input" },
         { "title": "允许清空", "name": "allowClear", "tip": "可以点击清除图标删除内容。", "type": "Switch" },
-        { "title": "是否有边框", "name": "bordered", "type": "Switch" },
+        { "title": "是否有边框", "name": "bordered", "type": "Switch", "defaultValue": true },
         { "title": "默认内容", "name": "defaultValue", "type": "Input" },
         { "title": "是否禁用", "name": "disabled", "type": "Switch" },
         { "title": "最大长度", "name": "maxLength", "type": "InputNumber" },
         { "title": "是否展示字数", "name": "showCount", "type": "Switch" },
         { "title": "前缀图标", "name": "prefix", "type": "Input" },
         { "title": "占位文本", "name": "placeholder", "type": "Input" },
-        { "title": "尺寸", "name": "size", "type": "Select", "options": "field.size" },
+        { "title": "尺寸", "name": "size", "type": "Radio", "options": "global.size", "props": { "optionType": "button", "buttonStyle": "solid" } },
         { "title": "后缀图标", "name": "suffix", "type": "Input" },
-        { "title": "样式", "name": "style", "type": "StyleEditor" }
+        { "title": "样式", "name": "style", "type": "StyleInput" }
       ]
     },
-    "InputNumber": { "default": { "placeholder": "请输入" } },
+    "InputNumber": { "defaultProps": { "placeholder": "请输入" } },
     "Password": {
-      "default": { "placeholder": "请输入" },
-      "config": [{ "title": "显示密文切换按钮", "name": "visibilityToggle", "type": "Switch", "defaultValue": true }]
+      "defaultProps": { "placeholder": "请输入" },
+      "config": [
+        { "title": "是否有边框", "name": "bordered", "type": "Switch", "defaultValue": true },
+        { "title": "默认内容", "name": "defaultValue", "type": "Input" },
+        { "title": "是否禁用", "name": "disabled", "type": "Switch" },
+        { "title": "最大长度", "name": "maxLength", "type": "InputNumber" },
+        { "title": "前缀图标", "name": "prefix", "type": "Input" },
+        { "title": "占位文本", "name": "placeholder", "type": "Input" },
+        { "title": "尺寸", "name": "size", "type": "Radio", "options": "global.size", "props": { "optionType": "button", "buttonStyle": "solid" } },
+        { "title": "显示密文切换按钮", "name": "visibilityToggle", "type": "Switch", "defaultValue": true },
+        { "title": "样式", "name": "style", "type": "StyleInput" }
+      ]
+    },
+    "Rate": {
+      "defaultProps": {},
+      "config": [
+        { "title": "允许清空", "name": "allowClear", "tip": "是否允许再次点击后清除", "type": "Switch", "defaultValue": true },
+        { "title": "允许半选", "name": "allowHalf", "type": "Switch" },
+        { "title": "自动聚焦", "name": "autoFocus", "type": "Switch" },
+        { "title": "自定义字符", "name": "character", "type": "Input" },
+        { "title": "数量", "name": "count", "type": "Slider", "defaultValue": 5, "props": { "max": 10 } },
+        { "title": "默认值", "name": "defaultValue", "type": "Slider", "defaultValue": 0, "props": { "max": 10 } },
+        { "title": "是否禁用", "name": "disabled", "type": "Switch" },
+        { "title": "样式", "name": "style", "type": "StyleInput" },
+        { "title": "提示信息", "name": "tooltips", "type": "Input" }
+      ]
+    },
+    "Switch": {
+      "defaultProps": {},
+      "config": [
+        { "title": "自动聚焦", "name": "autoFocus", "type": "Switch" },
+        { "title": "选中时的内容", "name": "checkedChildren", "type": "Input" },
+        { "title": "是否禁用", "name": "disabled", "type": "Switch" },
+        { "title": "尺寸", "name": "size", "type": "Radio", "options": "global.size", "props": { "optionType": "button", "buttonStyle": "solid" } },
+        { "title": "非选中时的内容", "name": "unCheckedChildren", "type": "Input" }
+      ]
     },
     "TextArea": {
-      "default": { "placeholder": "请输入", "rows": 2 },
+      "defaultProps": { "placeholder": "请输入", "rows": 3 },
       "config": [
         { "title": "允许清空", "name": "allowClear", "tip": "可以点击清除图标删除内容。", "type": "Switch" },
         { "title": "自适应高度", "name": "autoSize", "type": "Switch" },
-        { "title": "是否有边框", "name": "bordered", "type": "Switch" },
+        { "title": "是否有边框", "name": "bordered", "type": "Switch", "defaultValue": true },
         { "title": "默认内容", "name": "defaultValue", "type": "Input" },
         { "title": "最大长度", "name": "maxLength", "type": "InputNumber" },
-        { "title": "是否展示字数", "name": "showCount", "type": "Switch" }
+        { "title": "是否展示字数", "name": "showCount", "type": "Switch" },
+        { "title": "样式", "name": "style", "type": "StyleInput" }
       ]
     },
-    "Text": { "default": { "children": "文本内容..." } }
+    "Text": { "defaultProps": { "children": "文本内容..." } }
   }
 }

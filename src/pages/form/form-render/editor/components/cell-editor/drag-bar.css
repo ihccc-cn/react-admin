@@ -1,0 +1,33 @@
+.drag-bar {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  border-left: 4px solid #6f6af8;
+  cursor: col-resize;
+  z-index: 9;
+}
+
+.drag-bar-hold {
+  border-left-style: dashed;
+  opacity: 1;
+}
+
+.drag-bar-label {
+  /* display: none; */
+  position: absolute;
+  top: 50%;
+  left: 0;
+  padding: 0 4px;
+  background: #6f6af8;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: 16px;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 4px 6px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* .drag-bar-hold .drag-bar-label {
+  display: block;
+} */

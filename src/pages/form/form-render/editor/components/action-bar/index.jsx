@@ -1,23 +1,34 @@
 import React from "react";
-import { Button } from "antd";
+import { Button, Popconfirm } from "antd";
 import Icon from "@/common/components/icon";
 import "./index.css";
 
-function ActionBar({ visible, disabled, preview, onHelp, onPreview, onImport, onExport, onClear }) {
+function ActionBar({ visible, disabled, state, onHelp, onGhost, onPreview, onImport, onExport, onClear }) {
   return (
     <div className="form-editor-action-bar">
       <Button type="link" size="small" shape="circle" icon={<Icon type="icon-help" />} onClick={onHelp} />
       {visible.preview !== false && (
-        <Button
-          type={preview ? "primary" : "default"}
-          size="small"
-          shape="round"
-          disabled={disabled.preview}
-          icon={<Icon type="icon-scenes" />}
-          onClick={onPreview}
-        >
-          预览
-        </Button>
+        <Button.Group size="small">
+          <Button
+            type={state.ghost ? "primary" : "default"}
+            size="small"
+            shape="round"
+            disabled={disabled.ghost}
+            icon={<Icon type="icon-xiakuangxian" />}
+            title="幽灵模式"
+            onClick={onGhost}
+          />
+          <Button
+            type={state.preview ? "primary" : "default"}
+            size="small"
+            shape="round"
+            disabled={disabled.preview}
+            icon={<Icon type="icon-scenes" />}
+            onClick={onPreview}
+          >
+            预览
+          </Button>
+        </Button.Group>
       )}
       <Button.Group size="small">
         {visible.import !== false && (
@@ -31,16 +42,24 @@ function ActionBar({ visible, disabled, preview, onHelp, onPreview, onImport, on
           </Button>
         )}
       </Button.Group>
-      {visible.clear !== false && (
-        <Button danger size="small" shape="round" disabled={disabled.clear} icon={<Icon type="icon-ashbin" />} onClick={onClear}>
-          清空
-        </Button>
-      )}
+      {visible.clear !== false &&
+        (disabled.clear ? (
+          <Button size="small" shape="round" disabled icon={<Icon type="icon-ashbin" />}>
+            清空
+          </Button>
+        ) : (
+          <Popconfirm title="确定清空吗？" okText="确定" cancelText="取消" onConfirm={onClear}>
+            <Button danger size="small" shape="round" icon={<Icon type="icon-ashbin" />}>
+              清空
+            </Button>
+          </Popconfirm>
+        ))}
     </div>
   );
 }
 
 ActionBar.defaultProps = {
+  state: {},
   visible: {},
   disabled: {},
 };

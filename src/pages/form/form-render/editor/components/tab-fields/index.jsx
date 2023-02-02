@@ -2,7 +2,7 @@ import React from "react";
 import { ReactSortable } from "react-sortablejs";
 import { Tabs, Collapse, Button } from "antd";
 import Icon from "@/common/components/icon";
-import { uuid } from "../../../utils";
+import { uuid, stopPropagationEvent } from "../../../utils";
 import CellField from "../cell-field";
 
 function ComponentPanel({ groupName, nodes, rowKey, onItem, onAdd }) {
@@ -17,11 +17,11 @@ function ComponentPanel({ groupName, nodes, rowKey, onItem, onAdd }) {
   };
 
   return (
-    <Collapse defaultActiveKey={[source[0][rowKey]]} bordered={false}>
+    <Collapse accordion bordered={false} defaultActiveKey={[source[0][rowKey]]}>
       {source.map((group, index) => (
         <Collapse.Panel
           header={group.group}
-          {...(group.addAble ? { extra: <Button type="link" size="small" icon={<Icon type="icon-add" />} onClick={onAdd} /> } : {})}
+          {...(group.addAble ? { extra: <Button type="link" size="small" icon={<Icon type="icon-add" />} onClick={stopPropagationEvent(onAdd)} /> } : {})}
           key={group[rowKey]}
         >
           <ReactSortable

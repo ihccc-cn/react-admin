@@ -1,8 +1,8 @@
 import React from "react";
-import { Tabs, Form /** Modal */ } from "antd";
+import { Tabs, Form, Modal } from "antd";
 import FormRender from "../form-render/render";
 import Editor from "../form-render/editor";
-import schema from "./form-schame";
+import schemaValue from "../fr-example.json";
 
 function ContentTab({ children }) {
   const nodes = React.Children.toArray(children);
@@ -25,16 +25,25 @@ function BasicForm() {
   return (
     <div style={{ padding: "0 20px 20px" }}>
       {/* <Modal open centered width={1600} footer={null}>
-        <Editor schema={schema} style={{ height: 680 }}/>
+        <Editor style={{ height: "760px" }} />
       </Modal> */}
       <ContentTab>
         <div>
-          <FormRender form={form} schema={schema} />
+          <FormRender
+            form={form}
+            schema={schemaValue}
+            replace={col => {
+              // 替换为自定义渲染
+              // if(col.name === "") {
+              //   return
+              // }
+            }}
+          />
         </div>
         <div></div>
         <div></div>
         <div>
-          <Editor schema={schema} style={{ height: "calc(100vh - 140px)" }} />
+          <Editor schema={schemaValue} style={{ height: "calc(100vh - 140px)" }} />
         </div>
       </ContentTab>
     </div>
