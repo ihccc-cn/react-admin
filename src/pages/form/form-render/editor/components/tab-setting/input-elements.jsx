@@ -1,6 +1,7 @@
 import React from "react";
 import { Input, InputNumber, Radio, Select, Slider, Switch } from "antd";
 import Combination from "@/common/components/combination";
+import GridEditor from "@/common/components/grid-editor";
 import { inputValueFormat } from "@/utils";
 
 function ArrayInput({ buttonProps, value, onChange, ...props }) {
@@ -42,6 +43,7 @@ const inputElements = {
   Switch: <Switch size="small" />,
   TextArea: <Input.TextArea size="small" rows={5} placeholder="请输入" />,
   ArrayInput: <ArrayInput size="small" placeholder="请输入" buttonProps={{ size: "small" }} />,
+  GridEditor: <GridEditor size="small" />,
   StyleInput: <StyleInput size="small" rows={5} placeholder="请输入" />,
 };
 

@@ -92,8 +92,8 @@
         { "title": "数量", "name": "count", "type": "Slider", "defaultValue": 5, "props": { "max": 10 } },
         { "title": "默认值", "name": "defaultValue", "type": "Slider", "defaultValue": 0, "props": { "max": 10 } },
         { "title": "是否禁用", "name": "disabled", "type": "Switch" },
-        { "title": "样式", "name": "style", "type": "StyleInput" },
-        { "title": "提示信息", "name": "tooltips", "type": "ArrayInput" }
+        { "title": "每项的提示信息", "name": "tooltips", "type": "ArrayInput" },
+        { "title": "样式", "name": "style", "type": "StyleInput" }
       ]
     },
     "Switch": {
@@ -103,7 +103,8 @@
         { "title": "选中时的内容", "name": "checkedChildren", "type": "Input" },
         { "title": "是否禁用", "name": "disabled", "type": "Switch" },
         { "title": "尺寸", "name": "size", "type": "Radio", "options": "global.size", "props": { "optionType": "button", "buttonStyle": "solid" } },
-        { "title": "非选中时的内容", "name": "unCheckedChildren", "type": "Input" }
+        { "title": "非选中时的内容", "name": "unCheckedChildren", "type": "Input" },
+        { "title": "样式", "name": "style", "type": "StyleInput" }
       ]
     },
     "TextArea": {

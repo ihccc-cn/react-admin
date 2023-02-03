@@ -1,0 +1,45 @@
+.grid-editor {
+  --space: 8px;
+}
+
+.grid-editor-item {
+  position: relative;
+  padding-bottom: var(--space);
+  margin-bottom: var(--space);
+  border-bottom: 2px dashed #f1f1f1;
+}
+
+.grid-editor-item:nth-of-type(1) {
+  border-top: 2px dashed #f1f1f1;
+}
+
+.grid-editor-item-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.grid-editor-item-type {
+  font-weight: bold;
+}
+
+.grid-editor-item-remove {
+  color: #f44336;
+  opacity: 0.4;
+  transition: 0.2s;
+  cursor: pointer;
+}
+
+.grid-editor-item-remove:hover {
+  opacity: 1;
+}
+
+.grid-editor-type-select {
+  display: flex;
+  margin-bottom: var(--space);
+}
+
+.grid-editor-type-select > *:nth-of-type(1) {
+  flex: 1;
+  margin-right: var(--space);
+}

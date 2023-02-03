@@ -36,6 +36,12 @@ export const formProps = {
       type: "Switch",
     },
     {
+      title: "标签布局",
+      name: "labelCol",
+      type: "GridEditor",
+      tip: "label 标签布局，同 <Col /> 组件。对 Form 的标签布局进行统一设置。当和 Item 同时设置时，以 Item 为准。",
+    },
+    {
       title: "表单布局",
       name: "layout",
       type: "Radio",
@@ -83,6 +89,12 @@ export const formProps = {
       type: "Select",
       defaultValue: "onChange",
       options: "form.trigger",
+    },
+    {
+      title: "控件布局",
+      name: "wrapperCol",
+      type: "GridEditor",
+      tip: "需要为输入控件设置布局样式时，使用该属性，用法同标签布局。对 Form 的控件布局进行统一设置。当和 Item 同时设置时，以 Item 为准。",
     },
     {
       title: "样式",

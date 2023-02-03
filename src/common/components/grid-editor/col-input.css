@@ -1,0 +1,9 @@
+.span-input {
+  display: inline-block;
+}
+
+.span-input-title {
+  color: #a9a9a9;
+  text-align: center;
+  font-size: 12px;
+}
