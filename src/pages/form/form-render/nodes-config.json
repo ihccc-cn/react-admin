@@ -62,7 +62,14 @@
         { "title": "是否展示字数", "name": "showCount", "type": "Switch" },
         { "title": "前缀图标", "name": "prefix", "type": "Input" },
         { "title": "占位文本", "name": "placeholder", "type": "Input" },
-        { "title": "尺寸", "name": "size", "type": "Radio", "options": "global.size", "props": { "optionType": "button", "buttonStyle": "solid" } },
+        {
+          "title": "尺寸",
+          "name": "size",
+          "type": "Radio",
+          "options": "global.size",
+          "defaultValue": "middle",
+          "props": { "optionType": "button", "buttonStyle": "solid" }
+        },
         { "title": "后缀图标", "name": "suffix", "type": "Input" },
         { "title": "样式", "name": "style", "type": "StyleInput" }
       ]
@@ -77,7 +84,14 @@
         { "title": "最大长度", "name": "maxLength", "type": "InputNumber" },
         { "title": "前缀图标", "name": "prefix", "type": "Input" },
         { "title": "占位文本", "name": "placeholder", "type": "Input" },
-        { "title": "尺寸", "name": "size", "type": "Radio", "options": "global.size", "props": { "optionType": "button", "buttonStyle": "solid" } },
+        {
+          "title": "尺寸",
+          "name": "size",
+          "type": "Radio",
+          "options": "global.size",
+          "defaultValue": "middle",
+          "props": { "optionType": "button", "buttonStyle": "solid" }
+        },
         { "title": "显示密文切换按钮", "name": "visibilityToggle", "type": "Switch", "defaultValue": true },
         { "title": "样式", "name": "style", "type": "StyleInput" }
       ]
@@ -102,7 +116,14 @@
         { "title": "自动聚焦", "name": "autoFocus", "type": "Switch" },
         { "title": "选中时的内容", "name": "checkedChildren", "type": "Input" },
         { "title": "是否禁用", "name": "disabled", "type": "Switch" },
-        { "title": "尺寸", "name": "size", "type": "Radio", "options": "global.size", "props": { "optionType": "button", "buttonStyle": "solid" } },
+        {
+          "title": "尺寸",
+          "name": "size",
+          "type": "Radio",
+          "options": "global.size",
+          "defaultValue": "middle",
+          "props": { "optionType": "button", "buttonStyle": "solid" }
+        },
         { "title": "非选中时的内容", "name": "unCheckedChildren", "type": "Input" },
         { "title": "样式", "name": "style", "type": "StyleInput" }
       ]

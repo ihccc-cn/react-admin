@@ -34,12 +34,13 @@ export const formProps = {
       name: "labelWrap",
       tip: "label 标签的文本换行方式。[antd 版本 4.18.0]",
       type: "Switch",
+      defaultValue: false,
     },
     {
       title: "标签布局",
       name: "labelCol",
       type: "GridEditor",
-      tip: "label 标签布局，同 <Col /> 组件。对 Form 的标签布局进行统一设置。当和 Item 同时设置时，以 Item 为准。",
+      tip: "label 标签布局，同 <Col /> 组件。对 Form 的标签布局进行统一设置，不会作用于嵌套 Item。当和 Item 同时设置时，以 Item 为准。",
     },
     {
       title: "表单布局",
@@ -80,6 +81,7 @@ export const formProps = {
       tip: "设置字段组件的尺寸（仅限 antd 组件）。",
       type: "Radio",
       options: "global.size",
+      defaultValue: "middle",
       props: { optionType: "button", buttonStyle: "solid" },
     },
     {
@@ -147,6 +149,12 @@ export const formItemProps = {
       props: { optionType: "button", buttonStyle: "solid" },
     },
     {
+      title: "标签布局",
+      name: "labelCol",
+      type: "GridEditor",
+      tip: "label 标签布局，同 <Col /> 组件。你可以通过 Form 的标签布局进行统一设置，不会作用于嵌套 Item。当和 Form 同时设置时，以 Item 为准。",
+    },
+    {
       title: "字段名",
       name: "name",
       type: "Input",
@@ -202,6 +210,12 @@ export const formItemProps = {
       tip: "子节点的值的属性，如 Switch 的是 'checked'。",
       type: "Input",
       defaultValue: "value",
+    },
+    {
+      title: "控件布局",
+      name: "wrapperCol",
+      type: "GridEditor",
+      tip: "需要为输入控件设置布局样式时，使用该属性，用法同标签布局。你可以通过 Form 的标签布局进行统一设置，不会作用于嵌套 Item。当和 Form 同时设置时，以 Item 为准。",
     },
   ],
 };

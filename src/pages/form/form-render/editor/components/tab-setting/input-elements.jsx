@@ -1,8 +1,8 @@
 import React from "react";
 import { Input, InputNumber, Radio, Select, Slider, Switch } from "antd";
-import Combination from "@/common/components/combination";
-import GridEditor from "@/common/components/grid-editor";
 import { inputValueFormat } from "@/utils";
+import Combination from "./libs/combination";
+import GridEditor from "./libs/grid-editor";
 
 function ArrayInput({ buttonProps, value, onChange, ...props }) {
   return (

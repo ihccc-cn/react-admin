@@ -3,8 +3,8 @@ import useUpdate from "ahooks/lib/useUpdate";
 import differenceWith from "lodash/differenceWith";
 import { Button, Radio, Select } from "antd";
 import Icon from "@/common/components/icon";
-import ColInput, { SpanInput } from "./col-input";
 import { inputValueFormat } from "@/utils";
+import ColInput, { SpanInput } from "./col-input";
 import "./index.css";
 
 const mediaOptions = [
@@ -64,7 +64,6 @@ function GridEditor({ size, value, onChange }) {
     ctrlRef.current.medias = differenceWith(mediaOptions, ctrlRef.current.nodes, (x, y) => x.value === y.media.value);
     const currentMedias = ctrlRef.current.medias;
     if (currentMedias.length > 0) ctrlRef.current.next.media = currentMedias[0];
-    console.log(ctrlRef.current);
     update();
   }, []);
 
@@ -92,24 +91,26 @@ function GridEditor({ size, value, onChange }) {
   );
 
   React.useEffect(() => {
-    // console.log(value);
     const colProps = colPropsConfig.map(item => item.name);
-    // const nodes = [];
-    // let defaultMediaCount = 0;
-    // for (const key in value) {
-    //   if (colProps.indexOf(key) > -1) {
-    //     defaultMediaCount++;
-    //   } else {
-    //     nodes.push({ type: typeof value[key], media: mediaOptions.find(item => item.value === key) });
-    //   }
-    // }
-    // if (defaultMediaCount > 0) {
-    //   nodes.unshift({
-    //     type: defaultMediaCount === 1 && typeof value.span === "number" ? "number" : "object",
-    //     media: mediaOptions.find(item => item.value === "default"),
-    //   });
-    // }
-    // ctrlRef.current.nodes = nodes;
+    const isNodesEmpty = ctrlRef.current.nodes.length === 0;
+    if (isNodesEmpty) {
+      const nodes = [];
+      let defaultMediaCount = 0;
+      for (const key in value) {
+        if (colProps.indexOf(key) > -1) {
+          defaultMediaCount++;
+        } else {
+          nodes.push({ type: typeof value[key], media: mediaOptions.find(item => item.value === key) });
+        }
+      }
+      if (defaultMediaCount > 0) {
+        nodes.unshift({
+          type: defaultMediaCount === 1 && typeof value.span === "number" ? "number" : "object",
+          media: mediaOptions.find(item => item.value === "default"),
+        });
+      }
+      ctrlRef.current.nodes = nodes;
+    }
     const newValue = Object.assign({}, value);
     for (const name of colProps) {
       if (name in newValue) {
@@ -119,7 +120,7 @@ function GridEditor({ size, value, onChange }) {
       }
     }
     valueRef.current = newValue;
-    syncMedias();
+    isNodesEmpty ? syncMedias() : update();
   }, [value]);
 
   return (
