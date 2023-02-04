@@ -71,7 +71,7 @@
           "props": { "optionType": "button", "buttonStyle": "solid" }
         },
         { "title": "后缀图标", "name": "suffix", "type": "Input" },
-        { "title": "样式", "name": "style", "type": "StyleInput" }
+        { "title": "样式", "name": "style", "type": "StyleEditor" }
       ]
     },
     "InputNumber": { "defaultProps": { "placeholder": "请输入" } },
@@ -93,7 +93,7 @@
           "props": { "optionType": "button", "buttonStyle": "solid" }
         },
         { "title": "显示密文切换按钮", "name": "visibilityToggle", "type": "Switch", "defaultValue": true },
-        { "title": "样式", "name": "style", "type": "StyleInput" }
+        { "title": "样式", "name": "style", "type": "StyleEditor" }
       ]
     },
     "Rate": {
@@ -107,7 +107,7 @@
         { "title": "默认值", "name": "defaultValue", "type": "Slider", "defaultValue": 0, "props": { "max": 10 } },
         { "title": "是否禁用", "name": "disabled", "type": "Switch" },
         { "title": "每项的提示信息", "name": "tooltips", "type": "ArrayInput" },
-        { "title": "样式", "name": "style", "type": "StyleInput" }
+        { "title": "样式", "name": "style", "type": "StyleEditor" }
       ]
     },
     "Switch": {
@@ -125,7 +125,7 @@
           "props": { "optionType": "button", "buttonStyle": "solid" }
         },
         { "title": "非选中时的内容", "name": "unCheckedChildren", "type": "Input" },
-        { "title": "样式", "name": "style", "type": "StyleInput" }
+        { "title": "样式", "name": "style", "type": "StyleEditor" }
       ]
     },
     "TextArea": {
@@ -137,7 +137,7 @@
         { "title": "默认内容", "name": "defaultValue", "type": "Input" },
         { "title": "最大长度", "name": "maxLength", "type": "InputNumber" },
         { "title": "是否展示字数", "name": "showCount", "type": "Switch" },
-        { "title": "样式", "name": "style", "type": "StyleInput" }
+        { "title": "样式", "name": "style", "type": "StyleEditor" }
       ]
     },
     "Text": { "defaultProps": { "children": "文本内容..." } }

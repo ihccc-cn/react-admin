@@ -1,4 +1,5 @@
 import React from "react";
+import clsx from "clsx";
 import { Form } from "antd";
 import useSchema from "../hooks/useSchema";
 import ActionBar from "./components/action-bar";
@@ -23,6 +24,7 @@ const transformField = ({ type, ...data }) => {
 function Editor({ schema: schemaValue, style }) {
   const mainContainerRef = React.useRef(null);
   const schema = useSchema(schemaValue);
+  const [device, setDevice] = React.useState(null);
   const [ghost, setGhost] = React.useState(true);
   const [preview, setPreview] = React.useState(false);
   const [imVisible, setImVisible] = React.useState(false);
@@ -74,7 +76,9 @@ function Editor({ schema: schemaValue, style }) {
         top={
           <ActionBar
             visible={{ preview: !schema.isEmpty, export: !schema.isEmpty, clear: !schema.isEmpty }}
-            state={{ ghost, preview }}
+            state={{ device, ghost, preview }}
+            onPhone={() => setDevice(device !== "phone" ? "phone" : null)}
+            onPad={() => setDevice(device !== "pad" ? "pad" : null)}
             onGhost={handleGhost}
             onPreview={handlePreview}
             onImport={() => setImVisible(true)}
@@ -99,7 +103,7 @@ function Editor({ schema: schemaValue, style }) {
         }
         right={
           <TabSetting
-            notChoose={!schema.selected.id}
+            notChoose={!schema.selected.id || preview}
             form={<TabSetting.FormPanel value={schema.value.form?.props} onChange={schema.setFormProps} />}
             formItem={
               nodesConfig.formItem[schema.selected.input]?.enable !== false && (
@@ -123,7 +127,7 @@ function Editor({ schema: schemaValue, style }) {
         }
         style={style}
       >
-        <div ref={mainContainerRef}>
+        <div ref={mainContainerRef} className={clsx(device && "form-editor-wrapper-device", device === "pad" && "form-editor-wrapper-device-pad")}>
           <Form layout="horizontal" {...schema.value.form?.props} name="__form_editor__" style={{ background: "#fff", ...schema.value.form?.props?.style }}>
             <Canvas
               ghost={ghost}
@@ -137,7 +141,7 @@ function Editor({ schema: schemaValue, style }) {
               empty={<CanvasEmpty icon="icon-operation" title="点击/拖拽左侧栏目的组件进行添加" extra={viewExample} />}
               selected={schema.selected}
               onSelect={schema.setSelected}
-              style={{ minHeight: containerHeight }}
+              style={device ? { height: "100%", overflow: "auto" } : { minHeight: containerHeight }}
             />
           </Form>
         </div>

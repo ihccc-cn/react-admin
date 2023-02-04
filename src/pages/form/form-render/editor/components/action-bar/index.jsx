@@ -3,7 +3,7 @@ import { Button, Popconfirm } from "antd";
 import Icon from "@/common/components/icon";
 import "./index.css";
 
-function ActionBar({ visible, disabled, state, onHelp, onGhost, onPreview, onImport, onExport, onClear }) {
+function ActionBar({ visible, disabled, state, onPhone, onPad, onHelp, onGhost, onPreview, onImport, onExport, onClear }) {
   return (
     <div className="form-editor-action-bar">
       <Button type="link" size="small" icon={<Icon type="icon-help" />} onClick={onHelp} />
@@ -12,6 +12,16 @@ function ActionBar({ visible, disabled, state, onHelp, onGhost, onPreview, onImp
           智能布局
         </Button>
       )} */}
+      {visible.viewMode !== false && (
+        <Button.Group size="small">
+          <Button type={state.device === "phone" ? "primary" : "default"} size="small" shape="round" icon={<Icon type="icon-mobile-phone" />} onClick={onPhone}>
+            手机
+          </Button>
+          <Button type={state.device === "pad" ? "primary" : "default"} size="small" shape="round" icon={<Icon type="icon-ipad" />} onClick={onPad}>
+            平板
+          </Button>
+        </Button.Group>
+      )}
       {visible.preview !== false && (
         <Button.Group size="small">
           <Button

@@ -101,7 +101,7 @@ export const formProps = {
     {
       title: "样式",
       name: "style",
-      type: "StyleInput",
+      type: "StyleEditor",
     },
   ],
 };
@@ -177,6 +177,12 @@ export const formItemProps = {
       name: "required",
       tip: "必填样式设置。如不设置，则会根据校验规则自动生成",
       type: "Switch",
+    },
+    {
+      title: "校验规则",
+      name: "rules",
+      tip: "设置字段的校验逻辑。",
+      type: "RulesEditor",
     },
     {
       title: "验证时机",

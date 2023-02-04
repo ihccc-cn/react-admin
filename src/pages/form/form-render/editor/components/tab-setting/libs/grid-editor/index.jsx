@@ -130,7 +130,7 @@ function GridEditor({ size, value, onChange }) {
           <div className="grid-editor-item-head">
             <span className="grid-editor-item-type">{item.media.label}</span>
             <span className="grid-editor-item-remove" onClick={() => handleRemove(item, index)}>
-              <Icon type="icon-reeor" />
+              <Icon type="icon-reduce" />
             </span>
           </div>
           {item.type === "number" && (

@@ -5,7 +5,7 @@ import Icon from "@/common/components/icon";
 import { inputValueFormat } from "@/utils";
 import "./index.css";
 
-function Combination({ buttonProps, fields, newValue, value, onChange, children }) {
+function Combination({ buttonProps, labels, fields, newValue, value, onChange, children }) {
   const [length, setLength] = React.useState(value?.length || 0);
   const valueRef = React.useRef(value || []);
   const update = useUpdate();
@@ -59,24 +59,36 @@ function Combination({ buttonProps, fields, newValue, value, onChange, children 
 
   return (
     <div>
-      {cells.map((item, index) => (
-        <div className="combination-item" key={index + ""}>
-          {React.cloneElement(item, { value: getValue(index), onChange: e => handleChange(index, e) })}
-          {fields.length > 0 && index % fields.length > 0 ? (
-            <span className="combination-item-placeholder"></span>
-          ) : (
-            <span className="combination-item-remove" onClick={() => handleRemove(index)}>
-              <Icon type="icon-reduce" />
-            </span>
-          )}
-        </div>
-      ))}
+      {cells.map((item, index) => {
+        const label = labels[index % fields.length];
+        const inputNode = React.cloneElement(item, { value: getValue(index), onChange: e => handleChange(index, e) });
+        return (
+          <div className="combination-item" key={index + ""}>
+            {!label ? (
+              inputNode
+            ) : (
+              <div className="combination-item-input">
+                {labels[index % fields.length] && <span>{labels[index % fields.length]}</span>}
+                {inputNode}
+              </div>
+            )}
+            {fields.length > 0 && index % fields.length > 0 ? (
+              <span className="combination-item-placeholder"></span>
+            ) : (
+              <span className="combination-item-remove" onClick={() => handleRemove(index)}>
+                <Icon type="icon-reduce" />
+              </span>
+            )}
+          </div>
+        );
+      })}
       <Button block type="dashed" icon={<Icon type="icon-add-select" />} style={{ width: "100%" }} {...buttonProps} onClick={handleAddNodes} />
     </div>
   );
 }
 
 Combination.defaultProps = {
+  labels: [],
   fields: [],
 };
 
