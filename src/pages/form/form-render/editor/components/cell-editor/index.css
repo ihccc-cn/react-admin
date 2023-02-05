@@ -129,7 +129,7 @@
   right: 0;
 }
 
-.cell-editor.cell-editor-ghost .cell-editor-resize {
+.cell-editor.cell-editor-ghost .cell-editor-resize:not(.drag-bar-hold) {
   opacity: 0;
 }
 

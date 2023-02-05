@@ -123,6 +123,8 @@ function Editor({ schema: schemaValue, style }) {
                 key={schema.selected.id}
               />
             }
+            relation={<TabSetting.RelationPanel value={{}} />}
+            data={<TabSetting.DataPanel value={{}} />}
           />
         }
         style={style}

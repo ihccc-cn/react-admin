@@ -2,7 +2,7 @@ export const formProps = {
   defaultProps: {},
   config: [
     {
-      title: "Form",
+      title: "表单",
       name: "group-form",
       type: "Group",
       icon: "icon-product",
@@ -110,7 +110,7 @@ export const formItemProps = {
   defaultProps: {},
   config: [
     {
-      title: "Form.Item",
+      title: "表单项",
       name: "group-form-item",
       type: "Group",
       icon: "icon-Similarproducts",
@@ -235,3 +235,33 @@ export const getComponentTitleProps = (title, config) =>
       icon: "icon-integral",
     },
   ].concat(config || []);
+
+export const relationConfig = [
+  {
+    title: "动态关联",
+    name: "relation",
+    type: "Group",
+    icon: "icon-connections",
+  },
+  {
+    title: "新建规则",
+    name: "rules",
+    tip: "功能待完善",
+    type: "ArrayInput",
+  },
+];
+
+export const dataConfig = [
+  {
+    title: "数据",
+    name: "data",
+    type: "Group",
+    icon: "icon-zijin",
+  },
+  {
+    title: "新建数据",
+    name: "rules",
+    tip: "功能待完善",
+    type: "ArrayInput",
+  },
+];

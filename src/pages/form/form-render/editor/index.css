@@ -42,8 +42,8 @@
   background: linear-gradient(0deg, #191919, #393939);
   border-radius: 24px;
   box-shadow: 0 0 20px 2px rgba(0, 0, 0, 0.6);
-  transform: scale(0.9);
-  transform-origin: top center;
+  /* transform: scale(0.9);
+  transform-origin: top center; */
 }
 
 .form-editor-wrapper-device-pad {
@@ -81,7 +81,7 @@
 }
 
 .form-editor-wrapper-device .basic-form-layout::-webkit-scrollbar {
-  width: 4px;
+  width: 6px;
   height: 4px;
 }
 
@@ -92,4 +92,9 @@
 .form-editor-wrapper-device .basic-form-layout::-webkit-scrollbar-thumb {
   background-color: #c9c9c9;
   border-radius: 4px;
+  display: none;
+}
+
+.form-editor-wrapper-device:hover .basic-form-layout::-webkit-scrollbar-thumb {
+  display: block;
 }

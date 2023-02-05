@@ -8,7 +8,7 @@ function ActionBar({ visible, disabled, state, onPhone, onPad, onHelp, onGhost, 
     <div className="form-editor-action-bar">
       <Button type="link" size="small" icon={<Icon type="icon-help" />} onClick={onHelp} />
       {/* {visible.autoLayout !== false && (
-        <Button size="small" shape="round" icon={<Icon type="icon-robot" />} onClick={onAiLayout}>
+        <Button size="small" shape="round" icon={<Icon type="icon-robot" />}>
           智能布局
         </Button>
       )} */}

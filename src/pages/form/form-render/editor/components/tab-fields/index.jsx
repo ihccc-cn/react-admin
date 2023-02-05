@@ -4,6 +4,7 @@ import { Tabs, Collapse, Button } from "antd";
 import Icon from "@/common/components/icon";
 import { uuid, stopPropagationEvent } from "../../../utils";
 import CellField from "../cell-field";
+import IconTip from "../icon-tip";
 
 function ComponentPanel({ groupName, nodes, rowKey, onItem, onAdd }) {
   const [source, setSource] = React.useState(nodes || []);
@@ -50,12 +51,12 @@ function TemplatePanel() {
   return <div>模板</div>;
 }
 
-function TabFields({ component, template }) {
+function TabFields({ component }) {
   return (
     <Tabs
       items={[
-        ...(!component ? [] : [{ label: "组件", key: "form", children: component }]),
-        ...(!template ? [] : [{ label: "模板", key: "component", children: template }]),
+        ...(!component ? [] : [{ label: <IconTip showTitle title="组件" icon="icon-component" />, key: "form", children: component }]),
+        // ...(!template ? [] : [{ label: <IconTip showTitle title="模板" icon="icon-packaging" />, key: "component", children: "template" }]),
       ]}
     />
   );
