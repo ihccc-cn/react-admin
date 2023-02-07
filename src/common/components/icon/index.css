@@ -3,13 +3,10 @@
   height: 1em;
   vertical-align: -0.15em;
   transform: scale(1.5);
+  fill: currentColor;
   overflow: hidden;
 }
 
 .icon + * {
   margin-left: 8px;
-}
-
-body > svg > symbol > path {
-  fill: currentColor;
 }
