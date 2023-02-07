@@ -52,7 +52,7 @@ export const EditorUtil = {
     const cloneValue = cloneDeep(value);
     cloneValue.columns = cloneValue.columns.map(({ id, selected, chosen, ...column }) => column);
     cloneValue.version = version;
-    return JSON.stringify(cloneValue, null, 2);
+    return JSON.stringify(cloneValue, null, 4);
   },
   /**
    * 转换导出 jsx 格式

@@ -106,6 +106,32 @@ export const formProps = {
   ],
 };
 
+export const layoutProps = {
+  defaultProps: {},
+  config: [
+    {
+      title: "布局",
+      name: "group-layout",
+      type: "Group",
+      icon: "icon-product",
+    },
+    {
+      title: "类型",
+      name: "type",
+      type: "Select",
+      options: "layout.type",
+      defaultValue: "basic-form-layout",
+    },
+    {
+      title: "响应式布局",
+      name: "active",
+      type: "ScreenEditor",
+      options: "layout.screen",
+      defaultValue: { active: "default", screens: ["default"] },
+    },
+  ],
+};
+
 export const formItemProps = {
   defaultProps: {},
   config: [
@@ -239,7 +265,7 @@ export const getComponentTitleProps = (title, config) =>
 export const relationConfig = [
   {
     title: "动态关联",
-    name: "relation",
+    name: "group-relation",
     type: "Group",
     icon: "icon-connections",
   },
@@ -254,7 +280,7 @@ export const relationConfig = [
 export const dataConfig = [
   {
     title: "数据",
-    name: "data",
+    name: "group-data",
     type: "Group",
     icon: "icon-zijin",
   },

@@ -1,0 +1,53 @@
+.screen-editor {
+  --space: 8px;
+}
+
+.screen-editor-item {
+  position: relative;
+  padding-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.screen-editor-item-type {
+  flex: 1;
+  padding: 6px 8px;
+  margin-right: 6px;
+  background: #f5f5f5;
+  border-radius: 4px;
+  color: #393939;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.screen-editor-item-active {
+  background: #6d68f899;
+  color: #fff;
+}
+
+.screen-editor-item-icon-success {
+  color: #6d68f8;
+}
+
+.screen-editor-item-icon-danger {
+  color: #f44336;
+  opacity: 0.4;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.screen-editor-item-icon-danger:hover {
+  opacity: 1;
+}
+
+.screen-editor-add {
+  display: flex;
+  margin-bottom: var(--space);
+}
+
+.screen-editor-add > :nth-child(1) {
+  flex: 1;
+  margin-right: var(--space);
+}

@@ -3,6 +3,7 @@ import { Input, InputNumber, Radio, Select, Slider, Switch } from "antd";
 import ArrayInput from "./libs/array-input";
 import GridEditor from "./libs/grid-editor";
 import RulesEditor from "./libs/rules-editor";
+import ScreenEditor from "./libs/screen-editor";
 import StyleEditor from "./libs/style-editor";
 
 const inputElements = {
@@ -16,6 +17,7 @@ const inputElements = {
   ArrayInput: <ArrayInput size="small" placeholder="请输入" buttonProps={{ size: "small" }} />,
   GridEditor: <GridEditor size="small" />,
   RulesEditor: <RulesEditor size="small" buttonProps={{ size: "small" }} />,
+  ScreenEditor: <ScreenEditor size="small" />,
   StyleEditor: <StyleEditor size="small" rows={5} placeholder="请输入" />,
 };
 

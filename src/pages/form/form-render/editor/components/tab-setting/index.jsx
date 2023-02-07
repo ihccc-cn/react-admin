@@ -2,12 +2,20 @@ import React from "react";
 import { Tabs } from "antd";
 import IconTip from "../icon-tip";
 import FormRender from "./form-render";
-import { formProps, formItemProps, getComponentTitleProps, relationConfig, dataConfig } from "./props-config";
+import { formProps, layoutProps, formItemProps, getComponentTitleProps, relationConfig, dataConfig } from "./props-config";
 
 function FormPanel({ value, onChange }) {
   return (
     <div style={{ padding: "20px 14px 0 20px" }}>
       <FormRender config={formProps.config} value={Object.assign({}, formProps.defaultProps, value)} onChange={onChange} />
+    </div>
+  );
+}
+
+function LayoutPanel({ value, onChange }) {
+  return (
+    <div style={{ padding: "20px 14px 0 20px" }}>
+      <FormRender config={layoutProps.config} value={Object.assign({}, layoutProps.defaultProps, value)} onChange={onChange} />
     </div>
   );
 }
@@ -48,12 +56,16 @@ function DataPanel({ value, onChange }) {
   );
 }
 
-function TabSetting({ notChoose, form, formItem, component, relation, data }) {
+function TabSetting({ notChoose, form, layout, formItem, component, relation, data }) {
   return (
     <Tabs
       items={
         notChoose
-          ? [{ label: <IconTip showTitle title="表单" icon="icon-product" />, key: "form", children: form }]
+          ? [
+              { label: <IconTip title="表单" icon="icon-product" />, key: "form", children: form },
+              { label: <IconTip title="布局" icon="icon-fencengpeizhi" />, key: "layout", children: layout },
+              { label: <IconTip title="数据" icon="icon-zijin" />, key: "data", children: "data" },
+            ]
           : [
               ...(!formItem ? [] : [{ label: <IconTip title="表单项" icon="icon-Similarproducts" />, key: "item", children: formItem }]),
               { label: <IconTip title="组件" icon="icon-integral" />, key: "component", children: component },
@@ -66,10 +78,13 @@ function TabSetting({ notChoose, form, formItem, component, relation, data }) {
   );
 }
 
-TabSetting.FormPanel = FormPanel;
-TabSetting.FormItemPanel = FormItemPanel;
-TabSetting.ComponentPanel = ComponentPanel;
-TabSetting.RelationPanel = RelationPanel;
-TabSetting.DataPanel = DataPanel;
+TabSetting.Panel = {
+  Form: FormPanel,
+  Layout: LayoutPanel,
+  FormItem: FormItemPanel,
+  Component: ComponentPanel,
+  Relation: RelationPanel,
+  Data: DataPanel,
+};
 
 export default TabSetting;

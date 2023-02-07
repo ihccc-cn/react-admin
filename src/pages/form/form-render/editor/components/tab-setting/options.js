@@ -18,4 +18,14 @@ export default {
     { label: "onChange", value: "onChange" },
     { label: "onFocus", value: "onFocus" },
   ],
+  "layout.type": [{ label: "基本布局", value: "basic-form-layout" }],
+  "layout.screen": [
+    { label: "默认", value: "default" },
+    { label: "xs < 576px", value: "xs" },
+    { label: "sm ≥ 576px", value: "sm" },
+    { label: "md ≥ 768px", value: "md" },
+    { label: "lg ≥ 992px", value: "lg" },
+    { label: "xl ≥ 1200px", value: "xl" },
+    { label: "xxl ≥ 1600px", value: "xxl" },
+  ],
 };

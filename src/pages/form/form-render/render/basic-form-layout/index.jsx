@@ -2,28 +2,19 @@ import React from "react";
 import clsx from "clsx";
 import "./index.css";
 
-function FlexFormLayout(props) {
-  const { tag, items, layout, empty, rowKey, itemPropsProvide, ...restProps } = props;
-  const getLayout = name => {
-    const { lock, inline, style } = layout.items?.[name] || {};
-    return {
-      lock: typeof lock === "undefined" ? layout.lock : lock,
-      inline: typeof inline === "undefined" ? layout.inline : inline,
-      style: typeof style === "undefined" ? layout.style : style,
-    };
-  };
+function BasicFormLayout(props) {
+  const { tag, preview, items, getLayoutItem, rowKey, ...restProps } = props;
 
   const itemList = items.map(item => {
-    const { lock, inline, style } = getLayout(item.name);
+    const layoutItem = getLayoutItem(item.name);
     return React.cloneElement(
       item.node,
       Object.assign(
         {
-          className: clsx(!inline ? "basic-form-layout-item" : "basic-form-layout-item-inline"),
+          className: clsx(!layoutItem.inline ? "basic-form-layout-item" : "basic-form-layout-item-inline"),
           key: item[rowKey],
         },
-        itemPropsProvide ? { lock, inline } : {},
-        style ? { style: style } : {}
+        preview ? { style: layoutItem.style } : layoutItem
       )
     );
   });
@@ -38,11 +29,11 @@ function FlexFormLayout(props) {
     );
   }
 
-  return React.createElement(tag, Object.assign(containerProps, restProps), itemList.length === 0 ? empty : itemList);
+  return React.createElement(tag, Object.assign(containerProps, restProps), itemList);
 }
 
-FlexFormLayout.defaultProps = {
+BasicFormLayout.defaultProps = {
   rowKey: "id",
 };
 
-export default FlexFormLayout;
+export default BasicFormLayout;

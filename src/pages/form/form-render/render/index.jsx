@@ -2,10 +2,10 @@ import React from "react";
 import { Form } from "antd";
 import useSchema from "../hooks/useSchema";
 import components from "../components";
-import FlexFormLayout from "./basic-form-layout";
+import BasicFormLayout from "./basic-form-layout";
 
 function FormRender({ schema, replace, ...restProps }) {
-  const { value } = useSchema(schema);
+  const { value, getLayoutItem } = useSchema(schema);
 
   const items = value.columns.map(col => {
     const replaceNode = replace && replace(col);
@@ -21,11 +21,11 @@ function FormRender({ schema, replace, ...restProps }) {
 
   return (
     <Form {...value.form} {...restProps}>
-      <FlexFormLayout items={items} layout={value.layout} />
+      <BasicFormLayout items={items} getLayoutItem={getLayoutItem} />
     </Form>
   );
 }
 
-export { FlexFormLayout };
+export { BasicFormLayout };
 
 export default FormRender;

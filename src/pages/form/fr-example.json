@@ -12,37 +12,58 @@
   ],
   "layout": {
     "type": "basic-form-layout",
-    "items": {
-      "token": { "style": { "width": "50%" } },
-      "username": { "style": { "width": "35%" }, "inline": true },
-      "password": { "style": { "width": "35%" }, "inline": true },
-      "number": { "style": { "width": "35%" }, "inline": true, "lock": false },
-      "score": { "style": { "width": "35%" }, "inline": true },
-      "enable": { "style": { "width": "35%" }, "inline": true, "lock": false },
-      "time": { "style": { "width": "35%" }, "inline": true, "lock": false },
-      "address": { "style": { "width": "50%" }, "inline": false, "lock": false },
-      "remark": { "style": { "width": "70%" }, "inline": false }
+    "active": "default",
+    "screens": {
+      "default": {
+        "token": { "style": { "width": "50%" } },
+        "username": { "style": { "width": "35%" }, "inline": true },
+        "password": { "style": { "width": "35%" }, "inline": true },
+        "number": { "style": { "width": "35%" }, "inline": true, "lock": false },
+        "score": { "style": { "width": "35%" }, "inline": true },
+        "enable": { "style": { "width": "35%" }, "inline": true, "lock": false },
+        "time": { "style": { "width": "35%" }, "inline": true, "lock": false },
+        "address": { "style": { "width": "50%" }, "inline": false, "lock": false },
+        "remark": { "style": { "width": "70%" }, "inline": false }
+      },
+      "xs": {
+        "number": { "style": { "width": "50%" }, "inline": true },
+        "time": { "style": { "width": "50%" }, "inline": true },
+        "enable": { "style": { "width": "50%" }, "inline": true },
+        "score": { "style": { "width": "50%" }, "inline": true }
+      },
+      "lg": {
+        "token": { "style": { "width": "70%" } },
+        "enable": { "style": { "width": "50%" }, "inline": true },
+        "number": { "style": { "width": "50%" }, "inline": true },
+        "time": { "style": { "width": "50%" }, "inline": true },
+        "score": { "style": { "width": "50%" }, "inline": true },
+        "address": { "style": { "width": "50%" }, "inline": true },
+        "remark": { "style": { "width": "50%" }, "inline": true },
+        "username": { "style": { "width": "50%" }, "inline": true },
+        "password": { "style": { "width": "50%" }, "inline": true }
+      }
     }
   },
-  "form": {
-    "props": {
-      "layout": "vertical"
-    }
-  },
+  "form": { "props": { "layout": "vertical" } },
   "formItem": {
-    "token": {
-      "props": {}
+    "token": { "props": { "rules": [{ "required": true, "message": "请输入令牌" }] } },
+    "username": { "props": { "rules": [{ "required": true, "message": "请输入用户名" }] } },
+    "password": {
+      "props": {
+        "rules": [
+          { "required": true, "message": "请输入密码" },
+          { "min": 6, "message": "密码长度不能小于6位" }
+        ]
+      }
     }
   },
-  "component": {
-    "token": {
-      "type": "Input",
-      "props": {}
-    }
-  },
+  "component": { "token": { "type": "Input", "props": {} } },
   "relation": [
     { "source": "token", "target": "username", "effects": { "type": "hidden", "operator": "!", "is": "true" } },
     { "source": "token", "target": "password", "effects": { "type": "hidden", "operator": "!", "is": "false" } }
   ],
-  "version": "1.0.0"
+  "version": "1.0.0",
+  "device": null,
+  "selected": {},
+  "ghost": true
 }

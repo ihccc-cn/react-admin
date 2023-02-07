@@ -2,75 +2,55 @@ import React from "react";
 import { Form } from "antd";
 import { ReactSortable } from "react-sortablejs";
 import differenceBy from "lodash/differenceBy";
-import cloneDeep from "lodash/cloneDeep";
-import get from "lodash/get";
-import set from "lodash/set";
-import components from "../../../components";
-import { FlexFormLayout } from "../../../render";
-import { swap } from "../../../utils";
+import { p2n, swap } from "../../../utils";
 import CellEditor from "../cell-editor";
 
-function Canvas({ ghost, preview, groupName, schema, setColumns, setLayout, nodesConfig, transformItem, empty, rowKey, style, selected, onSelect }) {
-  const columns = schema.columns;
+function Canvas({ groupName, schema, layoutMap, componentMap, nodesConfig, transformItem, empty, rowKey, style }) {
+  const { columns, formItem, component, layout } = schema.value;
 
-  const setItemLayout = React.useCallback((name, change) => {
-    setLayout(state => {
-      const newState = cloneDeep(state);
-      const current = get(newState, "items." + name, {});
-      const next = change(current);
-      set(newState, "items." + name, Object.assign({}, current, next));
-      return { ...newState };
+  if (columns.length === 0) return empty;
+
+  const setLayoutItemWidth = React.useCallback((name, size) => {
+    schema.setLayoutItem(name, layoutItem => {
+      const currentWidth = p2n(layoutItem.style?.width) || 100;
+      let nextWidth = currentWidth + size;
+      if (nextWidth < 10) nextWidth = 10;
+      if (nextWidth > 100) nextWidth = 100;
+      return { style: { ...layoutItem.style, width: nextWidth + "%" } };
     });
   }, []);
 
   const toggleLayoutItemInline = React.useCallback(name => {
-    setItemLayout(name, state => ({ inline: !state.inline }));
-  }, []);
-
-  const setLayoutItemWidth = React.useCallback((name, size) => {
-    setItemLayout(name, state => {
-      const currentStyle = state.style || {};
-      const currentWidth = +(currentStyle.width || "100%").replace("%", "");
-      let nextWidth = currentWidth + size;
-      nextWidth = Math.max(nextWidth, 10);
-      nextWidth = Math.min(nextWidth, 100);
-      return { style: { ...state.style, width: nextWidth + "%" } };
-    });
+    schema.setLayoutItem(name, layoutItem => ({ inline: !layoutItem.inline }));
   }, []);
 
   const toggleLayoutItemLock = React.useCallback(name => {
-    setItemLayout(name, state => {
-      const nextLock = !state.lock;
-      if (nextLock) onSelect({});
+    schema.setLayoutItem(name, layoutItem => {
+      const nextLock = !layoutItem.lock;
+      if (nextLock) schema.setSelected({});
       return { lock: nextLock };
     });
   }, []);
 
   const handleMoveup = React.useCallback(index => {
-    setColumns(columns => swap(columns, index, index - 1));
+    schema.setColumns(columns => swap(columns, index, index - 1));
   }, []);
 
   const handleMovedown = React.useCallback(index => {
-    setColumns(columns => swap(columns, index, index + 1));
+    schema.setColumns(columns => swap(columns, index, index + 1));
   }, []);
 
-  const handleRemove = React.useCallback(
-    key => {
-      if (key === selected[rowKey]) onSelect && onSelect({});
-      setColumns(columns => columns.filter(col => col[rowKey] !== key));
-    },
-    [selected, onSelect]
-  );
+  const handleRemove = React.useCallback(key => {
+    if (key === schema.selected[rowKey]) schema.setSelected && schema.setSelected({});
+    schema.setColumns(columns => columns.filter(col => col[rowKey] !== key));
+  }, []);
 
-  const handleSelect = React.useCallback(
-    col => {
-      onSelect && onSelect(col[rowKey] === selected[rowKey] ? {} : col);
-    },
-    [selected, onSelect]
-  );
+  const handleSelect = React.useCallback(col => {
+    schema.setSelected && schema.setSelected(selected => (col[rowKey] === selected[rowKey] ? {} : col));
+  }, []);
 
   const setList = React.useCallback(list => {
-    setColumns(current => {
+    schema.setColumns(current => {
       const [added] = differenceBy(list, current, "id");
       if (!added) return list;
       const index = list.indexOf(added);
@@ -85,12 +65,12 @@ function Canvas({ ghost, preview, groupName, schema, setColumns, setLayout, node
     const itemConfig = nodesConfig.formItem[col.input || "Input"] || {};
     const propsConfig = nodesConfig.props[col.input || "Input"] || {};
 
-    const formItemValue = schema.formItem?.[col.name]?.props;
-    const componentValue = schema.component?.[col.name]?.props;
+    const formItemValue = formItem?.[col.name]?.props;
+    const componentValue = component?.[col.name]?.props;
 
-    const inputNdoe = React.createElement(components[col.input] || components["Input"], Object.assign({}, propsConfig.defaultProps, componentValue));
+    const inputNdoe = React.createElement(componentMap[col.input] || componentMap["Input"], Object.assign({}, propsConfig.defaultProps, componentValue));
 
-    const formItem =
+    const formItemNode =
       itemConfig.enable === false ? (
         inputNdoe
       ) : (
@@ -101,14 +81,14 @@ function Canvas({ ghost, preview, groupName, schema, setColumns, setLayout, node
 
     return {
       ...col,
-      node: preview ? (
-        formItem
+      node: schema.preview ? (
+        formItemNode
       ) : (
         <CellEditor
-          ghost={ghost}
+          ghost={schema.ghost}
           label={itemConfig.enable === false ? col.title : null}
           name={col.name}
-          selected={selected[rowKey] === col[rowKey] || col.chosen}
+          selected={schema.selected[rowKey] === col[rowKey] || col.chosen}
           control={controlConfig}
           onLock={() => toggleLayoutItemLock(col.name)}
           onMoveup={() => handleMoveup(index)}
@@ -119,19 +99,21 @@ function Canvas({ ghost, preview, groupName, schema, setColumns, setLayout, node
           onSelect={() => handleSelect(col)}
           key={col[rowKey]}
         >
-          {formItem}
+          {formItemNode}
         </CellEditor>
       ),
     };
   });
 
+  const BasicFormLayout = layoutMap[layout.type];
+
   return (
-    <FlexFormLayout
-      itemPropsProvide={!preview}
+    <BasicFormLayout
+      preview={schema.preview}
       items={items}
-      layout={schema.layout}
-      empty={empty}
+      getLayoutItem={schema.getLayoutItem}
       tag={ReactSortable}
+      // ReactSortable.props
       handle={CellEditor.HANDLE_CLASSNAME}
       filter={CellEditor.FILTER_CLASSNAME}
       animation={300}

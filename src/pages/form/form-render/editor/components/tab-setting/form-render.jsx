@@ -47,9 +47,7 @@ function FormRender({ config, value, valuePropsName, defaultValuePropsName, onCh
               {
                 [valuePropsName[item.type] || "value"]: value[item.name],
                 onChange: e => {
-                  const value = inputValueFormat(e);
-                  const isInitial = item.defaultValue === value;
-                  onChange && onChange(item.name, value, isInitial);
+                  onChange && onChange(item.name, inputValueFormat(e));
                 },
               }
             )

@@ -32,6 +32,14 @@ function DragBar({ className, offset, showLabel, onStart, onChange, onEnd, style
   };
 
   React.useEffect(() => {
+    if (hold) {
+      document.body.style.setProperty("cursor", "col-resize");
+    } else {
+      document.body.style.removeProperty("cursor");
+    }
+  }, [hold]);
+
+  React.useEffect(() => {
     document.body.addEventListener("mousemove", onMouseMove);
     document.body.addEventListener("mouseup", onMouseUp);
     return () => {
