@@ -88,9 +88,7 @@ export const formProps = {
       title: "验证时机",
       name: "validateTrigger",
       tip: "统一设置字段触发验证的时机。[antd 版本 4.3.0]",
-      type: "Select",
       defaultValue: "onChange",
-      options: "form.trigger",
     },
     {
       title: "控件布局",
@@ -113,7 +111,7 @@ export const layoutProps = {
       title: "布局",
       name: "group-layout",
       type: "Group",
-      icon: "icon-product",
+      icon: "icon-integral",
     },
     {
       title: "类型",
@@ -211,12 +209,10 @@ export const formItemProps = {
       type: "RulesEditor",
     },
     {
-      title: "验证时机",
+      title: "收集数据时机",
       name: "trigger",
       tip: "设置收集字段值变更的时机。",
-      type: "Select",
       defaultValue: "onChange",
-      options: "form.trigger",
       extra: {
         type: "info-link",
         props: { prefix: "还有疑问？", text: "查看示例", href: "https://ant-design.gitee.io/components/form-cn#components-form-demo-customized-form-controls" },
@@ -232,9 +228,7 @@ export const formItemProps = {
       title: "验证时机",
       name: "validateTrigger",
       tip: "设置字段触发验证的时机。",
-      type: "Select",
       defaultValue: "onChange",
-      options: "form.trigger",
     },
     {
       title: "值属性",
@@ -258,7 +252,7 @@ export const getComponentTitleProps = (title, config) =>
       title: `组件 ${title}`,
       name: "group-component",
       type: "Group",
-      icon: "icon-integral",
+      icon: "icon-component",
     },
   ].concat(config || []);
 

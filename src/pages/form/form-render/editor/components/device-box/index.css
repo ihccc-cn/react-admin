@@ -1,0 +1,108 @@
+.form-editor-device-box {
+  position: relative;
+  width: 390px;
+  height: 844px;
+  margin: 20px auto 0;
+  border-radius: 24px;
+  box-shadow: 0 0 0 8px #090a0d, 0 0 0 10px #9fa3a8, 0 0px 32px 12px rgb(0 0 0 / 40%);
+  transform: scale(0.95);
+  transform-origin: top center;
+}
+
+.form-editor-device-box-pad {
+  width: 1024px;
+  height: 768px;
+}
+
+.form-editor-device-box-status {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 32px;
+  padding: 0 20px;
+  background: #f5f5f5;
+  border-radius: 24px 24px 0 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #494949;
+  font-weight: 500;
+  user-select: none;
+  cursor: default;
+}
+
+.form-editor-device-box-status-block {
+  display: flex;
+  align-items: center;
+}
+
+.form-editor-device-box-status-block .device-box-status-icon {
+  margin-right: 2px;
+  font-size: 12px;
+}
+
+.form-editor-device-box-status-camera {
+  position: relative;
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 6px;
+  background-color: #000;
+  box-shadow: 0 0 0 5px #2d2d2d;
+}
+
+.form-editor-device-box-status-camera::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  width: 4px;
+  height: 3px;
+  background: linear-gradient(135deg, #1780b2, #11c7e7);
+  border-radius: 2px;
+}
+
+.form-editor-device-box-status-camera::after {
+  content: "";
+  position: absolute;
+  top: -1px;
+  right: 0;
+  width: 2px;
+  height: 2px;
+  background: linear-gradient(45deg, #00d9ff, #ffffff);
+  border-radius: 2px;
+}
+
+.form-editor-device-box-status-time {
+  margin-left: 12px;
+}
+
+.form-editor-device-box-status-power {
+  position: relative;
+  display: inline-block;
+  width: 18px;
+  height: 8px;
+  margin-left: 8px;
+  border-radius: 1px;
+  background: #31c656;
+  box-shadow: 0 0 0 1px #fff, 0 0 0 2px #8d8d8d;
+}
+
+.form-editor-device-box-status-power::before {
+  content: "100";
+  position: absolute;
+  left: -2px;
+  line-height: 8px;
+  transform: scale(0.55);
+  color: #fff;
+}
+
+.form-editor-device-box-status-power::after {
+  content: "";
+  position: absolute;
+  top: 1px;
+  bottom: 1px;
+  right: -4px;
+  border-right: 2px solid #8d8d8d;
+  border-radius: 1px;
+}

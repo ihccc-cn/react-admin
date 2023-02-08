@@ -63,7 +63,7 @@
     { "source": "token", "target": "password", "effects": { "type": "hidden", "operator": "!", "is": "false" } }
   ],
   "version": "1.0.0",
-  "device": null,
+  "device": "pad",
   "selected": {},
   "ghost": true
 }

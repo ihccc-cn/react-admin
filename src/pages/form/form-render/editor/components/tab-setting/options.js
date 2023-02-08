@@ -13,11 +13,6 @@ export default {
     { label: "vertical", value: "vertical" },
     { label: "inline", value: "inline" },
   ],
-  "form.trigger": [
-    { label: "onBlur", value: "onBlur" },
-    { label: "onChange", value: "onChange" },
-    { label: "onFocus", value: "onFocus" },
-  ],
   "layout.type": [{ label: "基本布局", value: "basic-form-layout" }],
   "layout.screen": [
     { label: "默认", value: "default" },

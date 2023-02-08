@@ -1,11 +1,11 @@
 import React from "react";
-import clsx from "clsx";
 import { Form } from "antd";
 import useSchemaForEditor from "../hooks/useSchemaForEditor";
 import ActionBar from "./components/action-bar";
 import TabFields from "./components/tab-fields";
 import TabSetting from "./components/tab-setting";
 import Canvas from "./components/canvas";
+import DeviceBox from "./components/device-box";
 import CanvasEmpty from "./components/canvas-empty";
 import ModalExport from "./components/modal-export";
 import ModalImport from "./components/modal-import";
@@ -95,6 +95,7 @@ function Editor({ schema: schemaValue, style }) {
             notChoose={!schema.selected.id || schema.preview}
             form={<TabSetting.Panel.Form value={schema.value.form?.props} onChange={schema.setFormProps} />}
             layout={<TabSetting.Panel.Layout value={schema.getLayoutConfig()} onChange={schema.setLayoutConfig} />}
+            dataConfig={<TabSetting.Panel.DataConfig value={{}} />}
             formItem={
               nodesConfig.formItem[schema.selected.input]?.enable !== false && (
                 <TabSetting.Panel.FormItem
@@ -114,15 +115,12 @@ function Editor({ schema: schemaValue, style }) {
               />
             }
             relation={<TabSetting.Panel.Relation value={{}} />}
-            data={<TabSetting.Panel.Data value={{}} />}
+            dataUse={<TabSetting.Panel.DataUse value={{}} />}
           />
         }
         style={style}
       >
-        <div
-          ref={mainContainerRef}
-          className={clsx(schema.device && "form-editor-wrapper-device", schema.device === "pad" && "form-editor-wrapper-device-pad")}
-        >
+        <DeviceBox ref={mainContainerRef} className={schema.device && "form-editor-wrapper"} device={schema.device}>
           <Form layout="horizontal" {...schema.value.form?.props} name="__form_editor__" style={{ background: "#fff", ...schema.value.form?.props?.style }}>
             <Canvas
               groupName={GROUP_NAME}
@@ -135,7 +133,7 @@ function Editor({ schema: schemaValue, style }) {
               style={schema.device ? { height: "100%", overflow: "auto" } : { minHeight: containerHeight }}
             />
           </Form>
-        </div>
+        </DeviceBox>
       </Layout>
     </React.Fragment>
   );
