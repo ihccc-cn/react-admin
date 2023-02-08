@@ -48,7 +48,7 @@ function RelationPanel({ value, onChange }) {
   );
 }
 
-function DataPanel({ value, onChange }) {
+function DataConfigPanel({ value, onChange }) {
   return (
     <div style={{ padding: "20px 14px 0 20px" }}>
       <FormRender config={dataConfig} value={Object.assign({}, value)} onChange={onChange} />
@@ -56,22 +56,30 @@ function DataPanel({ value, onChange }) {
   );
 }
 
-function TabSetting({ notChoose, form, layout, formItem, component, relation, data }) {
+function DataUsePanel({ value, onChange }) {
+  return (
+    <div style={{ padding: "20px 14px 0 20px" }}>
+      <FormRender config={dataConfig} value={Object.assign({}, value)} onChange={onChange} />
+    </div>
+  );
+}
+
+function TabSetting({ notChoose, form, layout, dataConfig, formItem, component, relation, dataUse }) {
   return (
     <Tabs
       items={
         notChoose
           ? [
               { label: <IconTip title="表单" icon="icon-product" />, key: "form", children: form },
-              { label: <IconTip title="布局" icon="icon-fencengpeizhi" />, key: "layout", children: layout },
-              { label: <IconTip title="数据" icon="icon-zijin" />, key: "data", children: "data" },
+              { label: <IconTip title="布局" icon="icon-integral" />, key: "layout", children: layout },
+              { label: <IconTip title="数据" icon="icon-zijin" />, key: "data-config", children: dataConfig },
             ]
           : [
               ...(!formItem ? [] : [{ label: <IconTip title="表单项" icon="icon-Similarproducts" />, key: "item", children: formItem }]),
-              { label: <IconTip title="组件" icon="icon-integral" />, key: "component", children: component },
+              { label: <IconTip title="组件" icon="icon-component" />, key: "component", children: component },
               // { label: <IconTip title="校验" icon="icon-shuangshen" />, key: "rules", children: "rules" },
               { label: <IconTip title="动态关联" icon="icon-connections" />, key: "relation", children: relation },
-              { label: <IconTip title="数据" icon="icon-zijin" />, key: "data", children: data },
+              { label: <IconTip title="数据" icon="icon-zijin" />, key: "data-use", children: dataUse },
             ]
       }
     />
@@ -84,7 +92,8 @@ TabSetting.Panel = {
   FormItem: FormItemPanel,
   Component: ComponentPanel,
   Relation: RelationPanel,
-  Data: DataPanel,
+  DataConfig: DataConfigPanel,
+  DataUse: DataUsePanel,
 };
 
 export default TabSetting;
