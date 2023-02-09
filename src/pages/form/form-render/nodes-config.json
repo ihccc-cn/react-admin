@@ -14,9 +14,8 @@
       ]
     },
     {
-      "id": "customize",
-      "group": "自定义",
-      "addAble": true,
+      "id": "extend",
+      "group": "系统扩展",
       "children": [
         { "id": "Checkbox", "type": "Checkbox", "title": "多选按钮", "icon": "icon-checkbox" },
         { "id": "Radio", "type": "Radio", "title": "单选按钮", "icon": "icon-radio" },
@@ -35,6 +34,11 @@
         { "id": "Mark", "type": "Mark", "title": "标注信息", "icon": "icon-RFQ-logo" },
         { "id": "Image", "type": "Image", "title": "图片元素", "icon": "icon-pic" }
       ]
+    },
+    {
+      "id": "customize",
+      "group": "自定义",
+      "children": []
     }
   ],
   "control": {
