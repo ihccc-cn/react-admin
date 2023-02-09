@@ -8,8 +8,6 @@ import CellEditor from "../cell-editor";
 function Canvas({ groupName, schema, layoutMap, componentMap, nodesConfig, transformItem, empty, rowKey, style }) {
   const { columns, formItem, component, layout } = schema.value;
 
-  if (columns.length === 0) return empty;
-
   const setLayoutItemWidth = React.useCallback((name, size) => {
     schema.setLayoutItem(name, layoutItem => {
       const currentWidth = p2n(layoutItem.style?.width) || 100;
@@ -112,6 +110,7 @@ function Canvas({ groupName, schema, layoutMap, componentMap, nodesConfig, trans
       preview={schema.preview}
       items={items}
       getLayoutItem={schema.getLayoutItem}
+      empty={empty}
       tag={ReactSortable}
       // ReactSortable.props
       handle={CellEditor.HANDLE_CLASSNAME}

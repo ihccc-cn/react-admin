@@ -3,7 +3,7 @@ import clsx from "clsx";
 import "./index.css";
 
 function BasicFormLayout(props) {
-  const { tag, preview, items, getLayoutItem, rowKey, ...restProps } = props;
+  const { tag, empty, preview, items, getLayoutItem, rowKey, ...restProps } = props;
 
   const itemList = items.map(item => {
     const layoutItem = getLayoutItem(item.name);
@@ -29,7 +29,7 @@ function BasicFormLayout(props) {
     );
   }
 
-  return React.createElement(tag, Object.assign(containerProps, restProps), itemList);
+  return React.createElement(tag, Object.assign(containerProps, restProps), itemList.length === 0 ? empty : itemList);
 }
 
 BasicFormLayout.defaultProps = {
