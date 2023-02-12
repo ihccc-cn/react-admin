@@ -58,13 +58,19 @@
     }
   },
   "component": { "token": { "type": "Input", "props": {} } },
-  "relation": [
-    { "source": "token", "target": "username", "effects": { "type": "hidden", "operator": "!", "is": "true" } },
-    { "source": "token", "target": "password", "effects": { "type": "hidden", "operator": "!", "is": "false" } }
+  "relations": [
+    {
+      "source": "token",
+      "target": "username",
+      "effects": [
+        { "type": "hidden", "operator": "!", "is": "true" },
+        { "type": "hidden", "operator": "!", "is": "false" }
+      ]
+    }
   ],
   "version": "1.0.0",
   "device": "pad",
   "selected": {},
   "ghost": true,
-  "preview": true
+  "preview": false
 }
