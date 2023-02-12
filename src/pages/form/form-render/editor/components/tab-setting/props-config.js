@@ -243,6 +243,11 @@ export const formItemProps = {
       type: "GridEditor",
       tip: "需要为输入控件设置布局样式时，使用该属性，用法同标签布局。你可以通过 Form 的标签布局进行统一设置，不会作用于嵌套 Item。当和 Form 同时设置时，以 Item 为准。",
     },
+    {
+      title: "样式",
+      name: "style",
+      type: "StyleEditor",
+    },
   ],
 };
 
