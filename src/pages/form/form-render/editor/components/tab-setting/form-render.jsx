@@ -31,28 +31,26 @@ function FormRender({ config, value, valuePropsName, defaultValuePropsName, onCh
             )}
           </div>
         </div>
-        <div>
-          {React.cloneElement(
-            inputElements[item.type] || inputElements["Input"],
-            Object.assign(
-              {
-                [defaultValuePropsName[item.type] || "defaultValue"]: item.defaultValue,
+        {React.cloneElement(
+          inputElements[item.type] || inputElements["Input"],
+          Object.assign(
+            {
+              [defaultValuePropsName[item.type] || "defaultValue"]: item.defaultValue,
+            },
+            item.props,
+            item.options
+              ? {
+                  options: options[item.options],
+                }
+              : {},
+            {
+              [valuePropsName[item.type] || "value"]: value[item.name],
+              onChange: e => {
+                onChange && onChange(item.name, inputValueFormat(e));
               },
-              item.props,
-              item.options
-                ? {
-                    options: options[item.options],
-                  }
-                : {},
-              {
-                [valuePropsName[item.type] || "value"]: value[item.name],
-                onChange: e => {
-                  onChange && onChange(item.name, inputValueFormat(e));
-                },
-              }
-            )
-          )}
-        </div>
+            }
+          )
+        )}
         {item.extra && React.createElement(extraBlocks[item.extra.type], item.extra.props)}
       </div>
     );

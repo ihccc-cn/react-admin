@@ -79,12 +79,10 @@ function ScreenEditor({ size, options, value, onChange }) {
         </div>
       ))}
       {ctrlRef.current.screens.length > 0 && (
-        <React.Fragment>
-          <div className="screen-editor-add">
-            <Select size={size} options={ctrlRef.current.screens} value={ctrlRef.current.next} onChange={handleNextScreen} />
-            <Button type="dashed" size={size} icon={<Icon type="icon-add-select" />} style={{ width: 60 }} onClick={handleAddScreen} />
-          </div>
-        </React.Fragment>
+        <div className="screen-editor-add">
+          <Select size={size} options={ctrlRef.current.screens} value={ctrlRef.current.next} onChange={handleNextScreen} />
+          <Button type="dashed" size={size} icon={<Icon type="icon-add-select" />} style={{ width: 60 }} onClick={handleAddScreen} />
+        </div>
       )}
     </div>
   );

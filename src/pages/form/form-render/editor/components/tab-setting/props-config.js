@@ -269,10 +269,10 @@ export const relationConfig = [
     icon: "icon-connections",
   },
   {
-    title: "新建规则",
-    name: "rules",
+    title: "联动关系",
+    name: "relations",
     tip: "功能待完善",
-    type: "ArrayInput",
+    type: "RelationEditor",
   },
 ];
 
