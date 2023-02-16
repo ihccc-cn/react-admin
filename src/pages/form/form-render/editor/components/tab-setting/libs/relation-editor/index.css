@@ -6,14 +6,12 @@
   padding: var(--space) 0;
   display: flex;
   align-items: center;
-  margin-bottom: var(--space);
   border-bottom: 1px dashed #d9d9d9;
 }
 
 .relation-editor-source-label {
   width: 6em;
   margin-right: var(--space);
-  text-align: center;
 }
 
 .relation-editor-source-node {
@@ -26,20 +24,18 @@
 
 .relation-editor-item {
   padding: var(--space) 0;
-  margin-bottom: var(--space);
   border-bottom: 1px dashed #d9d9d9;
 }
 
 .relation-editor-item-target {
+  position: relative;
   display: flex;
   align-items: center;
-  margin-bottom: var(--space);
 }
 
 .relation-editor-item-target-label {
   width: 6em;
   margin-right: var(--space);
-  text-align: center;
 }
 
 .relation-editor-item-target-node {
@@ -51,29 +47,42 @@
 }
 
 .relation-editor-item-target-add {
-  margin-left: var(--space);
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0 8px;
+  background: #fff;
   color: #6d68f8;
-  opacity: 0.4;
+  opacity: 0;
+  box-shadow: -4px 0 4px -2px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   transition: 0.2s;
 }
 
-.relation-editor-item-target-add:hover {
+.relation-editor-item-target:hover .relation-editor-item-target-add {
   opacity: 1;
+}
+
+.relation-editor-item-target-config {
+  display: flex;
+}
+
+.relation-editor-item-target-select {
+  flex: 1;
+}
+
+.relation-editor-item-target-remove {
+  margin-left: var(--space);
 }
 
 .relation-editor-item-effect {
   display: flex;
-  margin-bottom: var(--space);
+  margin-top: var(--space);
 }
 
 .relation-editor-item-effect-func {
-  width: 6em;
   margin-right: var(--space);
-  border: 1px solid #d9d9d9;
-  border-radius: 4px;
-  text-align: center;
-  cursor: pointer;
 }
 
 .relation-editor-item-effect-type {
@@ -86,19 +95,11 @@
 
 .relation-editor-item-effect-remove {
   margin-left: var(--space);
-  color: #f44336;
-  opacity: 0.4;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-.relation-editor-item-effect-remove:hover {
-  opacity: 1;
 }
 
 .relation-editor-add {
   display: flex;
-  margin-bottom: var(--space);
+  margin-top: var(--space);
 }
 
 .relation-editor-add > :nth-child(1) {

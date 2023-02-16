@@ -1,12 +1,13 @@
 import React from "react";
+import clsx from "clsx";
 import { InputNumber, Input } from "antd";
 import "./col-input.css";
 
-function SpanInput({ name, type, style, defaultValue, data, onChange }) {
+function SpanInput({ name, row, type, style, defaultValue, data, onChange }) {
   const handleChange = React.useCallback(name => e => onChange(name, e), [onChange]);
 
   return (
-    <div className="span-input" style={style}>
+    <div className={clsx(!row ? "span-input" : "span-input-row")} style={style}>
       {name && <div className="span-input-title">{name}</div>}
       {type === "Input" ? (
         <Input size="small" placeholder="请输入" defaultValue={defaultValue} value={data[name]} onChange={handleChange(name)} />

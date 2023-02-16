@@ -77,7 +77,7 @@ function GridEditor({ size, value, onChange }) {
       ctrlRef.current.nodes.splice(index, 1);
       delete valueRef.current[item.screen.value];
       changeFormat && changeFormat(valueRef.current);
-      // syncScreens();
+      syncScreens();
     },
     [changeFormat]
   );
@@ -136,9 +136,7 @@ function GridEditor({ size, value, onChange }) {
               <Icon type="icon-reduce" />
             </span>
           </div>
-          {item.type === "number" && (
-            <SpanInput name="span" style={{ display: "block" }} data={valueRef.current[item.screen.value]} onChange={handleChange(item)} />
-          )}
+          {item.type === "number" && <SpanInput row name="span" data={valueRef.current[item.screen.value]} onChange={handleChange(item)} />}
           {item.type === "object" && <ColInput config={colPropsConfig} data={valueRef.current[item.screen.value]} onChange={handleChange(item)} />}
         </div>
       ))}

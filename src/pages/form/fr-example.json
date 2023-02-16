@@ -64,7 +64,8 @@
       "target": "username",
       "effects": [
         { "type": "hidden", "operator": "!", "is": "true" },
-        { "type": "hidden", "operator": "!", "is": "false" }
+        { "type": "hidden", "operator": "!", "is": "false" },
+        { "type": "setValue", "func": "return value;" }
       ]
     }
   ],

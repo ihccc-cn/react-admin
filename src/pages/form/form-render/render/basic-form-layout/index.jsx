@@ -33,6 +33,7 @@ function BasicFormLayout(props) {
 }
 
 BasicFormLayout.defaultProps = {
+  preview: true,
   rowKey: "id",
 };
 

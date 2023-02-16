@@ -1,4 +1,5 @@
 import React from "react";
+import get from "lodash/get";
 import { Tabs } from "antd";
 import IconTip from "../icon-tip";
 import FormRender from "./form-render";
@@ -43,7 +44,19 @@ function ComponentPanel({ name, config, value, onChange }) {
 function RelationPanel({ value, onChange }) {
   return (
     <div style={{ padding: "20px 14px 0 20px" }}>
-      <FormRender config={relationConfig} value={Object.assign({}, value)} onChange={onChange} />
+      <FormRender
+        config={relationConfig}
+        consumer={(item, schema) => {
+          if (item.name === "relations") {
+            return {
+              source: get(schema, "selected.name", null),
+              columns: get(schema, "value.columns", []).map(item => ({ label: item.title, value: item.name })),
+            };
+          }
+        }}
+        value={Object.assign({}, value)}
+        onChange={onChange}
+      />
     </div>
   );
 }
@@ -78,7 +91,7 @@ function TabSetting({ notChoose, form, layout, dataConfig, formItem, component, 
               ...(!formItem ? [] : [{ label: <IconTip title="表单项" icon="icon-Similarproducts" />, key: "item", children: formItem }]),
               { label: <IconTip title="组件" icon="icon-component" />, key: "component", children: component },
               // { label: <IconTip title="校验" icon="icon-shuangshen" />, key: "rules", children: "rules" },
-              { label: <IconTip title="动态关联" icon="icon-connections" />, key: "relation", children: relation },
+              { label: <IconTip title="联动" icon="icon-connections" />, key: "relation", children: relation },
               { label: <IconTip title="数据" icon="icon-zijin" />, key: "data-use", children: dataUse },
             ]
       }

@@ -10,6 +10,7 @@ import CanvasEmpty from "./components/canvas-empty";
 import ModalExport from "./components/modal-export";
 import ModalImport from "./components/modal-import";
 import Layout from "./layout";
+import EditorContext from "./editor-context";
 import nodesConfig from "../nodes-config.json";
 import components from "../components";
 import { BasicFormLayout } from "../render";
@@ -53,7 +54,7 @@ function Editor({ schema: schemaValue, style }) {
   );
 
   return (
-    <React.Fragment>
+    <EditorContext.Provider value={{ schema }}>
       <style>
         {`
       .form-editor-layout .ant-tabs-content { height: calc(${style.height || "100vh"} - 48px); }
@@ -135,7 +136,7 @@ function Editor({ schema: schemaValue, style }) {
           </Form>
         </DeviceBox>
       </Layout>
-    </React.Fragment>
+    </EditorContext.Provider>
   );
 }
 

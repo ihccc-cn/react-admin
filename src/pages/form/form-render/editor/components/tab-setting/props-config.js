@@ -263,7 +263,7 @@ export const getComponentTitleProps = (title, config) =>
 
 export const relationConfig = [
   {
-    title: "动态关联",
+    title: "联动",
     name: "group-relation",
     type: "Group",
     icon: "icon-connections",
