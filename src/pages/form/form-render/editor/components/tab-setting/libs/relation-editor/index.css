@@ -10,7 +10,7 @@
 }
 
 .relation-editor-source-label {
-  width: 6em;
+  width: 5em;
   margin-right: var(--space);
 }
 
@@ -34,7 +34,7 @@
 }
 
 .relation-editor-item-target-label {
-  width: 6em;
+  width: 5em;
   margin-right: var(--space);
 }
 
@@ -46,21 +46,20 @@
   text-align: center;
 }
 
-.relation-editor-item-target-add {
+.relation-editor-item-target-action {
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
-  padding: 0 8px;
+  padding-left: 8px;
   background: #fff;
   color: #6d68f8;
   opacity: 0;
   box-shadow: -4px 0 4px -2px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
   transition: 0.2s;
 }
 
-.relation-editor-item-target:hover .relation-editor-item-target-add {
+.relation-editor-item-target:hover .relation-editor-item-target-action {
   opacity: 1;
 }
 
@@ -82,6 +81,7 @@
 }
 
 .relation-editor-item-effect-func {
+  min-width: 5em;
   margin-right: var(--space);
 }
 
@@ -105,4 +105,12 @@
 .relation-editor-add > :nth-child(1) {
   flex: 1;
   margin-right: var(--space);
+}
+
+.code-function {
+  width: 300px;
+  height: 200px;
+  background-color: #f5f5f5;
+  font-size: 14px;
+  font-family: ui-monospace, SFMono-Regular, SF Mono, Consolas, Liberation Mono, Menlo, monospace;
 }

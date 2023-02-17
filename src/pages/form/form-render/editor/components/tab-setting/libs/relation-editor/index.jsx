@@ -2,8 +2,10 @@ import React from "react";
 import useUnmountedRef from "ahooks/lib/useUnmountedRef";
 import useUpdate from "ahooks/lib/useUpdate";
 import differenceWith from "lodash/differenceWith";
-import { Button, Select } from "antd";
+import { Button, Select, Popover } from "antd";
+import CodeEditor from "@uiw/react-textarea-code-editor";
 import Icon from "@/common/components/icon";
+import { inputValueFormat } from "@/utils";
 import "./index.css";
 
 const effectOptions = [
@@ -12,8 +14,25 @@ const effectOptions = [
   { label: "修改", value: "changeValue" },
 ];
 
+function CodePopover({ value, onChange, ...restProps }) {
+  return (
+    <Popover
+      placement="left"
+      trigger={["click"]}
+      {...restProps}
+      content={
+        <React.Fragment>
+          <div>{"function (value, formValue) {"}</div>
+          <CodeEditor className="code-function" value={value} language="js" placeholder="请输入" onChange={onChange} />
+          <div>{"}"}</div>
+        </React.Fragment>
+      }
+    />
+  );
+}
+
 function RelationEditor({ size, source, columns, value, onChange }) {
-  const ctrlRef = React.useRef({ targets: [], next: null, labels: {}, effectLabels: {} });
+  const ctrlRef = React.useRef({ targets: [], next: null, labels: {}, targetEffectOptions: {}, effectLabels: {} });
   const [editTarget, setEditTarget] = React.useState(null);
   // [{
   //   source: "password",
@@ -49,8 +68,10 @@ function RelationEditor({ size, source, columns, value, onChange }) {
 
   const syncCtrl = React.useCallback(() => {
     ctrlRef.current.targets = differenceWith(columns, valueRef.current, (x, y) => x.value === y.target);
-    const currentTargets = ctrlRef.current.targets;
-    if (currentTargets.length > 0) ctrlRef.current.next = currentTargets[0];
+    if (ctrlRef.current.targets.length > 0) ctrlRef.current.next = ctrlRef.current.targets[0];
+    valueRef.current.forEach(relation => {
+      ctrlRef.current.targetEffectOptions[relation.target] = differenceWith(effectOptions, relation.effects, (x, y) => x.value === y.type);
+    });
     update();
   }, [columns]);
 
@@ -66,16 +87,21 @@ function RelationEditor({ size, source, columns, value, onChange }) {
   }, []);
 
   const handleAddEffect = React.useCallback((value, ix) => {
-    valueRef.current[ix].effects.push({ type: value, func: "" });
+    valueRef.current[ix].effects.push({ type: value, func: "return !value;" });
     syncCtrl();
   }, []);
 
-  const handleRemoveRelation = React.useCallback(ix => {
+  const handleEffectFunc = React.useCallback((e, ix, ex) => {
+    valueRef.current[ix].effects[ex].func = inputValueFormat(e);
+    update();
+  }, []);
+
+  const handleRelationRemove = React.useCallback(ix => {
     valueRef.current.splice(ix, 1);
     syncCtrl();
   }, []);
 
-  const handleRemoveEffect = React.useCallback((ix, ex) => {
+  const handleEffectRemove = React.useCallback((ix, ex) => {
     valueRef.current[ix].effects.splice(ex, 1);
     update();
   }, []);
@@ -104,31 +130,39 @@ function RelationEditor({ size, source, columns, value, onChange }) {
                 className="relation-editor-item-target-select"
                 size={size}
                 placeholder="请选择"
-                options={effectOptions}
-                // value={""}
+                options={ctrlRef.current.targetEffectOptions[item.target] || effectOptions}
+                value={null}
                 onChange={e => handleAddEffect(e, ix)}
-              />
-              <Button
-                className="relation-editor-item-target-remove"
-                type="link"
-                danger
-                size={size}
-                icon={<Icon type="icon-reduce" />}
-                onClick={() => handleRemoveRelation(ix)}
               />
             </div>
           ) : (
             <div className="relation-editor-item-target">
               <span className="relation-editor-item-target-label">执行位：</span>
               <div className="relation-editor-item-target-node">{getTargetLabel(item.target)}</div>
-              <span className="relation-editor-item-target-add" onClick={() => setEditTarget(item.target)}>
-                <Icon type="icon-conditions" />
-              </span>
+              <div className="relation-editor-item-target-action">
+                <Button
+                  className="relation-editor-item-target-add"
+                  type="link"
+                  size={size}
+                  icon={<Icon type="icon-conditions" />}
+                  onClick={() => setEditTarget(item.target)}
+                />
+                <Button
+                  className="relation-editor-item-target-remove"
+                  type="link"
+                  danger
+                  size={size}
+                  icon={<Icon type="icon-reduce" />}
+                  onClick={() => handleRelationRemove(ix)}
+                />
+              </div>
             </div>
           )}
           {item.effects.map((effect, ex) => (
             <div className="relation-editor-item-effect" key={effect.type}>
-              <Button className="relation-editor-item-effect-func" size={size} icon={<Icon type="icon-code" />} />
+              <CodePopover value={effect.func} onChange={e => handleEffectFunc(e, ix, ex)}>
+                <Button className="relation-editor-item-effect-func" size={size} icon={<Icon type="icon-code" />} />
+              </CodePopover>
               <div className="relation-editor-item-effect-type">{getEffectLabel(effect.type)}</div>
               <Button
                 className="relation-editor-item-effect-remove"
@@ -136,7 +170,7 @@ function RelationEditor({ size, source, columns, value, onChange }) {
                 danger
                 size={size}
                 icon={<Icon type="icon-reduce" />}
-                onClick={() => handleRemoveEffect(ix, ex)}
+                onClick={() => handleEffectRemove(ix, ex)}
               />
             </div>
           ))}

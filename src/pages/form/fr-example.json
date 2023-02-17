@@ -70,7 +70,7 @@
     }
   ],
   "version": "1.0.0",
-  "device": "pad",
+  "device": null,
   "selected": {},
   "ghost": true,
   "preview": false
