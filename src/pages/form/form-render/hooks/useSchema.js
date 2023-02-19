@@ -161,7 +161,7 @@ function useSchema(schema) {
   const setDevice = React.useCallback(device => {
     setSubValue("device", device);
     // 如果有，显示对应布局
-    const { screens } = getLayoutConfig();
+    const { screens = {} } = getLayoutConfig();
     if (device === "phone" && !!screens["xs"]) setLayoutConfig("active", { active: "xs" });
     if (device === "pad" && !!screens["lg"]) setLayoutConfig("active", { active: "lg" });
     if (!device && !!screens["default"]) setLayoutConfig("active", { active: "default" });
