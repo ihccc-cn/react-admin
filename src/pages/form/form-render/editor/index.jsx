@@ -7,8 +7,6 @@ import TabSetting from "./components/tab-setting";
 import Canvas from "./components/canvas";
 import DeviceBox from "./components/device-box";
 import CanvasEmpty from "./components/canvas-empty";
-import ModalExport from "./components/modal-export";
-import ModalImport from "./components/modal-import";
 import Layout from "./layout";
 import EditorContext from "./editor-context";
 import nodesConfig from "../nodes-config.json";
@@ -27,15 +25,9 @@ const transformField = ({ type, ...data }) => {
 function Editor({ schema: schemaValue, style }) {
   const mainContainerRef = React.useRef(null);
   const schema = useSchemaForEditor(schemaValue);
-  const [imVisible, setImVisible] = React.useState(false);
-  const [exportJson, setExportJson] = React.useState(null);
   const [containerHeight, setContainerHeight] = React.useState(null);
 
   console.log("💾[editor-schema]: ", schema);
-
-  const handleExport = React.useCallback(() => {
-    setExportJson(schema.getExportJson());
-  }, []);
 
   const handleField = React.useCallback(item => {
     schema.setColumns(current => current.concat(transformField(item)));
@@ -60,22 +52,8 @@ function Editor({ schema: schemaValue, style }) {
       .form-editor-layout .ant-tabs-content { height: calc(${style.height || "100vh"} - 48px); }
       `}
       </style>
-      <ModalExport open={!!exportJson} value={exportJson} onCancel={() => setExportJson(null)} />
-      <ModalImport open={imVisible} onOk={schema.setValue} onCancel={() => setImVisible(false)} />
       <Layout
-        top={
-          <ActionBar
-            visible={{ preview: !schema.isEmpty, export: !schema.isEmpty, clear: !schema.isEmpty }}
-            state={{ device: schema.device, ghost: schema.ghost, preview: schema.preview }}
-            onPhone={() => schema.setDevice(schema.device !== "phone" ? "phone" : null)}
-            onPad={() => schema.setDevice(schema.device !== "pad" ? "pad" : null)}
-            onGhost={schema.toggleGhost}
-            onPreview={schema.togglePreview}
-            onImport={() => setImVisible(true)}
-            onExport={handleExport}
-            onClear={schema.clear}
-          />
-        }
+        top={<ActionBar />}
         left={
           <TabFields
             component={
@@ -115,7 +93,7 @@ function Editor({ schema: schemaValue, style }) {
                 key={schema.selected.id}
               />
             }
-            relation={<TabSetting.Panel.Relation value={{}} />}
+            relation={<TabSetting.Panel.Relation />}
             dataUse={<TabSetting.Panel.DataUse value={{}} />}
           />
         }

@@ -59,15 +59,13 @@
   },
   "component": { "token": { "type": "Input", "props": {} } },
   "relations": [
-    {
-      "source": "token",
-      "target": "username",
-      "effects": [
-        { "type": "hidden", "operator": "!", "is": "true" },
-        { "type": "hidden", "operator": "!", "is": "false" },
-        { "type": "setValue", "func": "return value;" }
-      ]
-    }
+    { "source": "token", "target": "password", "effects": [{ "type": "disabled", "func": "return !value;" }] },
+    { "source": "username", "target": "password", "effects": [{ "type": "disabled", "func": "return !value;" }] },
+    { "source": "username", "target": "number", "effects": [{ "type": "disabled", "func": "return !value;" }] },
+    { "source": "username", "target": "time", "effects": [{ "type": "disabled", "func": "return !value;" }] },
+    { "source": "username", "target": "enable", "effects": [{ "type": "disabled", "func": "return !value;" }] },
+    { "source": "username", "target": "score", "effects": [{ "type": "disabled", "func": "return !value;" }] },
+    { "source": "username", "target": "address", "effects": [{ "type": "disabled", "func": "return !value;" }] }
   ],
   "version": "1.0.0",
   "device": null,

@@ -2,6 +2,7 @@ import React from "react";
 import get from "lodash/get";
 import { Tabs } from "antd";
 import IconTip from "../icon-tip";
+import EditorContext from "../../editor-context";
 import FormRender from "./form-render";
 import { formProps, layoutProps, formItemProps, getComponentTitleProps, relationConfig, dataConfig } from "./props-config";
 
@@ -41,21 +42,22 @@ function ComponentPanel({ name, config, value, onChange }) {
   );
 }
 
-function RelationPanel({ value, onChange }) {
+function RelationPanel() {
+  const { schema } = React.useContext(EditorContext);
   return (
     <div style={{ padding: "20px 14px 0 20px" }}>
       <FormRender
         config={relationConfig}
-        consumer={(item, schema) => {
+        onChange={(_, value) => schema.setRelations(value)}
+        consumer={item => {
           if (item.name === "relations") {
-            return {
-              source: get(schema, "selected.name", null),
-              columns: get(schema, "value.columns", []).map(item => ({ label: item.title, value: item.name })),
-            };
+            const source = get(schema, "selected.name", null);
+            const columns = get(schema, "value.columns", []).map(item => ({ label: item.title, value: item.name }));
+            const relations = get(schema, "value.relations", []);
+            const currentRelations = relations.filter(item => item.source === source);
+            return { source, columns, value: currentRelations };
           }
         }}
-        value={Object.assign({}, value)}
-        onChange={onChange}
       />
     </div>
   );

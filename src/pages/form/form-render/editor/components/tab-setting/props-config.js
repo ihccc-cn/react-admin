@@ -271,7 +271,7 @@ export const relationConfig = [
   {
     title: "联动关系",
     name: "relations",
-    tip: "功能待完善",
+    tip: "配置表单之间联动关系；添加关联后，表单将会监听当前选择的表单值变化，根据用户条件代码，修改添加的执行表单的配置，实现隐藏、禁用等操作。",
     type: "RelationEditor",
   },
 ];

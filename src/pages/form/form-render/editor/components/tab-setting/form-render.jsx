@@ -5,12 +5,9 @@ import { inputValueFormat } from "@/utils";
 import inputElements from "./input-elements";
 import options from "./options";
 import extraBlocks from "./extra-blocks";
-import EditorContext from "../../editor-context";
 import "./form-render.css";
 
 function FormRender({ config, consumer, value, valuePropsName, defaultValuePropsName, onChange }) {
-  const { schema } = React.useContext(EditorContext);
-
   return (config || []).map(item => {
     if (item.type === "Group") {
       return (
@@ -41,7 +38,6 @@ function FormRender({ config, consumer, value, valuePropsName, defaultValueProps
               [defaultValuePropsName[item.type] || "defaultValue"]: item.defaultValue,
             },
             item.props,
-            !consumer ? {} : consumer(item, schema),
             item.options
               ? {
                   options: options[item.options],
@@ -52,7 +48,8 @@ function FormRender({ config, consumer, value, valuePropsName, defaultValueProps
               onChange: e => {
                 onChange && onChange(item.name, inputValueFormat(e));
               },
-            }
+            },
+            !consumer ? {} : consumer(item)
           )
         )}
         {item.extra && React.createElement(extraBlocks[item.extra.type], item.extra.props)}
