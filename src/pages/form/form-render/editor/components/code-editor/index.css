@@ -1,0 +1,20 @@
+.code-editor-wrapper {
+  position: relative;
+  min-width: 240px;
+}
+
+.code-editor-prefix,
+.code-editor-suffix {
+  padding: 0 8px;
+  font-weight: bold;
+}
+
+.code-editor-body {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.code-editor-footer {
+  margin-top: 8px;
+  text-align: right;
+}

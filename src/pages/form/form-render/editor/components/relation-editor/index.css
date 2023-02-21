@@ -3,15 +3,14 @@
 }
 
 .relation-editor-source {
-  padding: var(--space) 0;
-  display: flex;
-  align-items: center;
+  padding-bottom: var(--space);
   border-bottom: 1px dashed #d9d9d9;
 }
 
-.relation-editor-source-label {
-  width: 5em;
-  margin-right: var(--space);
+.relation-editor-unit-label {
+  padding: var(--space);
+  text-align: center;
+  color: #b9b9b9;
 }
 
 .relation-editor-source-node {
@@ -23,7 +22,7 @@
 }
 
 .relation-editor-item {
-  padding: var(--space) 0;
+  padding-bottom: var(--space);
   border-bottom: 1px dashed #d9d9d9;
 }
 
@@ -33,34 +32,10 @@
   align-items: center;
 }
 
-.relation-editor-item-target-label {
-  width: 5em;
-  margin-right: var(--space);
-}
-
 .relation-editor-item-target-node {
   flex: 1;
-  border: 1px solid #6d68f8;
-  border-radius: 4px;
   color: #6d68f8;
   text-align: center;
-}
-
-.relation-editor-item-target-action {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  padding-left: 8px;
-  background: #fff;
-  color: #6d68f8;
-  opacity: 0;
-  box-shadow: -4px 0 4px -2px rgba(0, 0, 0, 0.1);
-  transition: 0.2s;
-}
-
-.relation-editor-item-target:hover .relation-editor-item-target-action {
-  opacity: 1;
 }
 
 .relation-editor-item-target-config {
@@ -87,10 +62,9 @@
 
 .relation-editor-item-effect-type {
   flex: 1;
-  border: 1px solid #d9d9d9;
+  background: #f1f1f1;
   border-radius: 4px;
   text-align: center;
-  cursor: pointer;
 }
 
 .relation-editor-item-effect-remove {
@@ -99,18 +73,9 @@
 
 .relation-editor-add {
   display: flex;
-  margin-top: var(--space);
 }
 
 .relation-editor-add > :nth-child(1) {
   flex: 1;
   margin-right: var(--space);
-}
-
-.code-function {
-  width: 300px;
-  height: 200px;
-  background-color: #f5f5f5;
-  font-size: 14px;
-  font-family: ui-monospace, SFMono-Regular, SF Mono, Consolas, Liberation Mono, Menlo, monospace;
 }

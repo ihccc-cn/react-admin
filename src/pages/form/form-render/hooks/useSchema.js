@@ -1,6 +1,7 @@
 import React from "react";
 import useUpdate from "ahooks/lib/useUpdate";
 import set from "lodash/set";
+import uniqWith from "lodash/uniqWith";
 import { version, EditorUtil } from "../utils";
 
 function useSchema(schema) {
@@ -159,13 +160,22 @@ function useSchema(schema) {
 
   // 设置预览设备
   const setDevice = React.useCallback(device => {
-    setSubValue("device", device);
-    // 如果有，显示对应布局
-    const { screens = {} } = getLayoutConfig();
-    if (device === "phone" && !!screens["xs"]) setLayoutConfig("active", { active: "xs" });
-    if (device === "pad" && !!screens["lg"]) setLayoutConfig("active", { active: "lg" });
-    if (!device && !!screens["default"]) setLayoutConfig("active", { active: "default" });
+    setSubValue("device", current => {
+      const nextState = typeof device === "function" ? device(current) : device;
+      // 如果有，显示对应布局
+      const { screens = {} } = getLayoutConfig();
+      if (nextState === "phone" && !!screens["xs"]) setLayoutConfig("active", { active: "xs" });
+      else if (nextState === "pad" && !!screens["lg"]) setLayoutConfig("active", { active: "lg" });
+      else if (!nextState && !!screens["default"]) setLayoutConfig("active", { active: "default" });
+      return nextState;
+    });
   }, []);
+
+  // 修改 relation 值
+  const setRelations = React.useCallback(
+    newRelations => setSubValue("relations", relations => uniqWith(relations.concat(newRelations), (a, b) => a.source + a.target === b.source + b.target), []),
+    []
+  );
 
   React.useEffect(() => {
     setValue(schema);
@@ -197,6 +207,7 @@ function useSchema(schema) {
     setFormItemProps,
     setComponent,
     setComponentProps,
+    setRelations,
     setSelected,
   };
 }
