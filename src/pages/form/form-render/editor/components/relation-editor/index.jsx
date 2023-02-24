@@ -3,9 +3,12 @@ import useUnmountedRef from "ahooks/lib/useUnmountedRef";
 import useUpdate from "ahooks/lib/useUpdate";
 import differenceWith from "lodash/differenceWith";
 import { Button, Select } from "antd";
+import { langs } from "@uiw/codemirror-extensions-langs";
 import Icon from "@/common/components/icon";
 import { CodePopover } from "../code-editor";
 import "./index.css";
+
+const extensions = [langs.javascript()];
 
 const effectOptions = [
   { label: "隐藏", value: "hidden" },
@@ -145,9 +148,10 @@ function RelationEditor({ size, source, columns, value, onChange }) {
             <div className="relation-editor-item-effect" key={effect.type}>
               <CodePopover
                 placement="leftBottom"
+                width="480px"
                 prefix={"function (value, formValue) {"}
                 suffix={"}"}
-                width="480px"
+                extensions={extensions}
                 value={effect.func}
                 onChange={e => handleEffectFunc(e, ix, ex)}
               >

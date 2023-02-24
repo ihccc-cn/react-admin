@@ -1,18 +1,19 @@
 import React from "react";
 import { Button, Popover } from "antd";
 import CodeMirror from "@uiw/react-codemirror";
-import { javascript } from "@codemirror/lang-javascript";
 import { githubLight } from "@uiw/codemirror-theme-github";
 import { inputValueFormat } from "@/utils";
 import "./index.css";
 
-const extensions = [javascript()];
+export function CodeEditor(props) {
+  return <CodeMirror className="code-editor-body" theme={githubLight} {...props} />;
+}
 
-function CodeEditor({ prefix, suffix, value, onChange, onConfirm, ...restProps }) {
+function CodeEditorWithConfirm({ prefix, suffix, onConfirm, ...restProps }) {
   return (
     <div className="code-editor-wrapper">
       {prefix && <div className="code-editor-prefix">{prefix}</div>}
-      <CodeMirror className="code-editor-body" maxHeight="320px" theme={githubLight} {...restProps} value={value} extensions={extensions} onChange={onChange} />
+      <CodeMirror className="code-editor-body" maxHeight="320px" {...restProps} />
       {suffix && <div className="code-editor-suffix">{suffix}</div>}
       <div className="code-editor-footer">
         <Button type="primary" size="small" onClick={onConfirm}>
@@ -23,7 +24,7 @@ function CodeEditor({ prefix, suffix, value, onChange, onConfirm, ...restProps }
   );
 }
 
-export function CodePopover({ prefix, suffix, width, value, onChange, ...restProps }) {
+export function CodePopover({ prefix, suffix, width, extensions, value, onChange, ...restProps }) {
   const [open, setOpen] = React.useState(false);
   const [val, setVal] = React.useState(value);
 
@@ -47,9 +48,19 @@ export function CodePopover({ prefix, suffix, width, value, onChange, ...restPro
       {...restProps}
       open={open}
       onOpenChange={setOpen}
-      content={<CodeEditor prefix={prefix} suffix={suffix} width={width} value={val} onChange={handleChange} onConfirm={handleConfirm} />}
+      content={
+        <CodeEditorWithConfirm
+          prefix={prefix}
+          suffix={suffix}
+          width={width}
+          extensions={extensions}
+          value={val}
+          onChange={handleChange}
+          onConfirm={handleConfirm}
+        />
+      }
     />
   );
 }
 
-export default CodeEditor;
+export default CodeEditorWithConfirm;

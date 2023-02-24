@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@codemirror/lang-javascript": "^6.1.4",
+    "@uiw/codemirror-extensions-langs": "^4.19.9",
     "@uiw/codemirror-theme-github": "^4.19.9",
     "@uiw/react-codemirror": "^4.19.9",
     "ahooks": "^3.7.3",
