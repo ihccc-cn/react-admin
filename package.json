@@ -13,7 +13,7 @@
     "@uiw/codemirror-theme-github": "^4.19.9",
     "@uiw/react-codemirror": "^4.19.9",
     "ahooks": "^3.7.3",
-    "antd": "^5.1.7",
+    "antd": "^5.2.2",
     "base-components-antd": "^1.2.4",
     "clsx": "^1.2.1",
     "dayjs": "^1.11.6",
