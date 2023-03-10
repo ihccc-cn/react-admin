@@ -4,13 +4,18 @@ import set from "lodash/set";
 import uniqWith from "lodash/uniqWith";
 import { version, EditorUtil } from "../utils";
 
-function useSchema(schema) {
+function useSchema(schemaValue) {
   const valueRef = React.useRef({ columns: [], layout: { type: "basic-form-layout" }, version });
   const update = useUpdate();
 
-  const clear = React.useCallback(() => {
-    valueRef.current = { columns: [], layout: { type: "basic-form-layout" }, version };
-    update();
+  const setValue = React.useCallback(value => {
+    if (!value) return;
+    if (EditorUtil.checkValue(value)) {
+      valueRef.current = EditorUtil.importValue(value);
+      update();
+    } else {
+      console.warn("[form-editor] schema incorrect format.");
+    }
   }, []);
 
   // 获取布局
@@ -43,21 +48,6 @@ function useSchema(schema) {
     };
   }, []);
 
-  // 获取导出 json
-  const getExportJson = React.useCallback(() => {
-    return EditorUtil.exportJson(valueRef.current);
-  }, []);
-
-  const setValue = React.useCallback(value => {
-    if (!value) return;
-    if (EditorUtil.checkValue(value)) {
-      valueRef.current = EditorUtil.importValue(value);
-      update();
-    } else {
-      console.warn("[form-editor] schema incorrect format.");
-    }
-  }, []);
-
   const setSubValue = React.useCallback((type, value, defaultValue) => {
     if (typeof value === "function") {
       valueRef.current[type] = value(valueRef.current[type] || defaultValue);
@@ -88,16 +78,6 @@ function useSchema(schema) {
   const setLayoutConfig = React.useCallback((key, value) => {
     setLayout(layout => {
       if (key === "active") {
-        // const { active, screens } = value;
-        // if (!!screens) {
-        //   if (!layout.screens) layout.screens = {};
-        //   for (const key in layout.screens) {
-        //     if (screens.indexOf(key) === -1) delete layout.screens[key];
-        //   }
-        //   for (const key of screens) {
-        //     if (!layout.screens[key]) layout.screens[key] = {};
-        //   }
-        // }
         const { active, create, remove } = value;
         if (!layout.screens) layout.screens = {};
         if (create && !layout.screens[create]) layout.screens[create] = {};
@@ -125,12 +105,12 @@ function useSchema(schema) {
   const setFormItem = React.useCallback(formItem => setSubValue("formItem", formItem, {}), []);
 
   // 修改 formItem.props 值
-  const setFormItemProps = React.useCallback((key, value) => {
-    const name = valueRef.current.selected.name;
+  const setFormItemProps = React.useCallback((key, value, name) => {
+    const target = name || valueRef.current.selected.name;
     setFormItem(formItem => {
-      if (!formItem[name]) formItem[name] = {};
-      if (!formItem[name].props) formItem[name].props = {};
-      formItem[name].props[key] = value;
+      if (!formItem[target]) formItem[target] = {};
+      if (!formItem[target].props) formItem[target].props = {};
+      formItem[target].props[key] = value;
       return Object.assign({}, formItem);
     });
   }, []);
@@ -139,35 +119,13 @@ function useSchema(schema) {
   const setComponent = React.useCallback(component => setSubValue("component", component, {}), []);
 
   // 修改 component.props 值
-  const setComponentProps = React.useCallback((key, value) => {
-    const name = valueRef.current.selected.name;
+  const setComponentProps = React.useCallback((key, value, name) => {
+    const target = name || valueRef.current.selected.name;
     setComponent(component => {
-      if (!component[name]) component[name] = {};
-      if (!component[name].props) component[name].props = {};
-      component[name].props[key] = value;
+      if (!component[target]) component[target] = {};
+      if (!component[target].props) component[target].props = {};
+      component[target].props[key] = value;
       return Object.assign({}, component);
-    });
-  }, []);
-
-  // 修改当前选中项
-  const setSelected = React.useCallback(selected => setSubValue("selected", selected, {}), []);
-
-  // 切换预览
-  const toggleGhost = React.useCallback(() => setSubValue("ghost", ghost => !ghost), []);
-
-  // 切换预览
-  const togglePreview = React.useCallback(() => setSubValue("preview", preview => !preview), []);
-
-  // 设置预览设备
-  const setDevice = React.useCallback(device => {
-    setSubValue("device", current => {
-      const nextState = typeof device === "function" ? device(current) : device;
-      // 如果有，显示对应布局
-      const { screens = {} } = getLayoutConfig();
-      if (nextState === "phone" && !!screens["xs"]) setLayoutConfig("active", { active: "xs" });
-      else if (nextState === "pad" && !!screens["lg"]) setLayoutConfig("active", { active: "lg" });
-      else if (!nextState && !!screens["default"]) setLayoutConfig("active", { active: "default" });
-      return nextState;
     });
   }, []);
 
@@ -178,24 +136,15 @@ function useSchema(schema) {
   );
 
   React.useEffect(() => {
-    setValue(schema);
-  }, [schema]);
+    setValue(schemaValue);
+  }, [schemaValue]);
 
   return {
-    isEmpty: valueRef.current.columns.length === 0,
+    valueRef,
     value: valueRef.current,
-    device: valueRef.current.device || null,
-    ghost: valueRef.current.ghost || false,
-    preview: valueRef.current.preview || false,
-    selected: valueRef.current.selected || {},
-    clear,
     getLayout,
     getLayoutItem,
     getLayoutConfig,
-    getExportJson,
-    toggleGhost,
-    togglePreview,
-    setDevice,
     setValue,
     setColumns,
     setLayout,
@@ -208,7 +157,8 @@ function useSchema(schema) {
     setComponent,
     setComponentProps,
     setRelations,
-    setSelected,
+    setSubValue,
+    update,
   };
 }
 

@@ -149,7 +149,7 @@ function RelationEditor({ size, source, columns, value, onChange }) {
               <CodePopover
                 placement="leftBottom"
                 width="480px"
-                prefix={"function (value, formValue) {"}
+                prefix={"function (val, all) {"}
                 suffix={"}"}
                 extensions={extensions}
                 value={effect.func}

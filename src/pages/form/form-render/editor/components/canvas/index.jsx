@@ -58,6 +58,7 @@ function Canvas({ groupName, schema, layoutMap, componentMap, nodesConfig, trans
     });
   }, []);
 
+  // 删除 nodesConfig 内 props 配置
   const items = columns.map((col, index) => {
     const controlConfig = nodesConfig.control[col.input || "Input"] || {};
     const itemConfig = nodesConfig.formItem[col.input || "Input"] || {};

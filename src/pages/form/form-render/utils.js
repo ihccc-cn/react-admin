@@ -100,3 +100,21 @@ export const stopPropagationEvent = fn => event => {
   event.nativeEvent?.stopImmediatePropagation();
   fn && fn(event);
 };
+
+/**
+ * 通过字符串创建函数
+ * @param body{string} 方法体代码片段
+ * @param args{array} 接收的参数变量名列表
+ * @param context{any} 方法内上下文
+ * @return Function
+ */
+export const defineFunction = function (body, args, context) {
+  const fnstr = ['"use strict";'];
+  if (args) {
+    for (let index = 0; index < args.length; index++) {
+      fnstr.push(`const ${args[index]} = arguments[${index}];`);
+    }
+  }
+  const func = new Function(fnstr.concat(body).join(" "));
+  return func.bind(context || func);
+};

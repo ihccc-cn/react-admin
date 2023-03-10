@@ -55,17 +55,28 @@
           { "min": 6, "message": "密码长度不能小于6位" }
         ]
       }
-    }
+    },
+    "enable": { "props": { "valuePropName": "checked" } }
   },
-  "component": { "token": { "type": "Input", "props": {} } },
+  "component": {
+    "token": { "type": "Input", "props": { "allowClear": true, "placeholder": "请输入" } },
+    "username": { "type": "Input", "props": { "allowClear": true, "placeholder": "请输入" } },
+    "password": { "type": "Password", "props": { "placeholder": "请输入" } },
+    "number": { "type": "InputNumber", "props": { "placeholder": "请输入" } },
+    "time": { "type": "Slider", "props": {} },
+    "enable": { "type": "Switch", "props": {} },
+    "score": { "type": "Rate", "props": {} },
+    "address": { "type": "Input", "props": { "placeholder": "请输入", "rows": 3 } },
+    "remark": { "type": "Input", "props": { "placeholder": "请输入", "rows": 3 } }
+  },
   "relations": [
-    { "source": "token", "target": "password", "effects": [{ "type": "disabled", "func": "return !value;" }] },
-    { "source": "username", "target": "password", "effects": [{ "type": "disabled", "func": "return !value;" }] },
-    { "source": "username", "target": "number", "effects": [{ "type": "disabled", "func": "return !value;" }] },
-    { "source": "username", "target": "time", "effects": [{ "type": "disabled", "func": "return !value;" }] },
-    { "source": "username", "target": "enable", "effects": [{ "type": "disabled", "func": "return !value;" }] },
-    { "source": "username", "target": "score", "effects": [{ "type": "disabled", "func": "return !value;" }] },
-    { "source": "username", "target": "address", "effects": [{ "type": "disabled", "func": "return !value;" }] }
+    { "source": "token", "target": "password", "effects": [{ "type": "disabled", "func": "return !val || !all.username;" }] },
+    { "source": "username", "target": "password", "effects": [{ "type": "disabled", "func": "return !val || !all.token;" }] },
+    { "source": "username", "target": "number", "effects": [{ "type": "disabled", "func": "return !val;" }] },
+    { "source": "username", "target": "time", "effects": [{ "type": "disabled", "func": "return !val;" }] },
+    { "source": "username", "target": "enable", "effects": [{ "type": "hidden", "func": "return !val;" }] },
+    { "source": "username", "target": "score", "effects": [{ "type": "disabled", "func": "return !val;" }] },
+    { "source": "username", "target": "address", "effects": [{ "type": "disabled", "func": "return !val;" }] }
   ],
   "version": "1.0.0",
   "device": null,

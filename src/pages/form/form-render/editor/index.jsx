@@ -18,10 +18,6 @@ import "./index.css";
 
 const GROUP_NAME = "form-editor";
 
-const transformField = ({ type, ...data }) => {
-  return { ...data, name: uuid(type), input: type };
-};
-
 function Editor({ schema: schemaValue, style }) {
   const mainContainerRef = React.useRef(null);
   const schema = useSchemaForEditor(schemaValue);
@@ -29,8 +25,17 @@ function Editor({ schema: schemaValue, style }) {
 
   console.log("💾[editor-schema]: ", schema);
 
+  const handleInitField = React.useCallback(({ type, ...data }) => {
+    const itemConfig = nodesConfig.formItem[type] || {};
+    const componentConfig = nodesConfig.props[type]?.defaultProps || {};
+    const name = uuid(type);
+    schema.setFormItem(current => ({ ...current, [name]: itemConfig }));
+    schema.setComponent(current => ({ ...current, [name]: { props: componentConfig } }));
+    return { ...data, name, input: type };
+  }, []);
+
   const handleField = React.useCallback(item => {
-    schema.setColumns(current => current.concat(transformField(item)));
+    schema.setColumns(current => current.concat(handleInitField(item)));
   }, []);
 
   React.useEffect(() => {
@@ -107,7 +112,7 @@ function Editor({ schema: schemaValue, style }) {
               layoutMap={{ "basic-form-layout": BasicFormLayout }}
               componentMap={components}
               nodesConfig={nodesConfig}
-              transformItem={transformField}
+              transformItem={handleInitField}
               empty={<CanvasEmpty icon="icon-operation" title="点击/拖拽左侧栏目的组件进行添加" extra={viewExample} />}
               style={schema.device ? { height: "100%", overflow: "auto" } : { minHeight: containerHeight }}
             />
