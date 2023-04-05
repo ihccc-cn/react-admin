@@ -48,7 +48,7 @@ export const columns = [
 ];
 
 export const ac = actionColumn({
-  width: 160,
+  width: 120,
   buttons: [
     {
       key: "update",

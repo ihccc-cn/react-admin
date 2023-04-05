@@ -1,0 +1,9 @@
+.prefixIcon {
+  color: var(--primary);
+}
+
+.other {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}

@@ -1,4 +1,4 @@
-import UnrealService from "base-components-antd/lib/utils/UnrealService";
+import { UnrealService } from "@wowon/components/lib/utils";
 
 const initData = [
   {

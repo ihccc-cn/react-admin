@@ -1,4 +1,4 @@
-// import { removeStorage } from "base-components-antd/lib/utils";
+// import { removeStorage } from "@wowon/utils";
 
 /**
  * 退出登录，并且将当前的 url 保存
