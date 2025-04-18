@@ -7,6 +7,11 @@ export default {
   layout: React.lazy(() => import("@/layout/main-layout")),
 
   /**
+   * 登录页
+   */
+  "sign-in": React.lazy(() => import("@/pages/sign-in")),
+
+  /**
    * 首页
    */
   home: React.lazy(() => import("@/pages/home")),
