@@ -19,6 +19,7 @@ function FormRender({ schema: schemaValue, replace, onValuesChange, ...restProps
 
     const inputNdoe = React.createElement(components[col.input] || components["Input"], Object.assign({}, componentConfig.props));
 
+    console.log(col.title, itemConfig.props);
     const formItemNode = (
       <Form.Item label={col.title} tooltip={col.tip} name={col.name} {...itemConfig.props}>
         {inputNdoe}
@@ -47,11 +48,8 @@ function FormRender({ schema: schemaValue, replace, onValuesChange, ...restProps
     return rmap;
   }, [relations]);
 
-  const handleValuesChange = React.useCallback(
-    (...args) => {
-      onValuesChange && onValuesChange(...args);
-      const [changedValue, formValues] = args;
-      const [key, value] = Object.entries(changedValue)[0];
+  const triggerRelations = React.useCallback(
+    (key, value, formValues) => {
       const rules = relationMap[key];
 
       if (!rules) return;
@@ -76,6 +74,23 @@ function FormRender({ schema: schemaValue, replace, onValuesChange, ...restProps
     },
     [relationMap, onValuesChange]
   );
+
+  const handleValuesChange = React.useCallback(
+    (...args) => {
+      onValuesChange && onValuesChange(...args);
+      const [changedValue, formValues] = args;
+      const [key, value] = Object.entries(changedValue)[0];
+      triggerRelations(key, value, formValues);
+    },
+    [triggerRelations]
+  );
+
+  React.useEffect(() => {
+    const { initialValues = {} } = restProps;
+    for (let key in initialValues) {
+      triggerRelations(key, initialValues[key], initialValues);
+    }
+  }, []);
 
   return (
     <Form onValuesChange={handleValuesChange} {...form?.props} {...restProps}>
